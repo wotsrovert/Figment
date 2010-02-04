@@ -11,12 +11,20 @@
 
 ActiveRecord::Schema.define(:version => 0) do
 
-  create_table "prjects", :force => true do |t|
-    t.integer  "name"
+  create_table "projects", :force => true do |t|
+    t.string   "public_name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
-    t.integer  "user_id"
+    t.string   "contact_name"
+    t.string   "contact_email"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "group_email"
+    t.text     "biography"
+    t.string   "organization"
+    t.text     "names_list"
+    t.text     "notes"
   end
 
 end
