@@ -30,4 +30,13 @@ describe ProjectsController do
             { :delete => "/projects/1" }.should route_to( :controller => "projects", :action => "destroy", :id => "1" ) 
         end
     end
+
+    describe "custom routes" do
+        it "get /submission" do
+            params_from( :get, "/submission" ).should == {
+                :controller  => 'projects',
+                :action      => 'new'
+            }        
+        end
+    end
 end

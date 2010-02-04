@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
 
+    layout 'public'
+    
     before_filter :find_project, :except => [:index, :new, :create]
 
     def index

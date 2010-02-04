@@ -23,7 +23,7 @@
     
     - f.p( :website ) do
       = f.label :website
-      = f.text_field :website
+      = f.text_field :website, :size => 40
       = f.msg_on :website
     
     - f.p( :group_email ) do
@@ -38,8 +38,9 @@
     
     - f.p( :names_list ) do
       = f.label :names_list, "People in your group <small>List all</all>"
-      = f.text_field :names_list
+      = f.text_field :names_list, :size => 80
       = f.msg_on :names_list
     
     %p.submit
       = submit_tag "Submit"
+      = link_to "Cancel", root_path

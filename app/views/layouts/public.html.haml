@@ -1,0 +1,20 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %title== Figment 2010
+
+    = stylesheet_link_tag [ 'app' ], :cache => false
+
+  %body
+    #logo
+      %a{ :href => "http://figmentproject.org/2010/" }
+        %img{ :src => "http://figmentproject.org/2010/wp-content/themes/arthemia/images/YellowS_logo.png", :height => "154px", :align => "bottom", :alt => "", :width => "280px" }
+
+    #page
+      = yield
+
+    = javascript_include_tag [ 'jquery-1.3.2.min', 'app' ]
+    
+    #footnotes_holder
+    
