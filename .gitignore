@@ -1,6 +1,6 @@
 *~
 *.DS_Store
-db/test.sqlite3
+db/*.sqlite3
 doc
 log/*
 config/database.yml
