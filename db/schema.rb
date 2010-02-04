@@ -18,13 +18,13 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text     "description"
     t.string   "contact_name"
     t.string   "contact_email"
-    t.string   "phone"
     t.string   "website"
     t.string   "group_email"
     t.text     "biography"
     t.string   "organization"
     t.text     "names_list"
     t.text     "notes"
+    t.string   "contact_phone"
   end
 
 end
