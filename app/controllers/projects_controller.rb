@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
     layout 'public'
     
-    before_filter :find_project, :except => [:index, :new, :create]
+    before_filter :find_project, :except => [:index, :new, :create, :thank_you]
 
     def index
         @projects = Project.find(:all)
@@ -23,10 +23,13 @@ class ProjectsController < ApplicationController
 
         if @project.save
             flash[:notice] = 'Project was successfully created.'
-            redirect_to(projects_path)
+            redirect_to :action => 'thank_you'
         else
             render :action => "new"
         end
+    end
+
+    def thank_you
     end
 
     def update

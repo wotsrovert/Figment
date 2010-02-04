@@ -71,6 +71,81 @@
 	<td>Please provide a name for this project</td>
 	<td></td>
 </tr>
+<tr>
+	<td>type</td>
+	<td>project_contact_name</td>
+	<td>Trevor Stow</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Please provide a name for this project</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Please provide the primary contact's email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project_contact_email</td>
+	<td>trevorstow@gmail.com</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextNotPresent</td>
+	<td>Please provide the primary contact's email</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project_website</td>
+	<td>917.5</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project_contact_phone</td>
+	<td>917.555.1234</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project_website</td>
+	<td>http://mything.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project_group_email</td>
+	<td>group@us.com</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project_biography</td>
+	<td>We're a bunch of artists making things.</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>project_names_list</td>
+	<td>Trevo Stow, Kevin Balktick</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>commit</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTextPresent</td>
+	<td>Thank You</td>
+	<td></td>
+</tr>
 
 </tbody></table>
 </body>

@@ -7,7 +7,11 @@ describe ProjectsController do
         end
 
         it "#new" do
-            { :get => "/projects/new" }.should route_to( :controller => "projects", :action => "new" )
+            # { :get => "/projects/new" }.should route_to( :controller => "projects", :action => "new" )
+        end
+
+        it "#new" do
+            { :get => "/submission" }.should route_to( :controller => "projects", :action => "new" )
         end
 
         it "#edit" do
@@ -37,6 +41,13 @@ describe ProjectsController do
                 :controller  => 'projects',
                 :action      => 'new'
             }        
+        end
+
+        it "get /submission/thank_you" do
+            # params_from( :get, "/submission/you" ).should == {
+            #     :controller  => 'projects',
+            #     :action      => 'thank_you'
+            # }        
         end
     end
 end
