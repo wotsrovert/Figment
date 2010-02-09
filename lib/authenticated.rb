@@ -130,44 +130,6 @@ module Authenticated
         crypted_password == encrypt(password)
     end
 
-    def remember_token?
-        remember_token_expires_at && Time.now.utc < remember_token_expires_at
-    end
-
-    # These create and unset the fields required for remembering users between browser closes
-    def remember_me=(_v)
-        if _v
-            remember_me
-        end
-    end
-
-    def remember_me
-        remember_me_for 2.weeks
-    end
-
-    def remember_me_for(time)
-        remember_me_until time.from_now.utc
-    end
-
-    # Useful place to put the login methods
-    def remember_me_until(time)
-        self.remember_token_expires_at = time
-        self.remember_token = encrypt("#{email}--#{remember_token_expires_at}")
-        save(false)
-    end
-
-    def forget_me
-        self.remember_token_expires_at = nil
-        self.remember_token            = nil
-        save(false)
-    end
-
-    def check_for_remember_me
-        if self.remember_me_flag.to_i > 0
-            self.remember_me
-        end
-    end
-
     def encrypt_password
         return if password.blank?
         self.salt = Digest::SHA1.hexdigest("--#{Time.now.to_s}--#{email}--") if new_record?
@@ -186,6 +148,20 @@ module Authenticated
     def password_required?
         return false if @skip_password_requirement
         (crypted_password.blank? || !password.blank?)
+    end
+    
+    def remember_me_code=( _v )
+        write_attribute( :remember_me_code, _v )
+        if ! self.new_record?
+            save!
+        end
+    end
+
+    def clear_remember_me_code
+        write_attribute( :remember_me_code, nil )
+        if ! self.new_record?
+            save
+        end
     end
 
     attr_writer :skip_terms_requirement
@@ -219,4 +195,15 @@ module Authenticated
         new_record?
     end
 
+    def log_out
+        @logged_out = true
+    end
+    
+    def logged_in?
+        if @logged_out == true
+            return nil
+        else
+            !new_record?
+        end
+    end
 end

@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "mugshot_file_name"
     t.string   "mugshot_content_type"
     t.string   "phone"
+    t.string   "remember_me_code"
   end
 
 end
