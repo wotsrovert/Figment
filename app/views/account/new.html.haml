@@ -1,0 +1,16 @@
+.signup
+  %h1 Create your player profile
+  - form_for :user, @current_user, :url => account_path do |f|
+    - f.p( :first_name ) do
+      = f.label :first_name
+      = f.text_field :first_name
+      = f.msg_on :first_name
+    
+  
+  .otherOptions
+    %p.alreadyHaveAnAccount
+      Already have an account?
+      %br/
+      = link_to "Click here to login.", login_path
+
+

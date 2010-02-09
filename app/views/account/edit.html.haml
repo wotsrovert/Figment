@@ -1,0 +1,22 @@
+- content_for :title do
+  %h1 Your Profile
+  
+
+- content_for :left do
+  .mugshot
+    = link_to image_tag( @current_user.mugshot.url('profile') ), @current_user.mugshot.url
+
+    .link
+      - if @current_user.mugshot
+        = link_to "Change photo", edit_mugshot_path
+      - else
+        = link_to "Add a photo", new_mugshot_path
+
+  - form_for @current_user, :url => account_path do |f|
+
+    = render :partial => 'account/form', :locals => {:f => f}
+
+    %p.submit.bottom
+      = submit_tag "Save Changes"
+      = link_to "Cancel", account_path
+

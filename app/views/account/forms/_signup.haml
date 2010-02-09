@@ -1,0 +1,20 @@
+.flash
+%fieldset
+	= render :partial => '/users/fields/name', :locals => { :f => f }
+	= render :partial => '/users/fields/email', :locals => { :f => f }
+	= render :partial => '/users/fields/passwords', :locals => { :f => f }
+	= render :partial => "/users/fields/rating_by_self", :locals => {:f => f}
+	= render :partial => "/users/fields/club", :locals => {:f => f}
+	= render :partial => '/users/fields/terms', :locals => { :f => f }
+
+	- if @current_act.has_signup_passphrase?
+		- f.p( :signup_passphrase ) do
+			%label{ :for => 'signup_passphrase' } 
+				Please enter the secret phrase.
+			= f.text_field :signup_passphrase, :size => 15
+			= f.msg_on :signup_passphrase
+
+	%p.submit
+		= submit_tag "Sign Up", :name => 'signup'
+		- if params[:return_to]
+			= link_to "Cancel", params[:return_to]

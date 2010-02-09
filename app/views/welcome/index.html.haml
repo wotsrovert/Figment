@@ -1,1 +1,7 @@
-= link_to "Artists, click here to submit your projects", submission_path
+%p.artists
+  = link_to "Artists, click here to submit your projects", submission_path
+
+- if  true # ! @current_user.logged_in?
+  %p.login
+    = link_to "Click here to login", login_path
+  

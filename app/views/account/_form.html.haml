@@ -1,0 +1,25 @@
+%h3 Basic Information
+- f.p( :first_name ) do
+	= f.label :first_name
+	= f.text_field :first_name, :size => 20
+	= f.msg_on :first_name
+
+- f.p( :last_name ) do
+	= f.label :last_name
+	= f.text_field :last_name, :size => 20
+	= f.msg_on :last_name
+
+= render :partial => '/users/fields/email', :locals => {:f => f} 
+= render :partial => '/users/fields/rating_by_self', :locals => {:f => f} 
+- if @current_user.is_admin?
+
+	- f.p( :rating_by_pro ) do
+		= f.label :rating_by_pro
+		= f.text_field :rating_by_pro, :size => 5, :maxlength => 4
+		= f.msg_on :rating_by_pro
+
+
+= render :partial => '/users/fields/location', :locals => {:f => f} 
+
+- for field in [ :gender, :handed ] do
+	= render :partial => "/users/fields/#{field}", :locals => {:f => f}

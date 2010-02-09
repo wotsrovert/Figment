@@ -1,0 +1,43 @@
+- show_email ||= false
+ 
+%dl
+  - if show_email
+    %dt Email
+    %dd= user.email
+
+  - if user.has_location?
+    %dt Location:
+    %dd
+      - if ! user.try(:city).blank?
+        %span.city
+          = user.city
+      - if user.state_and_country
+        = user.state_and_country
+
+  %dt Rating
+  %dd.rating
+    - if user.effective_rating_as_f
+      = user.effective_rating_as_f
+  
+  %dt Clubs
+  %dd.clubs
+    - if params[ :controller ] != 'account'
+      (none)
+    - else
+      - if user.clubs.empty?
+        = link_to "(none)", edit_account_path, :title => "Click here to add a club to your profile."
+      - else
+        %ul
+          - for club in user.clubs
+            %li= club.name
+    
+  - if ! user.try(:gender).blank?
+    %dt Gender
+    %dd
+      = user.gender == "M" ? "Male" : "Female"
+
+  - if params[:action] != 'edit'
+    %p.edit
+      = link_to "Edit", edit_account_path
+
+

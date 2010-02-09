@@ -1,0 +1,35 @@
+- content_for :left do
+  .mugshot
+    = link_to image_tag( @current_user.mugshot.url('profile') ), @current_user.mugshot.url
+
+    .link
+      - if @current_user.mugshot
+        = link_to "Change photo", edit_mugshot_path
+      - else
+        = link_to "Add a photo", new_mugshot_path
+
+  %h3
+    = @current_user.name
+
+  = render :partial => 'account/dl', :locals => { :user => @current_user, :show_email => true }
+
+- if @grid.current_cell
+  - content_for :cell do
+    = render :partial => 'grid/cell', :locals => { :cell => @grid.current_cell }
+
+
+- content_for :week do
+  %table.days
+    = render :partial => 'grid/head', :locals => { :days => @grid.days }
+
+    %tbody
+      %tr
+        - @grid.days.each do |day|
+          %td{ :class => "day" << ( day.today?? " today" : "" )}
+            .wrapper
+              - for cell in day.ordered_cells
+                .cell{ :class => cell.avbts.any? ? 'yes' : nil }
+                  %a.avbt{ :href  => url_for( :days_from_this_sunday => cell.days_from_this_sunday, :starts_at_minute => cell.starts_at_minute, :ends_at_minute => cell.ends_at_minute ), :title => "#{cell.starts_at_minute.to_hr_min_ampm}, #{cell.day_of_week}" }
+
+                - for avbt in day.avbts
+                  = render :partial => 'avbts/div', :locals => { :avbt => avbt, :grid => @grid }

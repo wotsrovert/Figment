@@ -1,0 +1,7 @@
+.popup{ :style => "margin-left: 20%; margin-top: 0" }
+	.panel
+		= link_to "X", root_url, :class => 'close'
+		%h2 Log in
+		= flash_display
+		= render :partial => 'account/forms/login'
+
