@@ -7,7 +7,7 @@ class SessionController < ApplicationController
     def login_post
         @current_user = User.authenticate(params[:email], params[:password])
 
-        if try_login(@current_user, params[:remember_me])
+        if try_login( @current_user, params[:remember_me] )
             flash[:notice] = "Welcome back, #{@current_user.name}."
             redirect_to_next_action_or_default root_path
         else

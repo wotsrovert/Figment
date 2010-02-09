@@ -1,7 +1,0 @@
-= render :partial => 'session/fields'
-
-%p.submit
-  = submit_tag "Log In"
-  - if params[:return_to]
-    = hidden_field_tag 'return_to', params[:return_to]
-    = link_to "Cancel", params[:return_to]

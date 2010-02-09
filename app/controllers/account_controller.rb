@@ -6,9 +6,7 @@ class AccountController < ApplicationController
     end
 
     def new
-
-        # @current_user = User.new
-        raise @current_user.inspect
+        @current_user = User.new
         flash[:error] = flash[:notice] = nil
     end
 
