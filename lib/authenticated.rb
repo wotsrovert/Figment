@@ -66,6 +66,7 @@ module Authenticated
 
     end
 
+    attr_accessor :cookies
     attr_accessor :password, :password_forgotten, :password_confirmation
     attr_accessor :remember_me_flag, :is_returning
     attr_writer :skip_terms_requirement
@@ -114,7 +115,7 @@ module Authenticated
     end
 
     def is_admin?
-        is_admin
+        read_attribute( :is_admin )
     end
 
     def is_root?

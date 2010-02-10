@@ -14,3 +14,12 @@
   = f.text_field :email
   = f.msg_on :email
 
+- f.p( :password ) do
+  = f.label :password
+  = f.password_field :password
+  = f.msg_on :password
+
+- f.p( :password_confirmation ) do
+  = f.label :password_confirmation, "Please retype the password"
+  = f.text_field :password_confirmation
+  = f.msg_on :password_confirmation

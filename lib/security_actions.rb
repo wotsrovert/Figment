@@ -139,7 +139,6 @@ module SecurityActions
             User.new
         end
         @current_user.cookies = cookies
-
         return @current_user
     end
 

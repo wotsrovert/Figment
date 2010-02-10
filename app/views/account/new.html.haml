@@ -3,11 +3,10 @@
   - form_for :user, @current_user, :url => account_path do |f|
 
     = render :partial => 'account/form', :locals => { :f => f }
-    - f.p( :first_name ) do
-      = f.label :first_name
-      = f.text_field :first_name
-      = f.msg_on :first_name
     
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", root_path
   
   .otherOptions
     %p.alreadyHaveAnAccount
