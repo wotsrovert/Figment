@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     map.resource :account, :controller => 'account'
 
+    map.resources :artists
     map.resources :curators
     
     map.with_options( :controller => 'session' ) do |sess|

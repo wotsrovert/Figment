@@ -8,8 +8,6 @@ class User < ActiveRecord::Base
     include Authenticated
     include Resettable
 
-    attr_protected :is_root, :is_admin, :is_curator
-
     attr_protected :crypted_password,
                     :salt,
                     :anonymous_login_code,
@@ -19,10 +17,12 @@ class User < ActiveRecord::Base
                     :is_director,
                     :is_admin
 
-
     validates_presence_of :name, :message => "Please provide a name"
-    
+
     named_scope :curators, :conditions => { :is_curator => true }
+
+    has_many :projects, :foreign_key => 'artist_id'
+    
     def password_required?
         if is_admin || is_root || is_curator
             read_attribute( :crypted_password ).blank?
@@ -80,6 +80,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -99,8 +100,6 @@ end
 #  is_director          :boolean         default(FALSE)
 #  is_admin             :boolean         default(FALSE)
 #  is_spectator         :boolean         default(TRUE)
-#  first_name           :string(255)
-#  last_name            :string(255)
 #  phone                :string(255)
 #  remember_me_code     :string(255)
 #

@@ -110,6 +110,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -129,8 +130,6 @@ end
 #  is_director          :boolean         default(FALSE)
 #  is_admin             :boolean         default(FALSE)
 #  is_spectator         :boolean         default(TRUE)
-#  first_name           :string(255)
-#  last_name            :string(255)
 #  phone                :string(255)
 #  remember_me_code     :string(255)
 #

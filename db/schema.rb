@@ -11,7 +11,7 @@
 
 ActiveRecord::Schema.define(:version => 0) do
 
-  create_table "projects", :force => true do |t|
+  create_table "artists", :force => true do |t|
     t.string   "public_name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -25,6 +25,22 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text     "names_list"
     t.text     "notes"
     t.string   "contact_phone"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "description"
+    t.string   "dimensions"
+    t.string   "duration"
+    t.string   "requested_location"
+    t.boolean  "press"
+    t.string   "stipend"
+    t.text     "notes"
+    t.string   "placed_location"
+    t.string   "placement_code"
+    t.datetime "setup_time"
+    t.datetime "break_down"
+    t.string   "requested_locations"
+    t.integer  "artist_id"
   end
 
   create_table "users", :force => true do |t|

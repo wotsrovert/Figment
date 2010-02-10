@@ -7,10 +7,6 @@ describe ProjectsController do
         end
 
         it "#new" do
-            # { :get => "/projects/new" }.should route_to( :controller => "projects", :action => "new" )
-        end
-
-        it "#new" do
             { :get => "/submission" }.should route_to( :controller => "projects", :action => "new" )
         end
 
@@ -32,22 +28,6 @@ describe ProjectsController do
 
         it "DELETE #destroy" do
             { :delete => "/projects/1" }.should route_to( :controller => "projects", :action => "destroy", :id => "1" ) 
-        end
-    end
-
-    describe "custom routes" do
-        it "get /submission" do
-            params_from( :get, "/submission" ).should == {
-                :controller  => 'projects',
-                :action      => 'new'
-            }        
-        end
-
-        it "get /submission/thank_you" do
-            # params_from( :get, "/submission/you" ).should == {
-            #     :controller  => 'projects',
-            #     :action      => 'thank_you'
-            # }        
         end
     end
 end
