@@ -1,0 +1,10 @@
+%h1
+  New Curator Account
+  
+- form_for @user, :url => url_for( :action => 'create' ) do |f|
+
+  = render :partial => 'account/form', :locals => { :f => f }
+
+  %p.submit
+    = submit_tag "Submit"
+    = link_to "Cancel", curators_path

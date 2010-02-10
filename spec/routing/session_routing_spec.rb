@@ -21,10 +21,6 @@ describe SessionController do
     
     describe "named routes" do
 
-        it "signup" do
-            signup_path.should eql( "/signup" )
-        end
-
         it "forgot password" do
             forgot_password_path.should eql( "/forgot_password" )
         end

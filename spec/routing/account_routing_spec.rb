@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe AccountController do
+    describe "named routes" do
+        it "" do
+            signup_path.should eql( '/account/new' )
+        end
+    end
+    
     describe "basic rest" do
         it "GET /account" do
             { :get => "/account" }.should route_to( :controller => "account", :action => "show" )
@@ -29,7 +35,7 @@ describe AccountController do
 
     describe "extracting params" do
         it "#signup" do
-            params_from( :get, "/signup" ).should == {
+            params_from( :get, "/account/new" ).should == {
                 :controller  => 'account',
                 :action      => 'new'
             }

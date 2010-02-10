@@ -1,10 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
     map.with_options( :controller => 'account' ) do |acc|
-        acc.signup '/signup', :action => 'new'
+        acc.signup '/account/new', :action => 'new'
         acc.forgot_password '/forgot_password', :action => 'forgot_password'
     end
     map.resource :account, :controller => 'account'
+
+    map.resources :curators
     
     map.with_options( :controller => 'session' ) do |sess|
         sess.login '/login', :action => 'login', :conditions => {:method => :get }

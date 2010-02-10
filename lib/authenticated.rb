@@ -47,13 +47,6 @@ module Authenticated
             :case_sensitive => false,
             :message        => "Is already being used."
         )
-        base.validates_length_of(
-            :name,
-            :within    => base::NAME_MIN_LENGTH..base::NAME_MAX_LENGTH,
-            :if        => :name_required?,
-            :too_short => "Too short.",
-            :too_long  => "Too long."
-        )
         base.validates_acceptance_of(
             :terms,
             :on        => :create,

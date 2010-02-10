@@ -99,35 +99,8 @@ describe User do
         end
 
     end
-
-    describe "searching" do
-        it "should search by first name" do
-            User.filtered_by( :first_name => 'jose' ).proxy_options.should eql( {:conditions=>["LOWER( first_name ) LIKE ?", "jose%"]} )
-        end
-
-        it "should ignore empty attributes" do
-            User.filtered_by( :first_name => 'jose', :last_name => '' ).proxy_options.should eql( {:conditions=>["LOWER( first_name ) LIKE ?", "jose%"]} )
-        end
-
-        it "should strip space" do
-            User.filtered_by( :first_name => '  jose', :last_name => '' ).proxy_options.should eql( {:conditions=>["LOWER( first_name ) LIKE ?", "jose%"]} )
-        end
-
-        describe "filtering by rating" do
-            it "should accept exact matches" do
-                User.filtered_by( :first_name => '  jose', :rating_from => '5.11', :rating_to => '5.11' ).proxy_options.should eql( {:conditions=>["LOWER( first_name ) LIKE ?", "jose%" ]} )
-            end
-
-            it "should accept greater than matches" do
-                User.filtered_by( :first_name => '  jose', :rating_from => '5.11', :rating_to => '6' ).proxy_options.should eql( {:conditions=>["LOWER( first_name ) LIKE ?", "jose%" ]} )
-            end
-
-            it "should accept only a starting from rating" do
-                User.filtered_by( :first_name => '  jose', :is_root => 'true' ).proxy_options.should eql( {:conditions=>["LOWER( first_name ) LIKE ?", "jose%"]} )
-            end
-        end
-    end
 end
+
 
 
 
@@ -141,29 +114,24 @@ end
 #
 # Table name: users
 #
-#  id                        :integer         not null, primary key
-#  email                     :string(255)
-#  crypted_password          :string(40)
-#  salt                      :string(40)
-#  remember_token            :string(255)
-#  remember_token_expires_at :datetime
-#  name                      :string(255)
-#  created_at                :datetime
-#  updated_at                :datetime
-#  last_logged_in_at         :datetime
-#  anonymous_login_code      :string(255)
-#  is_root                   :boolean         default(FALSE)
-#  is_artist                 :boolean         default(FALSE)
-#  is_curator                :boolean         default(FALSE)
-#  is_director               :boolean         default(FALSE)
-#  is_admin                  :boolean         default(FALSE)
-#  is_spectator              :boolean         default(TRUE)
-#  first_name                :string(255)
-#  last_name                 :string(255)
-#  mugshot_file_size         :integer
-#  mugshot_file_name         :string(255)
-#  mugshot_content_type      :string(255)
-#  phone                     :string(255)
-#  remember_me_code          :string(255)
+#  id                   :integer         not null, primary key
+#  email                :string(255)
+#  crypted_password     :string(40)
+#  salt                 :string(40)
+#  name                 :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
+#  last_logged_in_at    :datetime
+#  anonymous_login_code :string(255)
+#  is_root              :boolean         default(FALSE)
+#  is_artist            :boolean         default(FALSE)
+#  is_curator           :boolean         default(FALSE)
+#  is_director          :boolean         default(FALSE)
+#  is_admin             :boolean         default(FALSE)
+#  is_spectator         :boolean         default(TRUE)
+#  first_name           :string(255)
+#  last_name            :string(255)
+#  phone                :string(255)
+#  remember_me_code     :string(255)
 #
 

@@ -42,8 +42,6 @@ ActiveRecord::Schema.define(:version => 0) do
     t.boolean  "is_director",                        :default => false
     t.boolean  "is_admin",                           :default => false
     t.boolean  "is_spectator",                       :default => true
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "phone"
     t.string   "remember_me_code"
   end

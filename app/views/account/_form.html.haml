@@ -1,25 +1,20 @@
-
-- f.p( :first_name ) do
-  = f.label :first_name
-  = f.text_field :first_name, :size => 20
-  = f.msg_on :first_name
-
-- f.p( :last_name ) do
-  = f.label :last_name
-  = f.text_field :last_name, :size => 20
-  = f.msg_on :last_name
-
+- f.p( :name ) do
+  = f.label :name
+  = f.text_field :name
+  = f.msg_on :name
+  
 - f.p( :email ) do
-  = f.label :email, "Your Email"
+  = f.label :email, "Email"
   = f.text_field :email
   = f.msg_on :email
 
-- f.p( :password ) do
-  = f.label :password
-  = f.password_field :password
-  = f.msg_on :password
+- if f.object.try( :password_required? )
+  - f.p( :password ) do
+    = f.label :password
+    = f.password_field :password
+    = f.msg_on :password
 
-- f.p( :password_confirmation ) do
-  = f.label :password_confirmation, "Please retype the password"
-  = f.text_field :password_confirmation
-  = f.msg_on :password_confirmation
+  - f.p( :password_confirmation ) do
+    = f.label :password_confirmation, "Please Re-Type Password"
+    = f.text_field :password_confirmation
+    = f.msg_on :password_confirmation
