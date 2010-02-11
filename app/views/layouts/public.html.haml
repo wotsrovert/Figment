@@ -7,8 +7,9 @@
     = stylesheet_link_tag [ 'app' ], :cache => false
 
   %body
-    #home_link
-      = link_to "Home", root_path
+    #tabs
+      = link_to "Home", root_path, :class => 'home'
+      = link_to "Projects", projects_path, :class => 'projects'
       
     #logo
       %a{ :href => "http://figmentproject.org/2010/" }

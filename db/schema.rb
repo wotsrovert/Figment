@@ -37,12 +37,15 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text     "notes"
     t.string   "placed_location"
     t.string   "placement_code"
-    t.datetime "setup_time"
-    t.datetime "break_down"
     t.string   "requested_locations"
     t.integer  "artist_id"
     t.string   "title"
     t.text     "categories"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "setup_at"
+    t.datetime "updated_at"
+    t.datetime "break_down_at"
   end
 
   create_table "users", :force => true do |t|

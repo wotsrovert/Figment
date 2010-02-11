@@ -1,0 +1,31 @@
+#projects
+
+  %h1 Projects
+
+  %table
+    %thead
+      %tr
+        %th No.
+        %th Status
+        %th Artist
+        %th Title
+        %th Categories
+        %th Location
+        %th Placement Code
+        %th Setup Time
+        %th Breakdown Time
+        %th Programs
+    %tbody
+      - for p in @projects
+        %tr
+          %td=h p.id
+          %td=h p.artist.public_name
+          %td=h p.status
+          %td=h p.title
+          %td=h p.categories
+          %td=h p.requested_location
+          %td=h p.placement_code
+          %td=h p.setup_at
+          %td=h p.break_down_at
+
+  = link_to "Add a Project", new_project_path
