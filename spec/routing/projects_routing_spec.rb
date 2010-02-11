@@ -1,13 +1,17 @@
 require 'spec_helper'
 
 describe ProjectsController do
+    it "submission" do
+        { :get => "/submission" }.should route_to( :controller => "projects", :action => "new" )
+    end
+
+    it "artist_id/submission" do
+        { :get => "/submission/11" }.should route_to( :controller => "projects", :action => "new", :artist_id => '11' )
+    end
+
     describe "straight-up resource routing" do
         it "#index" do
             { :get => "/projects" }.should route_to( :controller => "projects", :action => "index" )
-        end
-
-        it "#new" do
-            { :get => "/submission" }.should route_to( :controller => "projects", :action => "new" )
         end
 
         it "#edit" do

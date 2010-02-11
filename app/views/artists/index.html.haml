@@ -1,0 +1,7 @@
+%h1 Artists
+
+- if @artists.any?
+  %ul
+    - for a in @artists
+      %li
+        = link_to a.public_name, new_artist_project_path( a.to_param )

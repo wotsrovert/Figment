@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "description"
+    t.text     "description",         :limit => 255
     t.string   "dimensions"
     t.string   "duration"
     t.string   "requested_location"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "break_down"
     t.string   "requested_locations"
     t.integer  "artist_id"
+    t.string   "title"
+    t.text     "categories"
   end
 
   create_table "users", :force => true do |t|
