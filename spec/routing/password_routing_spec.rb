@@ -33,7 +33,7 @@ describe PasswordController do
         end
 
         it "reset_password_url" do
-            reset_password_url( 'somekindofhashedcode', :host => 'test.boastdrive.com' ).should eql( 'http://test.boastdrive.com/password/edit/somekindofhashedcode' )
+            reset_password_url( 'somekindofhashedcode', :host => 'test.figmentproject.org' ).should eql( 'http://test.figmentproject.org/password/edit/somekindofhashedcode' )
         end
     end
 

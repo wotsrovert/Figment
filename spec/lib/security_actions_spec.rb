@@ -4,7 +4,7 @@ describe "" do
     include SecurityActions
     include ActionController::UrlWriter
 
-    default_url_options[:host] = 'www.boastdrive.com'
+    default_url_options[:host] = 'figmentproject.org'
 
     def session
         @session ||= {}
@@ -80,9 +80,9 @@ describe "" do
 
         describe "when cookie data is messed up" do
             before(:each) do
-                @user = Factory.create(:user, :email => 'myself@boastdrive.com' )
+                @user = Factory.create(:user, :email => 'myself@figmentproject.org' )
                 cookies[:rmi] = @user.id
-                cookies[:rmc] = Digest::SHA1.hexdigest( 'myself@boastdrive.com' )
+                cookies[:rmc] = Digest::SHA1.hexdigest( 'myself@figmentproject.org' )
             end
 
             it "BS rmc" do
@@ -160,7 +160,7 @@ describe "" do
         
         describe "as root" do
             before(:each) do
-                @root = Factory.create( :user, :email => 'root@boastdrive.com' )
+                @root = Factory.create( :user, :email => 'root@figmentproject.org' )
                 @root.is_root = true
                 @root.save!
                 try_login( @root )
@@ -302,7 +302,7 @@ describe "" do
 
             describe "then saving" do
                 before(:each) do
-                    @user.email = 'legitimate@boastdrive.com'
+                    @user.email = 'legitimate@figmentproject.org'
                 end
 
                 it "should set the session's user_id to user's id" do

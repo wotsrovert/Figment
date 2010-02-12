@@ -40,6 +40,11 @@ ActionController::Routing::Routes.draw do |map|
     end
     map.resources :projects
     map.resources :curators
+    map.with_options( :controller => 'errors', :path_prefix => '/errors' ) do |errs|
+        errs.connect '/500',            :action => 'internal_error'
+        errs.connect '/404',            :action => 'not_found'
+        errs.connect '/422',            :action => 'unprocessable'
+    end
 
 
     map.root :controller => 'welcome'

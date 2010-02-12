@@ -1,0 +1,22 @@
+!!!
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
+  %head
+    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %title== Figment 2010
+
+    %style{ :type => 'text/css' }
+      = File.read( File.join( ActionView::Helpers::AssetTagHelper::ASSETS_DIR, 'stylesheets', 'app.css' ))
+
+  %body.error
+    %ul#tabs
+      %li= link_to "Home", "http://figmentproject.org/2010/"
+      
+    #logo
+      %a{ :href => "http://figmentproject.org/2010/" }
+        %img{ :src => "http://figmentproject.org/2010/wp-content/themes/arthemia/images/YellowS_logo.png", :height => "154px", :align => "bottom", :alt => "", :width => "280px" }
+
+    #page
+      = yield
+      
+    #footnotes_holder
+    
