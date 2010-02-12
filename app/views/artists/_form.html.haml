@@ -14,7 +14,7 @@
   = f.msg_on :contact_email
 
 - f.p( :contact_phone ) do
-  = f.label :contact_phone
+  = f.label :contact_phone, "Contact Phone"
   = f.text_field :contact_phone
   = f.msg_on :contact_phone
 
@@ -24,7 +24,7 @@
   = f.msg_on :website
 
 - f.p( :group_email ) do
-  = f.label :group_email
+  = f.label :group_email, "Group Email"
   = f.text_field :group_email
   = f.msg_on :group_email
 
@@ -34,6 +34,6 @@
   = f.msg_on :biography
 
 - f.p( :names_list ) do
-  = f.label :names_list, "People in your group <small>List all</small>"
+  = f.label :names_list, "People in Group <small>(list all)</small>"
   = f.text_area :names_list, :size => '40x3'
   = f.msg_on :names_list

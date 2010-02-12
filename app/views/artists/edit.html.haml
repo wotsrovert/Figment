@@ -1,0 +1,12 @@
+#artist
+  %h1 
+    = @artist.public_name
+    \- Edit Details
+  
+  - form_for @artist do |f|
+    
+    = render :partial => 'artists/form', :locals => { :f => f }
+    
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", :back

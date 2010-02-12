@@ -1,0 +1,28 @@
+#artist
+  %h1= @artist.public_name
+
+  %dl
+    %dt public name
+    %dd= @artist.public_name
+    %dt description
+    %dd= @artist.description
+    %dt contact name
+    %dd= @artist.contact_name
+    %dt contact email
+    %dd= @artist.contact_email
+    %dt website
+    %dd= @artist.website
+    %dt group email
+    %dd= @artist.group_email
+    %dt biography
+    %dd= @artist.biography.or( none )
+    %dt organization
+    %dd= @artist.organization.or( none )
+    %dt names list
+    %dd= @artist.names_list.or( none )
+    %dt notes
+    %dd= @artist.notes.or( none )
+    %dt contact phone
+    %dd= @artist.contact_phone
+
+  = link_to "Edit", edit_artist_path( @artist )

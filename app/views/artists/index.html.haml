@@ -1,7 +1,31 @@
-%h1 Artists
+#artists
 
-- if @artists.any?
-  %ul
-    - for a in @artists
-      %li
-        = link_to a.public_name, new_artist_project_path( a.to_param )
+  %h1 Artists
+
+  - if @artists.any?
+    %table
+      %thead
+        %tr
+          %th 
+          %th 
+          %th Contact
+          %th Contact Email
+          %th Website
+          %th Group Email
+          %th Names
+          %th Phone
+      %tbody
+        - for a in @artists
+          %tr
+            %td
+              = a.id
+            %td
+              =link_to h( a.public_name ), a
+            %td=h a.contact_name
+            %td=h a.contact_email
+            %td=h a.website
+            %td=h a.group_email
+            %td=h a.names_list
+            %td=h a.contact_phone
+
+    = link_to "Add an Artist", new_artist_path

@@ -1,0 +1,9 @@
+#project
+  %h1= @project.title
+  
+  - form_for @project do |f|
+    = render :partial => 'projects/form', :locals => { :f => f }
+    
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", :back

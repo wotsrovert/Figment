@@ -1,0 +1,60 @@
+#project
+
+  %h1= @project.title
+
+  %dl
+    %dt id
+    %dd= @project.id
+
+    %dt Artist
+    %dd
+      - if @project.artist
+        = link_to h( @project.artist.public_name ), @project.artist
+
+    %dt title
+    %dd=h @project.title
+
+    %dt description
+    %dd=h @project.description
+
+    %dt dimensions
+    %dd=h @project.dimensions
+
+    %dt duration
+    %dd=h @project.duration
+
+    %dt requested_location
+    %dd=h @project.requested_location
+
+    %dt press
+    %dd=h @project.press
+
+    %dt stipend
+    %dd=h @project.stipend
+
+    %dt notes
+    %dd=h @project.notes
+
+    %dt placed_location
+    %dd=h @project.placed_location
+
+    %dt placement_code
+    %dd=h @project.placement_code
+
+    %dt requested_locations
+    %dd=h @project.requested_locations
+
+
+    %dt categories
+    %dd=h @project.categories
+
+    %dt status
+    %dd=h @project.status
+
+    %dt setup_at
+    %dd=h @project.setup_at
+
+    %dt break_down_at
+    %dd=h @project.break_down_at
+    
+  = link_to "Edit", edit_project_path( @project )

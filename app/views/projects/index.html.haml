@@ -19,9 +19,12 @@
       - for p in @projects
         %tr
           %td=h p.id
-          %td=h p.artist.public_name
           %td=h p.status
-          %td=h p.title
+          %td
+            - if p.artist
+              =link_to h( p.artist.public_name ), p.artist
+          %td
+            = link_to h( p.title ), p
           %td=h p.categories
           %td=h p.requested_location
           %td=h p.placement_code
