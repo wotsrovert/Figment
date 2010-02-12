@@ -1,0 +1,75 @@
+%h3 General:
+- f.p( :categories ) do
+  = f.label :categories
+  = f.text_area :categories, :size => '40x3'
+  = f.msg_on :categories, "Sculpture, Interactive, etc."
+
+- f.p( :curator_id ) do
+  = f.label :curator_id
+  = select_tag 'project[curator_id]', options_for_select( User.curators.map{ |u| [ u.name, u.id ] } )
+  = f.msg_on :curator_id
+
+- f.p( :press ) do
+  = f.label :press
+  = f.check_box :press
+  = f.msg_on :press
+  
+- f.p( :stipend ) do
+  = f.label :stipend
+  = f.text_field :stipend
+  = f.msg_on :stipend
+
+- f.p( :notes ) do
+  = f.label :notes
+  = f.text_area :notes, :size => '40x3'
+  = f.msg_on :notes, "Sculpture, Interactive, etc."
+  
+%h3 Placement & Installation:
+- f.p( :placed_location ) do
+  = f.label :placed_location
+  = f.text_field :placed_location
+  = f.msg_on :placed_location
+
+- f.p( :placement_code ) do
+  = f.label :placement_code
+  = f.text_field :placement_code
+  = f.msg_on :placement_code
+  
+- f.p( :setup_at ) do
+  = f.label :setup_at
+  = f.text_field :setup_at
+  = f.msg_on :setup_at
+
+- f.p( :break_down_at ) do
+  = f.label :break_down_at
+  = f.text_field :break_down_at
+  = f.msg_on :break_down_at
+
+- f.p( :requested_location ) do
+  = f.label :requested_location
+  = f.text_field :requested_location
+  = f.msg_on :requested_location
+
+%h3 Description:
+- f.p( :dimensions ) do
+  = f.label :dimensions
+  = f.text_field :dimensions
+  = f.msg_on :dimensions
+
+- f.p( :duration ) do
+  = f.label :duration
+  = f.text_field :duration
+  = f.msg_on :duration
+
+Project Images: (links to uploaded files and an upload button)
+
+- f.p( :description ) do
+  = f.label :description
+  = f.text_area :description
+  = f.msg_on :description
+
+
+%h3 Artist Details:
+- fields_for :artist, f.object.artist do |ax|
+  = render :partial => 'artists/form', :locals => { :f => ax }
+

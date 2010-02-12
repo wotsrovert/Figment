@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
     end
 
     def update
-        if @project.update_attributes(params[:project])
+        if @project.update_attributes( params[:project] ) && @project.artist.update_attributes( params[:artist] )
             flash[:notice] = 'Project was successfully updated.'
             redirect_to(projects_path)
         else

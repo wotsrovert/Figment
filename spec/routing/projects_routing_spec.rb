@@ -34,4 +34,18 @@ describe ProjectsController do
             { :delete => "/projects/1" }.should route_to( :controller => "projects", :action => "destroy", :id => "1" ) 
         end
     end
+    
+    describe "custom routes" do
+        it "READ #edit general" do
+            { :get => "/projects/1/edit/general" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'general' )
+        end
+
+        it "READ #edit curatorial" do
+            { :get => "/projects/1/edit/curatorial" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial' )
+        end
+
+        it "READ #edit programs" do
+            { :get => "/projects/1/edit/programs" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'programs' )
+        end
+    end
 end

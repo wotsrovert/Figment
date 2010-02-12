@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
     validates_presence_of :title
     
     belongs_to :artist
+    belongs_to :curator, :class_name => 'User'
 end
 
 

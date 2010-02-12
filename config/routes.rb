@@ -26,13 +26,13 @@ ActionController::Routing::Routes.draw do |map|
         p.edit_password     '/edit'                         , :action => 'edit',                            :conditions => { :method => :get }
         p.connect           '/sent'                         , :action => 'sent'
     end
-    
+
+    map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => /(general|curatorial|programs)/
     map.with_options( :controller => 'projects' ) do |project|
         project.with_options( :conditions => { :method => :get } ) do |get|
             get.thank_you  '/submission/thank_you', :action => 'thank_you'
             get.connect    '/submission/:artist_id', :action => 'new'
             get.submission '/submission', :action => 'new'
-
         end
     end
     map.resources :artists, :shallow => true do |artist|
@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
     end
     map.resources :projects
     map.resources :curators
-    
+
 
     map.root :controller => 'welcome'
 end

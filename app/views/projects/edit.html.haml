@@ -1,69 +1,28 @@
 #project
 
   %h1= @project.title
-  
+
   %p.back
     = link_to "<< back to projects", projects_path
-    
+
   - form_for @project do |f|
-    %fieldset
-      %legend.general
-        = link_to "General", '#'
+    %ul.tabs
+      %li{ :class => params[:section] == 'general' ? 'current' : nil }= link_to "General", url_for( :section => 'general' )
+      %li{ :class => params[:section] == 'curatorial' ? 'current' : nil }= link_to "Curatorial", url_for( :section => 'curatorial' )
+      %li{ :class => params[:section] == 'programs' ? 'current' : nil }= link_to "Programs", url_for( :section => 'programs' )
 
-        - fields_for :artist, @project.artist do |a|
+    - if params[:section].blank? || params[:section] == 'general'
+      .general
+        = render :partial => 'projects/general', :locals => { :f => f }
 
-          - a.p( :public_name ) do
-            = a.label :public_name
-            = a.text_field :public_name
-            = a.msg_on :public_name
-        
-          - a.p( :contact_name ) do
-            = a.label :contact_name
-            = a.text_field :contact_name
-            = a.msg_on :contact_name
-        
-          - a.p( :contact_phone ) do
-            = a.label :contact_phone
-            = a.text_field :contact_phone
-            = a.msg_on :contact_phone
-        
-          - a.p( :contact_email ) do
-            = a.label :contact_email
-            = a.text_field :contact_email
-            = a.msg_on :contact_email
-        
-    - f.p( :title ) do
-      = f.label :title
-      = f.text_field :title
-      = f.msg_on :title
-
-    - f.p( :description ) do
-      = f.label :description
-      = f.text_area :description
-      = f.msg_on :description
-
-    - f.p( :categories ) do
-      = f.label :categories
-      = f.text_area :categories, :size => '40x3'
-      = f.msg_on :categories, "Sculpture, Interactive, etc."
-
-    - f.p( :dimensions ) do
-      = f.label :dimensions
-      = f.text_field :dimensions
-      = f.msg_on :dimensions
-
-    - f.p( :duration ) do
-      = f.label :duration
-      = f.text_field :duration
-      = f.msg_on :duration
+    - if params[:section].blank? || params[:section] == 'curatorial'
+      .curatorial
+        = render :partial => 'projects/curatorial', :locals => { :f => f }
 
 
-    - f.p( :requested_location ) do
-      = f.label :requested_location
-      = f.text_field :requested_location
-      = f.msg_on :requested_location
-  
-    
+    - if params[:section].blank? || params[:section] == 'programs'
+      .programs
+
     %p.submit
       = submit_tag "Submit"
       = link_to "Cancel", :back

@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
 
     named_scope :curators, :conditions => { :is_curator => true }
 
-    has_many :projects, :foreign_key => 'artist_id'
+    has_many :projects, :foreign_key => 'curator_id'
     
     def password_required?
         if is_admin || is_root || is_curator

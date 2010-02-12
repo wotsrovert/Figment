@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "setup_at"
     t.datetime "updated_at"
     t.datetime "break_down_at"
+    t.integer  "curator_id"
   end
 
   create_table "users", :force => true do |t|

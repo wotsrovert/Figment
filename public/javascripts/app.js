@@ -6,4 +6,5 @@ jQuery(document).ready( function($){
     //     }
     // });
 	$("tbody tr:first").addClass("first");
+
 })

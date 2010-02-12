@@ -12,13 +12,14 @@ a
   &:hover
     :text-decoration underline
 
-ul#tabs
+ul#tabs,
+ul.tabs
   li
     :color #999
-    :display inline-block
     :font-size 15px
     :font-weight bold
     :padding-right 10px
+    :display inline-block
     
 img
   :border none
@@ -100,5 +101,18 @@ p.submit
         td
           :padding-top 6px
         
-        
-        
+#project
+  form
+    .general,
+    .curatorial,
+    .programs
+      :border 1px solid #999
+      :padding 1px 1px 1px 20px
+    ul.tabs
+      :padding 0
+      li
+        :padding 3px 9px 2px 7px
+      li.current
+        :border 1px solid #999
+*.xhr
+  :border 1px dashed red
