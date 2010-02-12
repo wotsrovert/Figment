@@ -17,6 +17,7 @@ class Project < ActiveRecord::Base
     
     belongs_to :artist
     belongs_to :curator, :class_name => 'User'
+    has_many :programs
     
 end
 

@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "contact_phone"
   end
 
+  create_table "programs", :force => true do |t|
+    t.integer "starts_at_minute"
+    t.integer "ends_at_minute"
+    t.date    "starts_on"
+    t.date    "ends_on"
+    t.integer "project_id"
+  end
+
+  add_index "programs", ["project_id"], :name => "index_programs_on_project_id"
+
   create_table "projects", :force => true do |t|
     t.text     "description",         :limit => 255
     t.string   "dimensions"

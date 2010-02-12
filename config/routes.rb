@@ -27,6 +27,20 @@ ActionController::Routing::Routes.draw do |map|
         p.connect           '/sent'                         , :action => 'sent'
     end
 
+    # ===========
+    # = artists =
+    # ===========
+    map.resources :artists, :shallow => true do |artist|
+        artist.resources :projects, :only => [ :new, :index ]
+    end
+
+    # ============
+    # = projects =
+    # ============
+    map.resources :programs
+    map.resources :projects do |project|
+        project.resources :programs, :controller => 'project_programs'
+    end
     map.connect '/projects/:id/edit/:section/:subsection', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') ), :subsection => Regexp.new( Project::SUBSECTIONS.keys.join('|') ) 
     map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') )
     map.with_options( :controller => 'projects' ) do |project|
@@ -36,17 +50,20 @@ ActionController::Routing::Routes.draw do |map|
             get.submission '/submission', :action => 'new'
         end
     end
-    map.resources :artists, :shallow => true do |artist|
-        artist.resources :projects, :only => [ :new, :index ]
-    end
-    map.resources :projects
+    
+    # ============
+    # = curators =
+    # ============
     map.resources :curators
+    
+    # ========
+    # = misc =
+    # ========
     map.with_options( :controller => 'errors', :path_prefix => '/errors' ) do |errs|
         errs.connect '/500',            :action => 'internal_error'
         errs.connect '/404',            :action => 'not_found'
         errs.connect '/422',            :action => 'unprocessable'
     end
-
 
     map.root :controller => 'welcome'
 end
