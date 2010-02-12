@@ -18,11 +18,4 @@ describe SessionController do
             { :get => "/login_as/4" }.should route_to( :controller => "session", :action => "login_as", :id => "4" ) 
         end
     end
-    
-    describe "named routes" do
-
-        it "forgot password" do
-            forgot_password_path.should eql( "/forgot_password" )
-        end
-    end
 end

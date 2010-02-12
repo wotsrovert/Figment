@@ -1,18 +1,31 @@
 ActionController::Routing::Routes.draw do |map|
 
     map.with_options( :controller => 'session' ) do |sess|
-        sess.login '/login', :action => 'login', :conditions => {:method => :get }
-        sess.connect '/login', :action => 'login_post', :conditions => {:method => :post }
-        sess.login_as '/login_as/:id', :action => 'login_as', :id => /\d+/
-        sess.logout '/logout', :action => 'logout'
+        sess.login      '/login', :action => 'login', :conditions => {:method => :get }
+        sess.connect    '/login', :action => 'login_post', :conditions => {:method => :post }
+        sess.login_as   '/login_as/:id', :action => 'login_as', :id => /\d+/
+        sess.logout     '/logout', :action => 'logout'
     end
+
+    # ===========
+    # = account =
+    # ===========
     map.with_options( :controller => 'account' ) do |acc|
         acc.signup '/account/new', :action => 'new'
-        acc.forgot_password '/forgot_password', :action => 'forgot_password'
     end
-
-
     map.resource :account, :controller => 'account'
+
+    # =============
+    # = passwords =
+    # =============
+    map.with_options( :controller => 'password', :path_prefix => '/password' ) do |p|
+        p.connect           '/deliver'                      , :action => 'deliver', :conditions => { :method => :post }
+        p.forgot_password   '/forgot'                       , :action => 'forgot',  :conditions => { :method => :get }
+        p.reset_password    '/edit/:anonymous_login_code'   , :action => 'edit',    :conditions => { :method => :get }
+        p.connect           '/:anonymous_login_code'        , :action => 'update',  :conditions => { :method => :put }
+        p.connect           '/sent'                         , :action => 'sent'
+    end
+    
     map.with_options( :controller => 'projects' ) do |project|
         project.with_options( :conditions => { :method => :get } ) do |get|
             get.thank_you  '/submission/thank_you', :action => 'thank_you'

@@ -1,11 +1,8 @@
 require 'spec_helper'
 
 describe AccountController do
-    describe "named routes" do
-        it "" do
-            signup_path.should eql( '/account/new' )
-        end
-    end
+    include ActionView::Helpers::UrlHelper
+    include ActionView::Helpers::TagHelper
     
     describe "basic rest" do
         it "GET /account" do
@@ -27,39 +24,17 @@ describe AccountController do
         it "PUT /account" do
             { :put => "/account" }.should route_to( :controller => "account", :action => "update" )
         end
+    end
 
-        it "GET forgot_password" do
-            { :get => "/forgot_password" }.should route_to( :controller => "account", :action => "forgot_password" )
+    describe "read avbts for an account" do
+        it "basic" do
+            { :get => "/account" }.should route_to( :controller => "account", :action => "show" )
         end
     end
 
-    describe "extracting params" do
-        it "#signup" do
-            params_from( :get, "/account/new" ).should == {
-                :controller  => 'account',
-                :action      => 'new'
-            }
+    describe "building routes" do
+        it "plain account show" do
+            url_for( :action => 'show', :controller => 'account' ).should eql( '/account' )
         end
-
-        it "#edit" do
-            params_from( :get, "/account/edit" ).should == {
-                :controller  => 'account',
-                :action      => 'edit'
-            }
-        end
-
-        it "#show" do
-            params_from( :get, "/account" ).should == {
-                :controller  => 'account',
-                :action      => 'show'
-            }
-        end
-
-        it "#update" do
-            params_from( :put, "/account" ).should == {
-                :controller  => 'account',
-                :action      => 'update'
-            }
-        end      
     end
 end
