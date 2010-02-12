@@ -36,16 +36,16 @@ describe ProjectsController do
     end
     
     describe "custom routes" do
-        it "READ #edit general" do
-            { :get => "/projects/1/edit/general" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'general' )
-        end
-
-        it "READ #edit curatorial" do
-            { :get => "/projects/1/edit/curatorial" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial' )
-        end
-
-        it "READ #edit programs" do
-            { :get => "/projects/1/edit/programs" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'programs' )
+        Project::SECTIONS.each do |section|
+            it "READ #edit #{section}" do
+                { :get => "/projects/1/edit/#{section}" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => section )
+            end
+            
+            Project::SUBSECTIONS.keys.each do |subsection|
+                it "READ #edit #{section}/#{subsection}" do
+                    { :get => "/projects/1/edit/#{section}/#{subsection}" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => section, :subsection => subsection.to_s )
+                end
+            end
         end
     end
 end

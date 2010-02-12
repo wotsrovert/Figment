@@ -27,7 +27,8 @@ ActionController::Routing::Routes.draw do |map|
         p.connect           '/sent'                         , :action => 'sent'
     end
 
-    map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => /(general|curatorial|programs)/
+    map.connect '/projects/:id/edit/:section/:subsection', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') ), :subsection => Regexp.new( Project::SUBSECTIONS.keys.join('|') ) 
+    map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') )
     map.with_options( :controller => 'projects' ) do |project|
         project.with_options( :conditions => { :method => :get } ) do |get|
             get.thank_you  '/submission/thank_you', :action => 'thank_you'

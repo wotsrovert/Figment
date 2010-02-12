@@ -1,5 +1,7 @@
-#curator
+#curator.member
+
   %h1
+    Curator:
     = @user.name  
   
   - form_for @user, :url => curator_path( @user ) do |f|
@@ -8,5 +10,5 @@
 
     %p.submit.bottom
       = submit_tag "Save Changes"
-      = link_to "Cancel", account_path
+      = link_to "Cancel", curator_path( @user )
 

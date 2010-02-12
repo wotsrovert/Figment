@@ -1,9 +1,23 @@
 class Project < ActiveRecord::Base
+
+    SECTIONS = [
+        'general',
+        'curatorial',
+        'programs',
+    ].freeze
+    
+    SUBSECTIONS = {
+        :general => "General",
+        :placement => "Placement & Installation",
+        :description => "Description",
+        :artist => "Artist Details"
+    }.freeze
     
     validates_presence_of :title
     
     belongs_to :artist
     belongs_to :curator, :class_name => 'User'
+    
 end
 
 

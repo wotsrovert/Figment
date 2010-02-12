@@ -1,13 +1,12 @@
-%h1
-  New Curator Account
+#curator.member
+
+  %h1
+    Curator: New Account
   
-%p.back
-  = link_to "<< back to curators", curators_path
+  - form_for @user, :url => url_for( :action => 'create' ) do |f|
 
-- form_for @user, :url => url_for( :action => 'create' ) do |f|
+    = render :partial => 'account/form', :locals => { :f => f }
 
-  = render :partial => 'account/form', :locals => { :f => f }
-
-  %p.submit
-    = submit_tag "Submit"
-    = link_to "Cancel", curators_path
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", curators_path

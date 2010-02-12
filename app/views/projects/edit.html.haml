@@ -1,9 +1,8 @@
-#project
+#project.member
 
-  %h1= @project.title
-
-  %p.back
-    = link_to "<< back to projects", projects_path
+  %h1
+    Project:
+    = @project.title
 
   - form_for @project do |f|
     %ul.tabs

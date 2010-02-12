@@ -1,10 +1,9 @@
-#curator
+#curator.member
 
-  %h1= @user.name
+  %h1
+    Curator:
+    = @user.name
   
-  %p.back
-    = link_to "<< back to curators", curators_path
-    
   %dl
     %dt Name
     %dd= @user.name

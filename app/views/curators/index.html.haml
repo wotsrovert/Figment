@@ -1,22 +1,23 @@
-%h1 Curators
+#curators.index
+  %h1 Curators
 
-- if @users.any?
-  %table
-    %thead
-      %tr
-        %th Name
-        %th Email
-        %th Last Logged In
-    
-    %tbody
-      - for u in @users
+  - if @users.any?
+    %table
+      %thead
         %tr
-          %td= link_to u.name, curator_path( u )
-          %td= u.email
-          %td= u.last_logged_in_at
-
-- else
-  %p
-    None found :(
+          %th Name
+          %th Email
+          %th Last Logged In
     
-= link_to "Add curator", new_curator_path
+      %tbody
+        - for u in @users
+          %tr
+            %td= link_to u.name, curator_path( u )
+            %td= u.email
+            %td= u.last_logged_in_at
+
+  - else
+    %p
+      None found :(
+    
+  = link_to "Add curator", new_curator_path

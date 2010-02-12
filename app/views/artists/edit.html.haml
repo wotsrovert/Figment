@@ -1,7 +1,8 @@
-#artist
+#artist.member
+
   %h1 
+    Artist:
     = @artist.public_name
-    \- Edit Details
   
   - form_for @artist do |f|
     
@@ -9,4 +10,4 @@
     
     %p.submit
       = submit_tag "Submit"
-      = link_to "Cancel", :back
+      = link_to "Cancel", artist_path( @artist )

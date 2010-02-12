@@ -1,0 +1,12 @@
+#artist.member
+  %h1
+    Artist: Add
+    
+  - form_for @artist do |f|
+    = render :partial => 'artists/form', :locals => { :f => f }
+
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", artists_path
+      
+      

@@ -1,6 +1,9 @@
-#artist
-  %h1= @artist.public_name
-  %p.back= link_to "<< back to Artists", artists_path
+#artist.member
+
+  %h1
+    Artist:
+    = @artist.public_name
+
   = flash_display
   %dl
     %dt public name
