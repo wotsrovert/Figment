@@ -11,7 +11,20 @@
 
     %dt Email
     %dd= @current_user.email
-    
-  = link_to "Edit your info", edit_account_path
-  = link_to "Change your password", edit_password_path
+   
+    - if @current_user.is_root?
+      %dt Root?
+      %dd Yes
+
+    - if @current_user.is_admin?
+      %dt Admin?
+      %dd Yes
+
+    - if @current_user.is_curator?
+      %dt Curator?
+      %dd Yes
+      
+  %ul.options
+    %li= link_to "Edit your account info", edit_account_path
+    %li= link_to "Change your password", edit_password_path
   

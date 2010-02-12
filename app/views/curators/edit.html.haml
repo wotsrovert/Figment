@@ -1,0 +1,12 @@
+#curator
+  %h1
+    = @user.name  
+  
+  - form_for @user, :url => curator_path( @user ) do |f|
+
+    = render :partial => 'account/form', :locals => {:f => f}
+
+    %p.submit.bottom
+      = submit_tag "Save Changes"
+      = link_to "Cancel", account_path
+

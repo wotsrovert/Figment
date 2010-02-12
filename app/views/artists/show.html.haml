@@ -1,6 +1,7 @@
 #artist
   %h1= @artist.public_name
-
+  %p.back= link_to "<< back to Artists", artists_path
+  = flash_display
   %dl
     %dt public name
     %dd= @artist.public_name
@@ -25,4 +26,4 @@
     %dt contact phone
     %dd= @artist.contact_phone
 
-  = link_to "Edit", edit_artist_path( @artist )
+  %p.edit= link_to "Edit Artist Info", edit_artist_path( @artist )

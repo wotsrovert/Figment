@@ -1,11 +1,17 @@
 body
   :font-family helvetica, arial, sans-serif
+
   
 #logo
   :position absolute
   :right 50px
   :top 0
   
+a
+  :text-decoration none
+  &:hover
+    :text-decoration underline
+
 ul#tabs
   li
     :color #999
@@ -13,17 +19,12 @@ ul#tabs
     :font-size 15px
     :font-weight bold
     :padding-right 10px
-    a
-      :text-decoration none
-      &:hover
-        :text-decoration underline
     
 img
   :border none
 
 #page
-  :margin-top 20px
-  :margin-left 50px
+  :margin 20px 12px
   form
     span.msg
       :font-size 11px
@@ -51,9 +52,6 @@ label
   :display block
   :font-weight bold
 
-fieldset
-  :border none
-  
 dl
   dt
     :margin-top 10px
@@ -63,7 +61,44 @@ dl
       :color #999
 #flash
   :font-weight bold
-  .error
+  &.error
     :color #800000
-  .notice
+  &.notice
     :color #005F00
+p.back
+  :font-size 12px
+ul.options
+  :font-size 12px
+  :list-style none
+  :margin-top 30px
+  :padding 0
+  li
+    :margin-bottom 6px
+p.submit
+  a
+    :font-size 11px
+    :padding-left 5px
+#artists,
+#curators,
+#projects,
+#users
+  table
+    :width 100%
+    thead
+      th
+        :background-color #CCCCCC
+        :color #000
+        :font-size 12px
+        :padding 3px 4px
+        :text-align left
+    tbody
+      td
+        :font-size 13px
+        :padding 0 10px 6px 2px
+      
+      tr.first
+        td
+          :padding-top 6px
+        
+        
+        

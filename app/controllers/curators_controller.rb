@@ -1,6 +1,6 @@
 class CuratorsController < ApplicationController
 
-    before_filter :require_login
+    before_filter :require_admin
     before_filter :find_user, :except => [:index, :new, :create]
 
     def index
@@ -24,7 +24,7 @@ class CuratorsController < ApplicationController
         
         if @user.save
             flash[:notice] = 'SUCCESS: Curator account created.'
-            redirect_to curators_path
+            redirect_to curator_path( @user )
         else
             render :action => "new"
         end
@@ -33,7 +33,7 @@ class CuratorsController < ApplicationController
     def update
         if @user.update_attributes(params[:user])
             flash[:notice] = 'SUCCESS: Curator account updated.'
-            redirect_to curators_path
+            render :template => 'curators/show'
         else
             render :action => "edit"
         end

@@ -9,7 +9,13 @@ class SessionController < ApplicationController
 
         if try_login( @current_user, params[:remember_me] )
             flash[:notice] = "Welcome back, #{@current_user.name}."
-            redirect_to_next_action_or_default root_path
+            redirect_to(
+                if @current_user.is_curator?
+                    projects_path
+                else
+                    root_path
+                end
+            )
         else
             flash[:error] = "Invalid login/password."
             render :template => 'session/login'

@@ -172,16 +172,6 @@ module SecurityActions
         )
     end
 
-    def redirect_to_next_action_or_default( _default )
-        if params[:next_action]
-            redirect_to params[:next_action]
-
-        else
-            redirect_to _default
-        end
-
-    end
-
     def require_root
         return true if current_user.is_root?
 

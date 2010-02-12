@@ -1,14 +1,14 @@
 #projects
 
   %h1 Projects
-
+  
   %table
     %thead
       %tr
         %th No.
         %th Status
-        %th Artist
         %th Title
+        %th Artist
         %th Categories
         %th Location
         %th Placement Code
@@ -18,13 +18,12 @@
     %tbody
       - for p in @projects
         %tr
-          %td=h p.id
+          %td= link_to p.id, p
           %td=h p.status
+          %td= link_to h( p.title ), p
           %td
             - if p.artist
               =link_to h( p.artist.public_name ), p.artist
-          %td
-            = link_to h( p.title ), p
           %td=h p.categories
           %td=h p.requested_location
           %td=h p.placement_code

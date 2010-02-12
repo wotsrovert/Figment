@@ -11,7 +11,7 @@
     %tbody
       - for u in @users
         %tr
-          %td= u.name
+          %td= link_to u.name, curator_path( u )
           %td= u.email
           %td= u.last_logged_in_at
 

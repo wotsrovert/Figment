@@ -1,8 +1,7 @@
 .forgotPassword
   %h1 Forgot your password?
   
-  #flash.error
-    = flash[:error]
+  = flash_display
 
   - form_tag url_for( :action => 'deliver' ) do
     %p

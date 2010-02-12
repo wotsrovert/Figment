@@ -1,0 +1,26 @@
+#curator
+
+  %h1= @user.name
+  
+  %p.back
+    = link_to "<< back to curators", curators_path
+    
+  %dl
+    %dt Name
+    %dd= @user.name
+    
+    %dt Email
+    %dd= @user.email
+    
+    %dt Projects
+    %dd
+      - if @user.projects.try(:any?)
+        %ul
+          - for p in @user.projects
+            %li= link_to p.title, p
+      - else
+        %span.none
+          (none)
+        
+  %ul.options
+    %li= link_to "Edit Curator details", edit_curator_path( @user )

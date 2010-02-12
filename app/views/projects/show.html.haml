@@ -2,6 +2,9 @@
 
   %h1= @project.title
 
+  %p.back
+    = link_to "<< back to projects", projects_path
+    
   %dl
     %dt id
     %dd= @project.id
@@ -57,4 +60,5 @@
     %dt break_down_at
     %dd=h @project.break_down_at
     
-  = link_to "Edit", edit_project_path( @project )
+  %p.edit
+    = link_to "Edit this project", edit_project_path( @project )
