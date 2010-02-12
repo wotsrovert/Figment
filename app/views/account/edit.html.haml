@@ -1,8 +1,11 @@
-- form_for @current_user, :url => account_path do |f|
+#account
+  %h1 You: Editing Your Own Info
+  
+  - form_for @current_user, :url => account_path do |f|
 
-  = render :partial => 'account/form', :locals => {:f => f}
+    = render :partial => 'account/form', :locals => {:f => f}
 
-  %p.submit.bottom
-    = submit_tag "Save Changes"
-    = link_to "Cancel", account_path
+    %p.submit.bottom
+      = submit_tag "Save Changes"
+      = link_to "Cancel", account_path
 

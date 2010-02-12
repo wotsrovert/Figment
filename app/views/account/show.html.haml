@@ -1,4 +1,17 @@
-%h3
-= @current_user.name
+#account
+  %h1 You
+  
+  #flash
+    .notice
+      = flash[:notice]
+    
+  %dl
+    %dt Name
+    %dd= @current_user.name
 
-= render :partial => 'account/dl', :locals => { :user => @current_user, :show_email => true }
+    %dt Email
+    %dd= @current_user.email
+    
+  = link_to "Edit your info", edit_account_path
+  = link_to "Change your password", edit_password_path
+  

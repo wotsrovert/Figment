@@ -1,0 +1,18 @@
+.forgotPassword
+  %h1 Forgot your password?
+  
+  #flash.error
+    = flash[:error]
+
+  - form_tag url_for( :action => 'deliver' ) do
+    %p
+      %label{ :for => "email" } Your Email:
+      = text_field_tag 'email', '', :size => 30, :id => "forgotten_email"
+
+    %p.submit
+      = submit_tag 'Submit'
+
+  .otherOptions
+    %p.forgotPassword 
+      Just remembered it? 
+      = link_to "Click here to login.", login_url

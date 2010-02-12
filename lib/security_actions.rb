@@ -43,7 +43,6 @@ module SecurityActions
             record_returning_user
             self.current_user = _u
             return true
-
         else
             @current_user = _u
             return false            
@@ -116,6 +115,7 @@ module SecurityActions
     end
 
     def current_user=(_u)
+        @current_user = _u
         session[:user_id] = _u.id
     end
 

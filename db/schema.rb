@@ -50,21 +50,22 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
-    t.string   "crypted_password",     :limit => 40
-    t.string   "salt",                 :limit => 40
+    t.string   "crypted_password",                :limit => 40
+    t.string   "salt",                            :limit => 40
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "last_logged_in_at"
     t.string   "anonymous_login_code"
-    t.boolean  "is_root",                            :default => false
-    t.boolean  "is_artist",                          :default => false
-    t.boolean  "is_curator",                         :default => false
-    t.boolean  "is_director",                        :default => false
-    t.boolean  "is_admin",                           :default => false
-    t.boolean  "is_spectator",                       :default => true
+    t.boolean  "is_root",                                       :default => false
+    t.boolean  "is_artist",                                     :default => false
+    t.boolean  "is_curator",                                    :default => false
+    t.boolean  "is_director",                                   :default => false
+    t.boolean  "is_admin",                                      :default => false
+    t.boolean  "is_spectator",                                  :default => true
     t.string   "phone"
     t.string   "remember_me_code"
+    t.datetime "anonymous_login_code_created_at"
   end
 
 end

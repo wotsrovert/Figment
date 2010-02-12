@@ -1,0 +1,11 @@
+%h1 Success!
+
+%p.notice
+  = flash[:notice]
+
+%p
+  Please check your email inbox.
+  Thanks.
+  
+- if RAILS_ENV == 'development' 
+  = link_to "Click here", reset_password_path( @user.anonymous_login_code )

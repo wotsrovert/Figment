@@ -18,11 +18,12 @@ ActionController::Routing::Routes.draw do |map|
     # =============
     # = passwords =
     # =============
+    map.resource :password, :controller => 'password'
     map.with_options( :controller => 'password', :path_prefix => '/password' ) do |p|
-        p.connect           '/deliver'                      , :action => 'deliver', :conditions => { :method => :post }
-        p.forgot_password   '/forgot'                       , :action => 'forgot',  :conditions => { :method => :get }
-        p.reset_password    '/edit/:anonymous_login_code'   , :action => 'edit',    :conditions => { :method => :get }
-        p.connect           '/:anonymous_login_code'        , :action => 'update',  :conditions => { :method => :put }
+        p.reset_password    '/edit/:anonymous_login_code'   , :action => 'edit_by_anonymous_login_code',    :conditions => { :method => :get }
+        p.connect           '/deliver'                      , :action => 'deliver',                         :conditions => { :method => :post }
+        p.forgot_password   '/'                             , :action => 'show',                            :conditions => { :method => :get }
+        p.edit_password     '/edit'                         , :action => 'edit',                            :conditions => { :method => :get }
         p.connect           '/sent'                         , :action => 'sent'
     end
     

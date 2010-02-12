@@ -60,7 +60,7 @@ module Authenticated
     end
 
     attr_accessor :cookies
-    attr_accessor :password, :password_forgotten, :password_confirmation
+    attr_accessor :password, :password_confirmation
     attr_accessor :remember_me_flag, :is_returning
     attr_writer :skip_terms_requirement
     attr_writer :skip_password_requirement
@@ -112,7 +112,7 @@ module Authenticated
     end
 
     def is_root?
-        is_root
+        read_attribute( :is_root )
     end
 
     # Encrypts the password with the user salt
@@ -141,7 +141,6 @@ module Authenticated
 
     def password_required?
         return false if @skip_password_requirement
-        (crypted_password.blank? || !password.blank?)
     end
     
     def remember_me_code=( _v )
@@ -163,14 +162,10 @@ module Authenticated
         return true if !@skip_terms_requirement
     end
 
-    def forgot_password
-        self.password_forgotten = true
-        create_pw_reset_code
-        self.save
-    end
-
-    def create_pw_reset_code
+    def create_anonymous_login_code
         self.anonymous_login_code = Digest::SHA1.hexdigest("secret-#{Time.now}")
+        self.anonymous_login_code_created_at = Time.now
+        self.save
     end
 
     def reset_password

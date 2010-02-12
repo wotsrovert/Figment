@@ -17,10 +17,10 @@ class SessionController < ApplicationController
     end
 
     def logout
-        # self.current_user.forget_me if self.current_user.logged_in?
-        # cookies.delete :auth_token
+        cleanup_at_logout
         reset_session
         @current_user.log_out
+        redirect_to root_path
     end
 
     def login_as

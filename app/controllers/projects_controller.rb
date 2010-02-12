@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
     layout 'public'
     
+    before_filter :require_login, :except => [:new, :create, :thank_you ]
     before_filter :find_artist
     before_filter :find_project, :except => [:index, :new, :create, :thank_you]
 
@@ -30,7 +31,7 @@ class ProjectsController < ApplicationController
             @project.artist = @artist
             if @project.save!
                 flash[:notice] = 'Project was successfully created.'
-                redirect_to :action => 'thank_you'
+                render :action => 'thank_you'
                 return
             else
                 flash[:error] = "Unable to save your project.  See below for details."

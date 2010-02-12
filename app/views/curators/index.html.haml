@@ -1,9 +1,6 @@
 %h1 Curators
 
 - if @users.any?
-  = pluralize @users.size, "Curator"
-  Found
-  
   %table
     %thead
       %tr
@@ -17,5 +14,9 @@
           %td= u.name
           %td= u.email
           %td= u.last_logged_in_at
-          
+
+- else
+  %p
+    None found :(
+    
 = link_to "Add curator", new_curator_path

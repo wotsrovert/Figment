@@ -1,5 +1,6 @@
 class CuratorsController < ApplicationController
 
+    before_filter :require_login
     before_filter :find_user, :except => [:index, :new, :create]
 
     def index

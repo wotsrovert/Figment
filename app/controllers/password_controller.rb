@@ -1,14 +1,14 @@
 class PasswordController < ApplicationController
     
-    before_filter :find_user_by_anonymous_login_code, :only => [ :edit, :update ]
-    def forgot
+    def show
+        render :template => 'password/forgot'
     end
     
     # POST
     def deliver
         @email = params[:email]
         if @user = User.find_by_email(params[:email])
-            @user.forgot_password
+            @user.create_anonymous_login_code
             Notifier.deliver_forgot_password( @user )
             
             flash[:notice] = "SUCCESS: An email was sent to #{ @user.email }"
@@ -19,20 +19,28 @@ class PasswordController < ApplicationController
         end
     end
     
-    # user arrives with anonymous_login_code in the URL
+    def edit_by_anonymous_login_code
+        @user = find_user
+        render :template => 'password/edit'
+    end
+    
     def edit
+        @user = current_user
     end
 
-    # put request with anonymous_login_code in the URL
     def update
-        if @user.update_attributes( params[:user] )
+        @user = find_user
+                
+        @user.password = params[:user][:password]
+        @user.password_confirmation = params[:user][:password_confirmation]
+
+        if @user.save && try_login( @user )
             flash[:notice] = "Your password was reset"
-            self.current_user = @user
-            redirect_to account_url
+            redirect_to account_path
             return
         end
         flash[:error] = "Couldn't update your password.  Please see below for details"
-        render :action => 'edit'
+        render :template => 'password/edit'
     end
 
     def sent
@@ -40,22 +48,14 @@ class PasswordController < ApplicationController
     end
 
     protected
-    def find_user_by_anonymous_login_code
-        alc = params[:anonymous_login_code]
-        if ! User.exists?( :anonymous_login_code => alc )
-            flash[:error] = "Unable to find that account.  Please re-enter your email address and check your inbox."
+    def find_user
+        if params[:anonymous_login_code] && User.exists?( :anonymous_login_code => params[:anonymous_login_code] )
+            u = User.find_by_anonymous_login_code( params[:anonymous_login_code] )
             
+        elsif current_user.logged_in?
+            current_user
         else
-            u = User.find_by_anonymous_login_code( alc )
-            if u.anonymous_login_code_expires_at > Time.now
-                @user = u
-                return true
-            else
-                flash[:error] = "Please re-enter your email address."
-            end
+            raise "Attempt to update password on anonymous user"
         end
-        
-        render :action => 'forgot'
-        return false
     end
 end

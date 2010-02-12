@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
 
+    before_filter :require_login
     before_filter :find_artist, :except => [:index, :new, :create]
 
     def index

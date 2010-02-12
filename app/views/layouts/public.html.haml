@@ -7,11 +7,22 @@
     = stylesheet_link_tag [ 'app' ], :cache => false
 
   %body
-    #tabs
-      = link_to "Home", root_path, :class => 'home'
-      = link_to "Projects", projects_path, :class => 'projects'
-      = link_to "Artists", artists_path, :class => 'artists'
+    %ul#tabs
+      %li= link_to "Home", root_path
       
+      - if @current_user.logged_in?
+        %li= link_to "Projects", projects_path
+        %li= link_to "Artists", artists_path
+        %li.account
+          %small
+            logged in as
+          = link_to @current_user.name.or( @current_user.email ), account_path
+        %li= link_to "Logout", logout_path
+        
+      - else
+        %li= link_to "Login", login_path
+      
+        
     #logo
       %a{ :href => "http://figmentproject.org/2010/" }
         %img{ :src => "http://figmentproject.org/2010/wp-content/themes/arthemia/images/YellowS_logo.png", :height => "154px", :align => "bottom", :alt => "", :width => "280px" }
