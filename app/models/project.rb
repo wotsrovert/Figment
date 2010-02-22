@@ -25,6 +25,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: projects
@@ -48,5 +49,6 @@ end
 #  setup_at            :datetime
 #  updated_at          :datetime
 #  break_down_at       :datetime
+#  curator_id          :integer
 #
 

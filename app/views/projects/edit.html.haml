@@ -6,20 +6,20 @@
 
   - form_for @project do |f|
     %ul.tabs
-      %li{ :class => params[:section] == 'general' ? 'current' : nil }= link_to "General", url_for( :section => 'general' )
-      %li{ :class => params[:section] == 'curatorial' ? 'current' : nil }= link_to "Curatorial", url_for( :section => 'curatorial' )
-      %li{ :class => params[:section] == 'programs' ? 'current' : nil }= link_to "Programs", url_for( :section => 'programs' )
+      %li{ :class => params[:section] == 'general' ? 'current' : nil }= link_to "General", url_for( :section => 'general', :subsection => nil )
+      %li{ :class => params[:section] == 'curatorial' ? 'current' : nil }= link_to "Curatorial", url_for( :section => 'curatorial', :subsection => nil )
+      %li{ :class => params[:section] == 'programs' ? 'current' : nil }= link_to "Programs", url_for( :section => 'programs', :subsection => nil )
 
-    - if params[:section].blank? || params[:section] == 'general'
+    - if params[:section] == 'general'
       .general
         = render :partial => 'projects/general', :locals => { :f => f }
 
-    - if params[:section].blank? || params[:section] == 'curatorial'
+    - if params[:section] == 'curatorial'
       .curatorial
         = render :partial => 'projects/curatorial', :locals => { :f => f }
 
 
-    - if params[:section].blank? || params[:section] == 'programs'
+    - if params[:section] == 'programs'
       .programs
 
     %p.submit

@@ -37,10 +37,8 @@ ActionController::Routing::Routes.draw do |map|
     # ============
     # = projects =
     # ============
-    map.resources :programs
-    map.resources :projects do |project|
-        project.resources :programs, :controller => 'project_programs'
-    end
+    map.resources :categories
+    map.resources :locations
     map.connect '/projects/:id/edit/:section/:subsection', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') ), :subsection => Regexp.new( Project::SUBSECTIONS.keys.join('|') ) 
     map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') )
     map.with_options( :controller => 'projects' ) do |project|
@@ -49,6 +47,9 @@ ActionController::Routing::Routes.draw do |map|
             get.connect    '/submission/:artist_id', :action => 'new'
             get.submission '/submission', :action => 'new'
         end
+    end
+    map.resources :projects do |project|
+        project.resources :programs
     end
     
     # ============

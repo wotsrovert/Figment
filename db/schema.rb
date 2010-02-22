@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "contact_phone"
   end
 
+  create_table "categories", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.text     "description"
+    t.string   "zone_code"
+  end
+
   create_table "programs", :force => true do |t|
     t.integer "starts_at_minute"
     t.integer "ends_at_minute"
