@@ -2,3 +2,8 @@
 - fields_for :artist, f.object.artist do |ax|
   = render :partial => 'artists/form', :locals => { :f => ax }
 
+  - f.p( :notes ) do
+    = f.label :notes
+    = f.text_area :notes, :size => '60x8'
+    = f.msg_on :notes
+  
