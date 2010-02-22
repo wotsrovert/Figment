@@ -1,0 +1,13 @@
+#categories.member
+  
+  %h1 Add a Project Category
+  
+  - form_for @category do |f|
+    - f.p( :name ) do
+      = f.label :name
+      = f.text_field :name
+      = f.msg_on :name
+    
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", categories_path

@@ -1,0 +1,13 @@
+#locations.member
+  
+  %h1 Add a Project Location
+  
+  - form_for @location do |f|
+    - f.p( :name ) do
+      = f.label :name
+      = f.text_field :name
+      = f.msg_on :name
+    
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", locations_path

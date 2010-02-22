@@ -1,0 +1,24 @@
+#projects.index
+  - if @current_user.is_admin?
+    %ul.subnav
+      %li= link_to "Project Categories", categories_path
+      %li= link_to "Project Locations", locations_path
+    
+
+  %h1 Project Categories
+  
+  - if @categories.any?
+    %table
+      %thead
+        %tr
+          %th Name
+          %th 
+      %tbody
+        - for c in @categories
+          %tr
+            %td=h c.name
+            %td= link_to "edit", edit_category_path( c )
+  - else
+    %p Not categories found.
+
+  = link_to "Add a Category", new_category_path
