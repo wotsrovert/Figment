@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "programs", ["project_id"], :name => "index_programs_on_project_id"
 
   create_table "projects", :force => true do |t|
-    t.text     "description",           :limit => 255
+    t.text     "description",            :limit => 255
     t.string   "dimensions"
     t.string   "duration"
     t.boolean  "press"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "curator_id"
     t.integer  "placed_location_id"
     t.string   "category_ids"
-    t.integer  "requested_location_id"
+    t.string   "requested_location_ids"
   end
 
   create_table "users", :force => true do |t|

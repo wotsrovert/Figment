@@ -27,12 +27,12 @@
   = f.text_field :duration
   = f.msg_on :duration
 
-.requestedLocationId
-  = f.label :requested_location_id, "Location"
+.requestedLocationIds
+  = f.label :requested_location_ids, "Location"
   %ul.choices
     - for l in @locations
       %li
-        = radio_button_tag 'project[requested_location_id]', l.id, f.object.requested_location_id == l.id
+        = check_box_tag 'project[requested_location_ids][]', l.id, f.object.requested_location_ids.include?( l.id )
         %label= l.name
   = f.msg_on :category_ids
 

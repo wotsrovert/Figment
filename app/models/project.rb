@@ -14,7 +14,7 @@ class Project < ActiveRecord::Base
     }.freeze
     
     serialize :category_ids
-    serialize :location_ids
+    serialize :requested_location_ids
     
     validates_presence_of :title
     
@@ -30,13 +30,27 @@ class Project < ActiveRecord::Base
         ( read_attribute( :category_ids ) || [] )
     end
     
-    def categories
-        Category.find(:all, :conditions => ['id IN (?)', self.category_ids ])
+    def requested_location_ids=( _v )
+        write_attribute( :requested_location_ids, _v.delete_if{ |x| x.blank? }.map(&:to_i) ).delete_if { |x| x == 0 }
     end
 
-    def requested_location
-        if read_attribute( :requested_location_id )
-            Location.find( read_attribute( :requested_location_id ) )
+    def requested_location_ids
+        ( read_attribute( :requested_location_ids ) || [] )
+    end
+    
+    def categories
+        if read_attribute( :category_ids )
+            Category.find(:all, :conditions => ['id IN (?)', read_attribute( :category_ids )])
+        else
+            []
+        end
+    end
+
+    def requested_locations
+        if read_attribute( :requested_location_ids )
+            Location.find( :all, :conditions => ['id IN (?)', read_attribute( :requested_location_ids )])
+        else
+            []
         end
     end
 
@@ -52,29 +66,29 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: projects
 #
-#  id                  :integer         not null, primary key
-#  description         :text(255)
-#  dimensions          :string(255)
-#  duration            :string(255)
-#  requested_location  :string(255)
-#  press               :boolean
-#  stipend             :string(255)
-#  notes               :text
-#  placed_location     :string(255)
-#  placement_code      :string(255)
-#  requested_locations :string(255)
-#  artist_id           :integer
-#  title               :string(255)
-#  categories          :text
-#  status              :string(255)
-#  created_at          :datetime
-#  setup_at            :datetime
-#  updated_at          :datetime
-#  break_down_at       :datetime
-#  curator_id          :integer
+#  id                     :integer         not null, primary key
+#  description            :text(255)
+#  dimensions             :string(255)
+#  duration               :string(255)
+#  press                  :boolean
+#  stipend                :string(255)
+#  notes                  :text
+#  placement_code         :string(255)
+#  artist_id              :integer
+#  title                  :string(255)
+#  status                 :string(255)
+#  created_at             :datetime
+#  setup_at               :datetime
+#  updated_at             :datetime
+#  break_down_at          :datetime
+#  curator_id             :integer
+#  placed_location_id     :integer
+#  category_ids           :string(255)
+#  requested_location_ids :string(255)
 #
 

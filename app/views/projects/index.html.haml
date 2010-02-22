@@ -3,10 +3,10 @@
     %ul.subnav
       %li= link_to "Project Categories", categories_path
       %li= link_to "Project Locations", locations_path
-    
+
 
   %h1 Projects
-  
+
   %table
     %thead
       %tr
@@ -39,8 +39,8 @@
 
           %td
             - if p.placed_location
-              = link_to h( p.placed_location.name ), location_path( p.placed_location_id )
-              
+              = link_to h( p.placed_location.name ), p.placed_location
+
           %td=h p.placement_code
           %td=h p.setup_at
           %td=h p.break_down_at
