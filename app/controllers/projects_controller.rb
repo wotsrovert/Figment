@@ -5,6 +5,8 @@ class ProjectsController < ApplicationController
     before_filter :require_login, :except => [:new, :create, :thank_you ]
     before_filter :find_artist
     before_filter :find_project, :except => [:index, :new, :create, :thank_you]
+    before_filter :find_categories
+    before_filter :find_locations
 
     def index
         @projects = Project.find(:all)
@@ -68,5 +70,13 @@ class ProjectsController < ApplicationController
     end
     def find_project
         @project = Project.find(params[:id])
+    end
+
+    def find_categories
+        @categories = Category.find(:all)
+    end
+
+    def find_locations
+        @locations = Location.find(:all)
     end
 end

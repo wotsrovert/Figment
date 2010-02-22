@@ -33,8 +33,14 @@
           %td
             - if p.curator
               = link_to h( p.curator.name ), curator_path( p.curator )
-          %td=h p.categories
-          %td=h p.requested_location
+          %td
+            - if p.categories.any?
+              = p.categories.map { |c| link_to h(c.name), c }.join(", ")
+
+          %td
+            - if p.placed_location
+              = link_to h( p.placed_location.name ), location_path( p.placed_location_id )
+              
           %td=h p.placement_code
           %td=h p.setup_at
           %td=h p.break_down_at

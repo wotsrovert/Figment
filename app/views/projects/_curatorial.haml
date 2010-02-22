@@ -32,11 +32,18 @@
   
 - if  params[:subsection] == 'placement'
   %h3 Placement & Installation:
-  - f.p( :placed_location ) do
-    = f.label :placed_location
-    = f.text_field :placed_location
-    = f.msg_on :placed_location
+  .placedLocationId
+    = f.label :placed_location_id, "Location"
+    %ul.choices
+      - for l in @locations
+        %li
+          = radio_button_tag 'project[placed_location_id]', l.id, f.object.placed_location_id == l.id
+          %label= l.name
+    = f.msg_on :placed_location_ids
 
+  - f.p( :requested_location ) do
+    = f.object.requested_location
+    
   - f.p( :placement_code ) do
     = f.label :placement_code
     = f.text_field :placement_code
@@ -51,11 +58,6 @@
     = f.label :break_down_at
     = f.text_field :break_down_at
     = f.msg_on :break_down_at
-
-  - f.p( :requested_location ) do
-    = f.label :requested_location
-    = f.text_field :requested_location
-    = f.msg_on :requested_location
 
 - if  params[:subsection] == 'description'
   %h3 Description:

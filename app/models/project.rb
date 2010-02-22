@@ -13,12 +13,38 @@ class Project < ActiveRecord::Base
         :artist => "Artist Details"
     }.freeze
     
+    serialize :category_ids
+    serialize :location_ids
+    
     validates_presence_of :title
     
     belongs_to :artist
     belongs_to :curator, :class_name => 'User'
     has_many :programs
     
+    def category_ids=( _v )
+        write_attribute( :category_ids, _v.delete_if{ |x| x.blank? }.map(&:to_i) ).delete_if { |x| x == 0 }
+    end
+
+    def category_ids
+        ( read_attribute( :category_ids ) || [] )
+    end
+    
+    def categories
+        Category.find(:all, :conditions => ['id IN (?)', self.category_ids ])
+    end
+
+    def requested_location
+        if read_attribute( :requested_location_id )
+            Location.find( read_attribute( :requested_location_id ) )
+        end
+    end
+
+    def placed_location
+        if read_attribute( :placed_location_id )
+            Location.find( read_attribute( :placed_location_id ) )
+        end
+    end
 end
 
 

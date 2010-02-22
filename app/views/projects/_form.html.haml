@@ -8,11 +8,15 @@
   = f.text_area :description
   = f.msg_on :description
   
-- f.p( :categories ) do
-  = f.label :categories
-  = f.text_area :categories, :size => '40x3'
-  = f.msg_on :categories, "Sculpture, Interactive, etc."
-  
+.categoryIds
+  = f.label :category_ids, "Categories"
+  %ul.choices
+    - for c in @categories
+      %li
+        = check_box_tag 'project[category_ids][]', c.id, f.object.category_ids.include?( c.id )
+        %label= c.name
+  = f.msg_on :category_ids
+
 - f.p( :dimensions ) do
   = f.label :dimensions
   = f.text_field :dimensions
@@ -23,8 +27,13 @@
   = f.text_field :duration
   = f.msg_on :duration
 
+.requestedLocationId
+  = f.label :requested_location_id, "Location"
+  %ul.choices
+    - for l in @locations
+      %li
+        = radio_button_tag 'project[requested_location_id]', l.id, f.object.requested_location_id == l.id
+        %label= l.name
+  = f.msg_on :category_ids
 
-- f.p( :requested_location ) do
-  = f.label :requested_location
-  = f.text_field :requested_location
-  = f.msg_on :requested_location
+

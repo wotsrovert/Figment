@@ -52,25 +52,24 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "programs", ["project_id"], :name => "index_programs_on_project_id"
 
   create_table "projects", :force => true do |t|
-    t.text     "description",         :limit => 255
+    t.text     "description",           :limit => 255
     t.string   "dimensions"
     t.string   "duration"
-    t.string   "requested_location"
     t.boolean  "press"
     t.string   "stipend"
     t.text     "notes"
-    t.string   "placed_location"
     t.string   "placement_code"
-    t.string   "requested_locations"
     t.integer  "artist_id"
     t.string   "title"
-    t.text     "categories"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "setup_at"
     t.datetime "updated_at"
     t.datetime "break_down_at"
     t.integer  "curator_id"
+    t.integer  "placed_location_id"
+    t.string   "category_ids"
+    t.integer  "requested_location_id"
   end
 
   create_table "users", :force => true do |t|
