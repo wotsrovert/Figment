@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text     "names_list"
     t.text     "notes"
     t.string   "contact_phone"
+    t.boolean  "is_organization"
   end
 
   create_table "categories", :force => true do |t|

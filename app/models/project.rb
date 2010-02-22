@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
 
     SECTIONS = [
+        'artist',
         'general',
         'curatorial',
         'programs',
@@ -10,7 +11,6 @@ class Project < ActiveRecord::Base
         :general => "General",
         :placement => "Placement & Installation",
         :description => "Description",
-        :artist => "Artist Details"
     }.freeze
     
     serialize :category_ids

@@ -32,16 +32,32 @@ describe ProjectsController do
     end
     
     describe "custom routes" do
-        Project::SECTIONS.each do |section|
-            it "READ #edit #{section}" do
-                { :get => "/projects/1/edit/#{section}" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => section )
-            end
-            
-            Project::SUBSECTIONS.keys.each do |subsection|
-                it "READ #edit #{section}/#{subsection}" do
-                    { :get => "/projects/1/edit/#{section}/#{subsection}" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => section, :subsection => subsection.to_s )
-                end
-            end
+        it "READ #edit curatorial" do
+            params_from( :get, "/projects/1/edit/curatorial").should eql( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'general' )
+        end
+        
+        it "READ #edit general" do
+            { :get => "/projects/1/edit/general" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'general' )
+        end
+        
+        it "READ #edit curatorial" do
+            { :get => "/projects/1/edit/artist" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'artist' )
+        end
+        
+        it "READ #edit curatorial" do
+            { :get => "/projects/1/edit/programs" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'programs' )
+        end
+
+        it "READ #edit curatorial" do
+            { :get => "/projects/1/edit/curatorial" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'general' )
+        end
+
+        it "READ #edit curatorial/placement" do
+            { :get => "/projects/1/edit/curatorial/placement" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'placement' )
+        end
+
+        it "READ #edit curatorial/description" do
+            { :get => "/projects/1/edit/curatorial/description" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'description' )
         end
     end
 end

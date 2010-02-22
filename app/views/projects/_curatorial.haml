@@ -1,14 +1,19 @@
 %ul.nav.subsections
-  - for subsection in [ :general, :placement, :description, :artist ]
+  - for subsection in [ :general, :placement, :description ]
     %li{ :class => params[:subsection] == subsection.to_s ? 'current' : nil  } 
       = link_to Project::SUBSECTIONS[subsection], url_for( :subsection => subsection.to_s )
 
-- if  params[:subsection].blank? || params[:subsection] == 'general'
+- if params[:subsection] == 'general'
   %h3 General:
-  - f.p( :categories ) do
-    = f.label :categories
-    = f.text_area :categories, :size => '40x3'
-    = f.msg_on :categories, "Sculpture, Interactive, etc."
+  
+  .categoryIds
+    = f.label :category_ids, "Categories"
+    %ul.choices
+      - for c in @categories
+        %li
+          = check_box_tag 'project[category_ids][]', c.id, f.object.category_ids.include?( c.id )
+          %label= c.name
+    = f.msg_on :category_ids
 
   - f.p( :curator_id ) do
     = f.label :curator_id
@@ -79,9 +84,4 @@
     = f.label :description
     = f.text_area :description
     = f.msg_on :description
-
-- if  params[:subsection] == 'artist'
-  %h3 Artist Details:
-  - fields_for :artist, f.object.artist do |ax|
-    = render :partial => 'artists/form', :locals => { :f => ax }
 

@@ -58,11 +58,18 @@ ul.subnav
     :margin-top 0
   #artist
     :float left
-    :margin-bottom 400px
     :width 400px
   #project
     :float left
-
+  p.submit
+    :clear both
+  p.isOrganization
+    :position relative
+    input
+      :position absolute
+      :top 0px
+    label
+      :margin-left 30px
 ul.choices
   :list-style none
   :margin 0
@@ -140,6 +147,7 @@ p.submit
         
 #project
   form
+    .artist,
     .general,
     .curatorial,
     .programs

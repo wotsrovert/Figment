@@ -37,3 +37,8 @@
   = f.label :names_list, "People in Group <small>(list all)</small>"
   = f.text_area :names_list, :size => '40x3'
   = f.msg_on :names_list
+  
+- f.p( :is_organization ) do
+  = f.label :is_organization, "Are you an organization/group/collective?"
+  = f.check_box :is_organization
+  = f.msg_on :is_organization

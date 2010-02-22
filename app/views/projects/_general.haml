@@ -3,24 +3,3 @@
   = f.text_field :title
   = f.msg_on :title
 
-  - fields_for :artist, f.object.artist do |a|
-
-    - a.p( :public_name ) do
-      = a.label :public_name, "Artist's Public Name"
-      = a.text_field :public_name
-      = a.msg_on :public_name
-
-    - a.p( :contact_name ) do
-      = a.label :contact_name
-      = a.text_field :contact_name
-      = a.msg_on :contact_name
-
-    - a.p( :contact_phone ) do
-      = a.label :contact_phone
-      = a.text_field :contact_phone
-      = a.msg_on :contact_phone
-
-    - a.p( :contact_email ) do
-      = a.label :contact_email
-      = a.text_field :contact_email
-      = a.msg_on :contact_email

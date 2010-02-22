@@ -1,0 +1,4 @@
+%h3 Artist Details:
+- fields_for :artist, f.object.artist do |ax|
+  = render :partial => 'artists/form', :locals => { :f => ax }
+

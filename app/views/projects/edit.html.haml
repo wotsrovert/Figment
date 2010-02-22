@@ -6,21 +6,13 @@
 
   - form_for @project do |f|
     %ul.tabs
-      %li{ :class => params[:section] == 'general' ? 'current' : nil }= link_to "General", url_for( :section => 'general', :subsection => nil )
-      %li{ :class => params[:section] == 'curatorial' ? 'current' : nil }= link_to "Curatorial", url_for( :section => 'curatorial', :subsection => nil )
-      %li{ :class => params[:section] == 'programs' ? 'current' : nil }= link_to "Programs", url_for( :section => 'programs', :subsection => nil )
+      - for s in Project::SECTIONS
+        %li{ :class => params[:section] == s ? 'current' : nil }= link_to s.capitalize, url_for( :section => s, :subsection => nil )
+        
+    
+    %div{ :class => params[:section] }
+      = render :partial => "projects/#{ params[:section] }", :locals => { :f => f }
 
-    - if params[:section] == 'general'
-      .general
-        = render :partial => 'projects/general', :locals => { :f => f }
-
-    - if params[:section] == 'curatorial'
-      .curatorial
-        = render :partial => 'projects/curatorial', :locals => { :f => f }
-
-
-    - if params[:section] == 'programs'
-      .programs
 
     %p.submit
       = submit_tag "Submit"
