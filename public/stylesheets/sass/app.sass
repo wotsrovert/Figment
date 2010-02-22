@@ -147,12 +147,17 @@ p.submit
         
 #project
   form
-    .artist,
-    .general,
-    .curatorial,
-    .programs
+    div.artist,
+    div.general,
+    div.programs,
+    div.placement,
+    div.description
       :border 1px solid #999
       :padding 1px 1px 1px 20px
+    div.curatorial
+      div.general,
+      div.placement
+        :margin-bottom 20px
     ul.tabs
       :padding 0
       li

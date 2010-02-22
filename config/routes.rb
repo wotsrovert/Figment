@@ -39,8 +39,6 @@ ActionController::Routing::Routes.draw do |map|
     # ============
     map.resources :categories
     map.resources :locations
-    map.connect '/projects/:id/edit/curatorial', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => 'curatorial', :subsection => 'general'
-    map.connect '/projects/:id/edit/:section/:subsection', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') ), :subsection => Regexp.new( Project::SUBSECTIONS.keys.join('|') ) 
     map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') )
     map.with_options( :controller => 'projects' ) do |project|
         project.with_options( :conditions => { :method => :get } ) do |get|

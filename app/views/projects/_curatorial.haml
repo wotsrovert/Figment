@@ -1,11 +1,6 @@
-%ul.nav.subsections
-  - for subsection in [ :general, :placement, :description ]
-    %li{ :class => params[:subsection] == subsection.to_s ? 'current' : nil  } 
-      = link_to Project::SUBSECTIONS[subsection], url_for( :subsection => subsection.to_s )
-
-- if params[:subsection] == 'general'
+.general
   %h3 General:
-  
+
   .categoryIds
     = f.label :category_ids, "Categories"
     %ul.choices
@@ -24,7 +19,7 @@
     = f.label :press
     = f.check_box :press
     = f.msg_on :press
-  
+
   - f.p( :stipend ) do
     = f.label :stipend
     = f.text_field :stipend
@@ -34,8 +29,8 @@
     = f.label :notes
     = f.text_area :notes, :size => '40x3'
     = f.msg_on :notes, "Sculpture, Interactive, etc."
-  
-- if  params[:subsection] == 'placement'
+
+.placement
   %h3 Placement & Installation:
   .placedLocationId
     = f.label :placed_location_id, "Location"
@@ -50,12 +45,12 @@
     = f.label :requested_locations
     - if f.object.requested_locations.any?
       = f.object.requested_locations.map { |l| link_to h(l.name), l }.join(", ")
-  
+
   - f.p( :placement_code ) do
     = f.label :placement_code
     = f.text_field :placement_code
     = f.msg_on :placement_code
-  
+
   - f.p( :setup_at ) do
     = f.label :setup_at
     = f.text_field :setup_at
@@ -66,7 +61,7 @@
     = f.text_field :break_down_at
     = f.msg_on :break_down_at
 
-- if  params[:subsection] == 'description'
+.description
   %h3 Description:
   - f.p( :dimensions ) do
     = f.label :dimensions

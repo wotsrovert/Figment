@@ -32,10 +32,6 @@ describe ProjectsController do
     end
     
     describe "custom routes" do
-        it "READ #edit curatorial" do
-            params_from( :get, "/projects/1/edit/curatorial").should eql( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'general' )
-        end
-        
         it "READ #edit general" do
             { :get => "/projects/1/edit/general" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'general' )
         end
@@ -49,15 +45,7 @@ describe ProjectsController do
         end
 
         it "READ #edit curatorial" do
-            { :get => "/projects/1/edit/curatorial" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'general' )
-        end
-
-        it "READ #edit curatorial/placement" do
-            { :get => "/projects/1/edit/curatorial/placement" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'placement' )
-        end
-
-        it "READ #edit curatorial/description" do
-            { :get => "/projects/1/edit/curatorial/description" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial', :subsection => 'description' )
+            { :get => "/projects/1/edit/curatorial" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial' )
         end
     end
 end
