@@ -33,7 +33,7 @@
   %h3 Placement & Installation:
   .placedLocationId
     = f.label :placed_location_id, "Location"
-    = f.select :placed_location_id, Location.find(:all).map{ |l| [ l.name, l.id ] }
+    = f.select :placed_location_id, ['--', nil] + Location.find(:all).map{ |l| [ l.name, l.id ] }
     = f.msg_on :placed_location_id
 
   - f.p( :requested_locations ) do

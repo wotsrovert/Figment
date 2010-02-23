@@ -1,8 +1,8 @@
-#categories.member
+#locations.member
   
-  %h1 Add a Project Category
+  %h1 Project Location
   
-  - form_for @category do |f|
+  - form_for @location do |f|
     - f.p( :name ) do
       = f.label :name
       = f.text_field :name
@@ -10,4 +10,7 @@
     
     %p.submit
       = submit_tag "Submit"
-      = link_to "Cancel", categories_path
+      = link_to "Cancel", locations_path
+      
+    %p.delete
+      = link_to "Delete This Location", @location, :method => :delete

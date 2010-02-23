@@ -34,7 +34,6 @@ class SubmissionsController < ApplicationController
     def create
         @artist ||= Artist.new( params[:artist] )
         @project = Project.new( params[:project] )
-
         @project.valid?
         if @artist.valid? && @project.valid?
             @artist.save

@@ -1,7 +1,7 @@
-- f.p( :location ) do
-  = f.label :location
+- f.p( :location_id ) do
+  = f.label :location_id
   = f.select :location_id, Location.find(:all).map{ |l| [ l.name, l.id ] }
-  = f.msg_on :location
+  = f.msg_on :location_id
 
 - f.p( :starts_at ) do
   = f.label :starts_at

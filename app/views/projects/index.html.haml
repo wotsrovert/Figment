@@ -1,10 +1,4 @@
 #projects.index
-  - if @current_user.is_admin?
-    %ul.subnav
-      %li= link_to "Project Categories", categories_path
-      %li= link_to "Project Locations", locations_path
-
-
   %h1 Projects
 
   %table
@@ -27,7 +21,6 @@
           %td= link_to p.id, p
           %td=h p.status
           
-          -# = link_to h( p.title ), edit_project_path( p, :section => 'general' )
           %td= link_to h( p.title ), url_for( :action => 'edit', :id => p.id, :section => 'general' )
           %td
             - if p.artist
@@ -37,7 +30,7 @@
               = link_to h( p.curator.name ), curator_path( p.curator )
           %td
             - if p.categories.any?
-              = p.categories.map { |c| link_to h(c.name), c }.join(", ")
+              = p.categories.map { |c| link_to h( c.name ), c }.join(", ")
 
           %td
             - if p.placed_location

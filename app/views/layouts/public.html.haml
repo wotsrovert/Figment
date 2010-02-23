@@ -14,8 +14,11 @@
         %li= link_to "Projects", projects_path
         %li= link_to "Artists", artists_path
         - if @current_user.is_admin?
+          %li= link_to "Categories", categories_path
+          %li= link_to "Locations", locations_path
           %li= link_to "Curators", curators_path
-          
+
+        
         %li.account
           %small
             logged in as

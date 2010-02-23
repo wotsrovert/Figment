@@ -10,6 +10,6 @@
         = submit_tag "Submit"
         = link_to "Cancel", thank_you_submission_path( @project )
         
-    = render :partial => 'programs/index', :locals => { :programs => @programs }
+    = render :partial => 'programs/index', :locals => { :programs => @project.programs }
       
       

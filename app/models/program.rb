@@ -3,7 +3,8 @@ class Program < ActiveRecord::Base
     belongs_to :location
     belongs_to :project
 
-    validates_numericality_of :project_id, :only_integer => true, :allow_nil => false
+    validates_numericality_of :location_id, :only_integer => true, :allow_nil => false, :message => "Required"
+    validates_numericality_of :project_id, :only_integer => true, :allow_nil => false , :message => "Required"
 end
 
 # == Schema Information

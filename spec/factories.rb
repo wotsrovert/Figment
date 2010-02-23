@@ -1,4 +1,6 @@
-
+Factory.define :location do |f|
+    f.name "The Beach"
+end
 Factory.define :user do |u|
     u.email                 { Factory.next(:email) }
     u.name            "My Self"

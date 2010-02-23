@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
     before_filter :find_project, :except => [:index]
 
     def index
-        @projects = Project.find(:all)
+        @projects = Project.find(:all, :include => [:categories])
     end
 
     def show

@@ -8,14 +8,14 @@
   = f.text_area :description
   = f.msg_on :description
   
-.categoryIds
-  = f.label :category_ids, "Categories"
+.categories
+  = f.label :categories, "Categories"
   %ul.choices
     - for c in Category.find(:all)
       %li
-        = check_box_tag 'project[category_ids][]', c.id, f.object.category_ids.include?( c.id )
+        = check_box_tag 'project[category_ids][]', c.id, ( f.object.category_ids.try(:any?) && f.object.category_ids.include?( c.id.to_s ) )
         %label= c.name
-  = f.msg_on :category_ids
+  = f.msg_on :categories
 
 - f.p( :dimensions ) do
   = f.label :dimensions
@@ -32,7 +32,7 @@
   %ul.choices
     - for l in Location.find(:all)
       %li
-        = check_box_tag 'project[requested_location_ids][]', l.id, f.object.requested_location_ids.include?( l.id )
+        = check_box_tag 'project[location_ids][]', l.id, ( f.object.location_ids.try(:any?) && f.object.location_ids.include?( l.id.to_s ) )
         %label= l.name
   = f.msg_on :category_ids
 

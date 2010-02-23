@@ -1,8 +1,17 @@
 class Location < ActiveRecord::Base
-    validates_presence_of :name
 
-    has_many :programs
+    validates_presence_of :name
+    validates_uniqueness_of :name
+
+    has_many :programs    
+    has_many :project_requested_locations, :dependent => :destroy    
+    has_many :projects, :through => :project_requested_locations
     
+    alias_method :orig_destroy, :destroy
+    def destroy
+        Project.update_all("placed_location_id = NULL", [ "placed_location_id = ?", self.id ] )
+        orig_destroy
+    end
 end
 # == Schema Information
 #
