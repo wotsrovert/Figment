@@ -1,0 +1,21 @@
+#project.member
+
+  %h1
+    Project:
+    = @project.title
+
+  %ul#tabs
+    - for s in Project::SECTIONS
+      %li
+      = link_to s.capitalize, url_for( :controller => 'projects', :action => 'edit', :id => @project.to_param, :section => s )
+    %li.current
+      = link_to "Programs", project_programs_path( @project )
+    
+  .programs
+    = render :partial => 'programs/index', :locals => { :programs => @programs }
+      
+    %p.new
+      = link_to "Add a Program", new_project_program_path( @project )
+      
+
+    

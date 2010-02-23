@@ -11,7 +11,7 @@ describe ProgramsController do
         end
 
         it "#edit" do
-            { :get => "/projects/7/programs/1/edit" }.should route_to( :controller => "programs", :action => "edit", :id => "1", :project_id => '7' )
+            { :get => "/programs/1/edit" }.should route_to( :controller => "programs", :action => "edit", :id => "1" )
         end
 
         it "CREATE #create" do
@@ -19,15 +19,15 @@ describe ProgramsController do
         end
 
         it "READ #show" do
-            { :get => "/projects/7/programs/1" }.should route_to( :controller => "programs", :action => "show", :id => "1", :project_id => '7' )
+            { :get => "/programs/1" }.should route_to( :controller => "programs", :action => "show", :id => "1" )
         end
 
         it "UPDATE #update" do
-            { :put => "/projects/7/programs/1" }.should route_to( :controller => "programs", :action => "update", :id => "1", :project_id => '7' ) 
+            { :put => "/programs/1" }.should route_to( :controller => "programs", :action => "update", :id => "1" ) 
         end
 
         it "DELETE #destroy" do
-            { :delete => "/projects/7/programs/1" }.should route_to( :controller => "programs", :action => "destroy", :id => "1", :project_id => '7' ) 
+            { :delete => "/programs/1" }.should route_to( :controller => "programs", :action => "destroy", :id => "1" ) 
         end
     end
 end

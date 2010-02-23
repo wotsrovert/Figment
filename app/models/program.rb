@@ -1,16 +1,19 @@
 class Program < ActiveRecord::Base
     
+    belongs_to :location
     belongs_to :project
+
+    validates_numericality_of :project_id, :only_integer => true, :allow_nil => false
 end
+
 # == Schema Information
 #
 # Table name: programs
 #
-#  id               :integer         not null, primary key
-#  starts_at_minute :integer
-#  ends_at_minute   :integer
-#  starts_on        :date
-#  ends_on          :date
-#  project_id       :integer
+#  id          :integer         not null, primary key
+#  project_id  :integer
+#  starts_at   :datetime
+#  ends_at     :datetime
+#  location_id :integer
 #
 

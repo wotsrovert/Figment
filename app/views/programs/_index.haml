@@ -1,0 +1,22 @@
+- if programs.any?
+  %table
+    %thead
+      %th Location
+      %th Starts
+      %th Ends
+  
+    %tbody
+      - for p in programs
+        %tr
+          %td
+            = p.location.name
+          %td
+            = p.starts_at
+
+          %td
+            = p.ends_at
+          %td
+            = link_to "edit", url_for( :action => 'edit', :mode => params[:mode], :id => p.to_param )
+
+- else
+  (no programs found)

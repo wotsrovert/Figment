@@ -3,15 +3,8 @@ class Project < ActiveRecord::Base
     SECTIONS = [
         'artist',
         'general',
-        'curatorial',
-        'programs',
+        'curatorial'
     ].freeze
-    
-    SUBSECTIONS = {
-        :general => "General",
-        :placement => "Placement & Installation",
-        :description => "Description",
-    }.freeze
     
     serialize :category_ids
     serialize :requested_location_ids

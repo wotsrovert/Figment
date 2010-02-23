@@ -1,29 +1,31 @@
 class ProgramsController < ApplicationController
 
     before_filter :require_login
-    before_filter :find_project
+    before_filter :find_project, :only => [:index, :new, :create]
     before_filter :find_program, :except => [:index, :new, :create]
 
     def index
-        @programs = Program.find(:all)
+        @programs = @project.programs.find(:all)
     end
 
     def show
     end
 
     def new
-        @program = Program.new
+        @program = @project.programs.new
+        @programs = @project.programs.find(:all)
     end
 
     def edit
+        @programs = @program.project.programs.find(:all)
     end
 
     def create
-        @program = Program.new(params[:program])
+        @program = @project.programs.new(params[:program])
 
         if @program.save
             flash[:notice] = 'Program was successfully created.'
-            redirect_to(programs_path)
+            redirect_to( project_programs_path( @project ))
         else
             render :action => "new"
         end
@@ -39,9 +41,10 @@ class ProgramsController < ApplicationController
     end
 
     def destroy
+        p = @program.project
         @program.destroy
 
-        redirect_to(programs_url)
+        redirect_to( project_programs_path( p ))
     end
 
     protected

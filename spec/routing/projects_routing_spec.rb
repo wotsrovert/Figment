@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe ProjectsController do
-    it "submission" do
-        { :get => "/submission" }.should route_to( :controller => "projects", :action => "new" )
-    end
-
     describe "straight-up resource routing" do
         it "#index" do
             { :get => "/projects" }.should route_to( :controller => "projects", :action => "index" )
@@ -15,7 +11,7 @@ describe ProjectsController do
         end
 
         it "CREATE #create" do
-            { :post => "/projects" }.should route_to( :controller => "projects", :action => "create" ) 
+            { :post => "/projects" }.should_not be_routable 
         end
 
         it "READ #show" do
@@ -35,15 +31,11 @@ describe ProjectsController do
         it "READ #edit general" do
             { :get => "/projects/1/edit/general" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'general' )
         end
-        
+    
         it "READ #edit curatorial" do
             { :get => "/projects/1/edit/artist" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'artist' )
         end
-        
-        it "READ #edit curatorial" do
-            { :get => "/projects/1/edit/programs" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'programs' )
-        end
-
+    
         it "READ #edit curatorial" do
             { :get => "/projects/1/edit/curatorial" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial' )
         end

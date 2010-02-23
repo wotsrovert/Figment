@@ -39,15 +39,11 @@ ActionController::Routing::Routes.draw do |map|
     # ============
     map.resources :categories
     map.resources :locations
-    map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') )
-    map.with_options( :controller => 'projects' ) do |project|
-        project.with_options( :conditions => { :method => :get } ) do |get|
-            get.thank_you  '/submission/thank_you', :action => 'thank_you'
-            get.connect    '/submission/:artist_id', :action => 'new'
-            get.submission '/submission', :action => 'new'
-        end
+    map.resources :submissions, :except => [:index, :destroy], :member => { :thank_you => :get } do |sub|
+        sub.resources :programs
     end
-    map.resources :projects do |project|
+    map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') )
+    map.resources :projects, :only => [:index, :show, :edit, :update, :destroy], :shallow => true do |project|
         project.resources :programs
     end
     

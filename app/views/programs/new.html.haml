@@ -1,0 +1,24 @@
+#project.member
+
+  %h1
+    Project:
+    = @project.title
+
+  %ul#tabs
+    - for s in Project::SECTIONS
+      %li
+      = link_to s.capitalize, url_for( :controller => 'projects', :action => 'edit', :id => @project.to_param, :section => s )
+    %li.current
+      = link_to "Programs", project_programs_path( @project )
+    
+  .programs
+    - form_for @program, :url => project_programs_path( @project ) do |f|
+      = render :partial => 'programs/form', :locals => { :f => f }
+      
+      %p.submit
+        = submit_tag "Submit"
+        = link_to "Cancel", project_programs_path( @project )
+        
+    = render :partial => 'programs/index', :locals => { :programs => @programs }
+      
+      

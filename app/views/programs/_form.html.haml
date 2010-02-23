@@ -1,0 +1,14 @@
+- f.p( :location ) do
+  = f.label :location
+  = f.select :location_id, Location.find(:all).map{ |l| [ l.name, l.id ] }
+  = f.msg_on :location
+
+- f.p( :starts_at ) do
+  = f.label :starts_at
+  = f.datetime_select :starts_at
+  = f.msg_on :starts_at
+
+- f.p( :ends_at ) do
+  = f.label :ends_at
+  = f.datetime_select :ends_at
+  = f.msg_on :ends_at

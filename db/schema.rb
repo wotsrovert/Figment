@@ -92,5 +92,12 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "remember_me_code"
     t.datetime "anonymous_login_code_created_at"
   end
+  
+  create_table "programs", :force => true do |t|
+    t.integer "project_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.integer "location_id"
+  end
 
 end
