@@ -4,7 +4,7 @@
   .categoryIds
     = f.label :category_ids, "Categories"
     %ul.choices
-      - for c in @categories
+      - for c in Category.find(:all)
         %li
           = check_box_tag 'project[category_ids][]', c.id, f.object.category_ids.include?( c.id )
           %label= c.name
@@ -33,7 +33,7 @@
   %h3 Placement & Installation:
   .placedLocationId
     = f.label :placed_location_id, "Location"
-    = f.select :placed_location_id, @locations.map{ |l| [ l.name, l.id ] }
+    = f.select :placed_location_id, Location.find(:all).map{ |l| [ l.name, l.id ] }
     = f.msg_on :placed_location_id
 
   - f.p( :requested_locations ) do

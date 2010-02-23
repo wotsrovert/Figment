@@ -10,10 +10,13 @@ class Project < ActiveRecord::Base
     serialize :requested_location_ids
     
     validates_presence_of :title
+    validates_acceptance_of :waiver
     
     belongs_to :artist
     belongs_to :curator, :class_name => 'User'
     has_many :programs
+
+    attr_accessor :waiver
     
     def category_ids=( _v )
         write_attribute( :category_ids, _v.delete_if{ |x| x.blank? }.map(&:to_i) ).delete_if { |x| x == 0 }

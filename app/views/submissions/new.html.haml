@@ -5,7 +5,7 @@
   - if ! @artist.new_record?
     = @artist.public_name
 
-  - form_for @project do |f|
+  - form_for @project, :url => submissions_path do |f|
 
     - if @artist.new_record?
       #artist

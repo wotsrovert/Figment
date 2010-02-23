@@ -26,7 +26,9 @@
         %tr
           %td= link_to p.id, p
           %td=h p.status
-          %td= link_to h( p.title ), edit_project_path( p, :section => 'general' )
+          
+          -# = link_to h( p.title ), edit_project_path( p, :section => 'general' )
+          %td= link_to h( p.title ), url_for( :action => 'edit', :id => p.id, :section => 'general' )
           %td
             - if p.artist
               =link_to h( p.artist.public_name ), p.artist
@@ -45,4 +47,4 @@
           %td=h p.setup_at
           %td=h p.break_down_at
 
-  = link_to "Add a Project", new_project_path
+  = link_to "Add a Project", new_submission_path

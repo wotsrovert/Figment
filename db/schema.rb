@@ -43,11 +43,10 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "programs", :force => true do |t|
-    t.integer "starts_at_minute"
-    t.integer "ends_at_minute"
-    t.date    "starts_on"
-    t.date    "ends_on"
-    t.integer "project_id"
+    t.integer  "project_id"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.integer  "location_id"
   end
 
   add_index "programs", ["project_id"], :name => "index_programs_on_project_id"
@@ -91,13 +90,6 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "phone"
     t.string   "remember_me_code"
     t.datetime "anonymous_login_code_created_at"
-  end
-  
-  create_table "programs", :force => true do |t|
-    t.integer "project_id"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.integer "location_id"
   end
 
 end

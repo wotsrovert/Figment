@@ -16,7 +16,7 @@
           %td
             = p.ends_at
           %td
-            = link_to "edit", url_for( :action => 'edit', :id => p.to_param, :submission_id => params[:submission_id] )
+            = link_to "edit", url_for( :action => 'edit', :mode => params[:mode], :id => p.to_param )
 
 - else
   (no programs found)

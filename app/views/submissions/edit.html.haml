@@ -1,0 +1,14 @@
+#submission
+
+  %h1= @project.title
+
+  - form_for @project, :url => submission_path( @project ) do |f|
+      
+    
+    %div{ :class => params[:section] }
+      = render :partial => "projects/form", :locals => { :f => f }
+
+
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", root_path

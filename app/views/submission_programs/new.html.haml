@@ -1,0 +1,15 @@
+#submission
+
+  %h1= @project.title
+
+  .programs
+    - form_for @program, :url => submission_programs_path( @project ) do |f|
+      = render :partial => 'programs/form', :locals => { :f => f }
+      
+      %p.submit
+        = submit_tag "Submit"
+        = link_to "Cancel", thank_you_submission_path( @project )
+        
+    = render :partial => 'programs/index', :locals => { :programs => @programs }
+      
+      

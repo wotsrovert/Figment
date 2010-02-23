@@ -1,0 +1,16 @@
+#submission
+
+  %h1= @program.project.title
+
+  .programs
+    - form_for @program, :url => submission_program_path( @program.project, @program ) do |f|
+      = render :partial => 'programs/form', :locals => { :f => f }
+      
+      %p.submit
+        = submit_tag "Update"
+        = link_to "Cancel", submission_programs_path( @program.project )
+      %p.delete
+        = link_to "Delete this Program", submission_program_path( @program.project, @program ), :method => :delete
+        
+    = render :partial => 'programs/index', :locals => { :programs => @programs }
+      

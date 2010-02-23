@@ -1,0 +1,12 @@
+#submission
+
+  %h1= @project.title
+
+  .programs
+    = render :partial => 'programs/index', :locals => { :programs => @programs }
+      
+    %p.new
+      = link_to "Add a Program", new_submission_program_path( @project )
+      
+
+    

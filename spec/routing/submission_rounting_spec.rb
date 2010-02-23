@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SubmissionsController do
     describe "straight-up resource routing" do
         it "#index" do
-            { :get => "/submissions" }.should_not be_routable
+            { :get => "/submissions" }.should route_to( :controller => "submissions", :action => "index" )
         end
 
         it "#new" do
