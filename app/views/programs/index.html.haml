@@ -4,10 +4,10 @@
     Project:
     = @project.title
 
-  %ul#tabs
+  %ul.tabs
     - for s in Project::SECTIONS
       %li
-      = link_to s.capitalize, url_for( :controller => 'projects', :action => 'edit', :id => @project.to_param, :section => s )
+        = link_to s.capitalize, url_for( :controller => 'projects', :action => 'edit', :id => @project.to_param, :section => s )
     %li.current
       = link_to "Programs", project_programs_path( @project )
     

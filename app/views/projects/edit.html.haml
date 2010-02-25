@@ -7,14 +7,14 @@
   - form_for @project do |f|
     %ul.tabs
       - for s in Project::SECTIONS
-        %li{ :class => params[:section] == s ? 'current' : nil }= link_to s.capitalize, url_for( :section => s )
+        %li{ :class => params[:section] == s ? 'xcurrent' : nil }= link_to s.capitalize, url_for( :section => s )
       %li= link_to "Programs", project_programs_path( @project )
       
-    
     %div{ :class => params[:section] }
-      = render :partial => "projects/#{ params[:section] }", :locals => { :f => f }
-
+      = render :partial => "projects/#{ params[:section] ? params[:section] : 'general'  }", :locals => { :f => f }
 
     %p.submit
       = submit_tag "Submit"
-      = link_to "Cancel", :back
+      = link_to "Cancel", :back    
+      
+

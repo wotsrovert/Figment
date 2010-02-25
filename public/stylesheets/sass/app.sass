@@ -1,5 +1,6 @@
 body
   :font-family helvetica, arial, sans-serif
+  :background-color #CFFFFA
 body.error
   #page
     :margin-top 140px
@@ -10,12 +11,13 @@ body.error
   :top 0
   
 a
+  :color #131584
   :text-decoration none
   &:hover
     :text-decoration underline
-
-ul#tabs,
-ul.tabs
+  &:visited
+    :color #131584
+ul#sections
   li
     :color #999
     :font-size 15px
@@ -147,25 +149,39 @@ p.submit
         
 #project
   form
-    div.artist,
     div.general,
-    div.programs,
     div.placement,
     div.description
-      :border 1px solid #999
-      :padding 1px 1px 1px 20px
+      :float left
+      :margin-right 10px
+      :min-width 320px
+      :width 30%
+      textarea
+        :width 320px
+    #project_notes
+      :height 200px
     div.curatorial
       div.general,
       div.placement
         :margin-bottom 20px
-#project,
-#programs
+    p.submit
+      :float left
+      :width 100%
+      input
+        :color #11098A
+        :font-size 15px
+        :font-weight bold
+  
   ul.tabs
-    :padding 0
+    :font-size 14px
     li
-      :padding 3px 9px 2px 7px
+      :color #999
+      :font-weight bold
+      :padding 0
+      :padding-right 10px
+      :display inline-block
     li.current
-      :border 1px solid #999
+      
       
 *.xhr
   :border 1px dashed red

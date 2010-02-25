@@ -7,7 +7,7 @@
     = stylesheet_link_tag [ 'app' ], :cache => false
 
   %body
-    %ul#tabs
+    %ul#sections
       %li= link_to "Home", root_path
       
       - if @current_user.logged_in?

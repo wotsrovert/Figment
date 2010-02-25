@@ -15,50 +15,48 @@
         = link_to h( @project.artist.public_name ), @project.artist
 
     %dt title
-    %dd=h @project.title
+    %dd= @project.title.try(:any?) ? h( @project.title ) : "--"
 
     %dt description
-    %dd=h @project.description
+    %dd= @project.description.try(:any?) ? h( @project.description ) : "--"
 
     %dt dimensions
-    %dd=h @project.dimensions
+    %dd= @project.dimensions.try(:any?) ? h( @project.dimensions ) : "--"
 
     %dt duration
-    %dd=h @project.duration
+    %dd= @project.duration.try(:any?) ? h( @project.duration ) : "--"
 
-    %dt requested_location
-    %dd=h @project.requested_location
-
-    %dt press
-    %dd=h @project.press
+    %dt Requested Locations
+    %dd= @project.requested_locations.try(:any?) ? @project.requested_locations.map(&:name).join( ', ') : "none"
+    
+    %dt Press
+    %dd= @project.press ? "yes" : "no"
 
     %dt stipend
-    %dd=h @project.stipend
+    %dd= @project.stipend.try(:any?) ? h( @project.stipend ) : "--"
 
     %dt notes
-    %dd=h @project.notes
+    %dd= @project.notes.try(:any?) ? h( @project.notes ) : "--"
 
-    %dt placed_location
-    %dd=h @project.placed_location
+    %dt Placed Location
+    %dd
+      =h @project.placed_location ? @project.placed_location.name : "none"
 
-    %dt placement_code
-    %dd=h @project.placement_code
-
-    %dt requested_locations
-    %dd=h @project.requested_locations
+    %dt Placement Code
+    %dd= @project.placement_code.try(:any?) ? h( @project.placement_code ) : "--"
 
 
-    %dt categories
-    %dd=h @project.categories
+    %dt Categories
+    %dd= @project.categories.try(:any?) ? @project.categories.map{ |c| h(c.name) }.join( ', ') : "none"
 
     %dt status
-    %dd=h @project.status
+    %dd= @project.status ? @project.status : "none"
 
-    %dt setup_at
-    %dd=h @project.setup_at
+    %dt Setup
+    %dd= @project.setup_at ? @project.setup_at : "--"
 
-    %dt break_down_at
-    %dd=h @project.break_down_at
+    %dt Break Down
+    %dd= @project.break_down_at ? h( @project.break_down_at ) : "--"
     
   %p.edit
     = link_to "Edit this project", edit_project_path( @project )
