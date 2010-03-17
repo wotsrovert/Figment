@@ -17,7 +17,7 @@
 
   - f.p( :curator_id ) do
     = f.label :curator_id
-    = select_tag 'project[curator_id]', options_for_select( User.curators.map{ |u| [ u.name, u.id ] } )
+    = select_tag 'project[curator_id]', options_for_select( User.curators.map{ |u| [ u.name, u.id ] }, f.object.curator_id )
     = f.msg_on :curator_id
 
   - f.p( :press ) do
