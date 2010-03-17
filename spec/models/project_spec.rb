@@ -46,6 +46,11 @@ describe Project do
                 @project.artist_id = Factory.create( :artist, :public_name => "Happy Jack").id
                 @project.str_artist.should eql( 'Happy Jack')
             end
+
+            it "should store the placed_location name in str_placed_location" do
+                @project.placed_location_id = Factory.create( :location, :name => "Superphunded Estates").id
+                @project.str_placed_location.should eql( 'Superphunded Estates')
+            end
         end
     end
 end

@@ -2,6 +2,9 @@
 
   %h1= @project.title
 
+  %p.edit
+    = link_to "Edit this project", edit_project_path( @project )
+    
   %p.back
     = link_to "<< back to projects", projects_path
     

@@ -66,6 +66,11 @@ class Project < ActiveRecord::Base
         write_attribute( :str_curator, User.find( _v ).name )
     end
     
+    def placed_location_id=( _v )
+        write_attribute( :placed_location_id, _v )
+        write_attribute( :str_placed_location, Location.find( _v ).name )
+    end
+    
     def category_ids
         @category_ids ||= project_categories.map(&:category_id)
     end

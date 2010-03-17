@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.integer  "location_id"
+    t.string   "str_location"
   end
 
   add_index "programs", ["project_id"], :name => "index_programs_on_project_id"
@@ -62,7 +63,7 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "projects", :force => true do |t|
-    t.text     "description",        :limit => 255
+    t.text     "description",         :limit => 255
     t.string   "dimensions"
     t.string   "duration"
     t.boolean  "press"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "placed_location_id"
     t.string   "str_curator"
     t.string   "str_artist"
+    t.string   "str_placed_location"
   end
 
   create_table "users", :force => true do |t|

@@ -2,7 +2,7 @@
 
   %h1
     Project:
-    = @project.title
+    = link_to @project.title, @project
 
   %ul.tabs
     - for s in Project::SECTIONS

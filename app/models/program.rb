@@ -5,6 +5,11 @@ class Program < ActiveRecord::Base
 
     validates_numericality_of :location_id, :only_integer => true, :allow_nil => false, :message => "Required"
     validates_numericality_of :project_id, :only_integer => true, :allow_nil => false , :message => "Required"
+
+    def location_id=( _v )
+        write_attribute( :location_id, _v )
+        write_attribute( :str_location, Location.find( _v ).name )
+    end
 end
 
 # == Schema Information

@@ -1,20 +1,23 @@
 - if programs.any?
   %table
     %thead
-      %th Location
-      %th Starts
-      %th Ends
+      %th= sort_link( "ID", :id )
+      %th= sort_link( "Location", :str_location ) 
+      %th= sort_link( "Starts", :starts_at )
+      %th= sort_link( "Ends", :ends_at )
   
     %tbody
       - for p in programs
         %tr
           %td
+            = p.id
+          %td
             = p.location.name
           %td
-            = p.starts_at
+            = p.starts_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ')
 
           %td
-            = p.ends_at
+            = p.ends_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ')
           %td
             = link_to "edit", url_for( :action => 'edit', :id => p.to_param, :submission_id => params[:submission_id] )
 

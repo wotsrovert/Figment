@@ -11,7 +11,11 @@
       %li= link_to "Programs", project_programs_path( @project )
       
     %div{ :class => params[:section] }
-      = render :partial => "projects/#{ params[:section] ? params[:section] : Project::SECTIONS[0]  }", :locals => { :f => f }
+      - begin
+        = render :partial => "projects/#{ params[:section] ? params[:section] : Project::SECTIONS[0]  }", :locals => { :f => f }
+      
+      - rescue ActionView::MissingTemplate
+        = render :partial => "projects/#{ Project::SECTIONS[0] }", :locals => { :f => f }
 
     %p.submit
       = submit_tag "Submit"

@@ -10,7 +10,7 @@
         %th= sort_link( "Artist", :str_artist )
         %th= sort_link( "Curator", :str_curator )
         %th Categories
-        %th Location
+        %th= sort_link( "Location", :str_placed_location ) 
         %th= sort_link( "Placement Code", :placement_code )
         %th= sort_link( "Setup Time", :setup_at )
         %th= sort_link( "Breakdown Time", :break_down_at )
@@ -21,7 +21,7 @@
           %td= link_to p.id, p
           %td= link_to h( p.status ), p
           
-          %td= link_to h( p.title ), url_for( :action => 'edit', :id => p.id, :section => 'general' )
+          %td= link_to h( p.title ), p
           %td
             - if p.artist
               =link_to h( p.artist.public_name ), p.artist
@@ -37,7 +37,13 @@
               = link_to h( p.placed_location.name ), p
 
           %td= link_to h( p.placement_code ), p
-          %td= link_to h( p.setup_at       ), p
-          %td= link_to h( p.break_down_at  ), p
+          %td
+            - if p.setup_at
+              = link_to h( p.setup_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ') ), p
+          %td
+            - if p.break_down_at
+              = link_to h( p.break_down_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ') ), p
+          
+          Saturday, Jan 1 12:00PM
 
   = link_to "Add a Project", new_submission_path

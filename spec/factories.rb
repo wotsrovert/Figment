@@ -1,5 +1,5 @@
 Factory.define :location do |f|
-    f.name "The Beach"
+    f.name { Factory.next( :location_name )}
 end
 
 Factory.define :artist do |a|
@@ -28,4 +28,8 @@ end
 
 Factory.sequence :email do |n|
     "some_onexx#{n}@example.com"
+end
+
+Factory.sequence :location_name do |n|
+    "The Beach #{n}"
 end
