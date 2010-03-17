@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class SubmissionProgramsController < ApplicationController
 
     before_filter :find_project

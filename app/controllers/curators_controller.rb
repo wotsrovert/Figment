@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class CuratorsController < ApplicationController
 
     before_filter :require_login

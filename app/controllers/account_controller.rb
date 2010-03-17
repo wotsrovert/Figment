@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class AccountController < ApplicationController
 
     before_filter :require_login, :only => [ :show, :edit, :change_password ]

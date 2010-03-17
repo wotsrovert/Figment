@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class Location < ActiveRecord::Base
 
     validates_presence_of :name

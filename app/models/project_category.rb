@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class ProjectCategory < ActiveRecord::Base
     belongs_to :project
     belongs_to :category

@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class User < ActiveRecord::Base
 
     PASSWORD_MIN_LENGTH = 6

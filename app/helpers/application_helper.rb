@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
     def sort_link( _label, _field )

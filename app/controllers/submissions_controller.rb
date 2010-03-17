@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class SubmissionsController < ApplicationController
 
     before_filter :find_project, :except => [:index, :new, :create]

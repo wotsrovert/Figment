@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class Category < ActiveRecord::Base
 
     validates_uniqueness_of :name

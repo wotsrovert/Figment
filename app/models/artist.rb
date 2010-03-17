@@ -1,3 +1,5 @@
+# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+
 class Artist < ActiveRecord::Base
     validates_presence_of :public_name, :message => "Required"
     validates_presence_of :contact_name, :message => "Required"
