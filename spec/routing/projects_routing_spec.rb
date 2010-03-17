@@ -28,10 +28,6 @@ describe ProjectsController do
     end
     
     describe "custom routes" do
-        it "READ #edit general" do
-            { :get => "/projects/1/edit/general" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'general' )
-        end
-    
         it "READ #edit curatorial" do
             { :get => "/projects/1/edit/artist" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'artist' )
         end

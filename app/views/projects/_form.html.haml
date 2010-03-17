@@ -28,11 +28,11 @@
   = f.msg_on :duration
 
 .requestedLocationIds
-  = f.label :requested_location_ids, "Location"
+  = f.label :requested_requested_location_ids, "Location"
   %ul.choices
     - for l in Location.find(:all)
       %li
-        = check_box_tag 'project[location_ids][]', l.id, ( f.object.location_ids.try(:any?) && f.object.location_ids.include?( l.id.to_s ) )
+        = check_box_tag 'project[requested_location_ids][]', l.id, ( f.object.requested_location_ids.try(:any?) && f.object.requested_location_ids.include?( l.id.to_s ) )
         %label= l.name
   = f.msg_on :category_ids
 

@@ -6,7 +6,9 @@ class ProjectsController < ApplicationController
     before_filter :find_project, :except => [:index]
 
     def index
-        @projects = Project.find(:all, :include => [:categories])
+        params[:sort] ||= 'id'
+        params[:dir] ||= 'ASC'
+        @projects = Project.find(:all, :include => [:categories], :order => ( params[:sort] ? "#{params[:sort]} #{ params[:dir] }" : nil ))
     end
 
     def show

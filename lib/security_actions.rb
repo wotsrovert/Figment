@@ -1,46 +1,7 @@
 module SecurityActions
 
-    def record_returning_user
-        cookies[:hsu] = true
-    end
-
-    def check_if_current_user_has_signed_up
-        current_user.is_returning = cookies[:hsu]
-    end
-
-    def try_search( _srch )
-        if _srch.new_record?
-            _srch.user = current_user
-        end
-        _srch.save!
-
-        cookies[:srchs] = if cookies[:srchs]
-            arr = cookies[:srchs].split(',')
-
-            # remove if new search's ID is already in srchs cookie
-            if arr.include?( _srch.id.to_s )
-                arr = arr.delete_if{ |i| i == _srch.id.to_s }
-            end
-
-            # add id to end of array
-            arr.push _srch.id
-
-            # limit size of list (in cookie) to 20
-            if arr.size > 20
-                arr.shift
-            end
-
-            # now rejoin back into a string for storage in cookie
-            arr.join(',')
-        else
-            _srch.id.to_s
-        end
-        return _srch
-    end
-
     def try_signup( _u )
         if _u.save
-            record_returning_user
             self.current_user = _u
             return true
         else
@@ -51,8 +12,6 @@ module SecurityActions
 
     def try_login(_u, _remember_me = false)
         if _u.logged_in?
-            record_returning_user
-
             if _remember_me
                 cookies[:rmi] = { :value => _u.id.to_s, :expires => 60.days.from_now }
 

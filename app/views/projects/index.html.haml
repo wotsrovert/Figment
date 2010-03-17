@@ -4,22 +4,22 @@
   %table
     %thead
       %tr
-        %th No.
-        %th Status
-        %th Title
-        %th Artist
-        %th Curator
+        %th= sort_link( "No.", :id )
+        %th= sort_link( "Status", :status )
+        %th= sort_link( "Title", :title )
+        %th= sort_link( "Artist", :str_artist )
+        %th= sort_link( "Curator", :str_curator )
         %th Categories
         %th Location
-        %th Placement Code
-        %th Setup Time
-        %th Breakdown Time
+        %th= sort_link( "Placement Code", :placement_code )
+        %th= sort_link( "Setup Time", :setup_at )
+        %th= sort_link( "Breakdown Time", :break_down_at )
         %th Programs
     %tbody
       - for p in @projects
         %tr
           %td= link_to p.id, p
-          %td=h p.status
+          %td= link_to h( p.status ), p
           
           %td= link_to h( p.title ), url_for( :action => 'edit', :id => p.id, :section => 'general' )
           %td
@@ -27,17 +27,17 @@
               =link_to h( p.artist.public_name ), p.artist
           %td
             - if p.curator
-              = link_to h( p.curator.name ), curator_path( p.curator )
+              = link_to h( p.curator.name ), p
           %td
             - if p.categories.any?
-              = p.categories.map { |c| link_to h( c.name ), c }.join(", ")
+              = p.categories.map { |c| link_to h( c.name ), p }.join(", ")
 
           %td
             - if p.placed_location
-              = link_to h( p.placed_location.name ), p.placed_location
+              = link_to h( p.placed_location.name ), p
 
-          %td=h p.placement_code
-          %td=h p.setup_at
-          %td=h p.break_down_at
+          %td= link_to h( p.placement_code ), p
+          %td= link_to h( p.setup_at       ), p
+          %td= link_to h( p.break_down_at  ), p
 
   = link_to "Add a Project", new_submission_path

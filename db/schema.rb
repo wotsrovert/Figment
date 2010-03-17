@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "break_down_at"
     t.integer  "curator_id"
     t.integer  "placed_location_id"
+    t.string   "str_curator"
+    t.string   "str_artist"
   end
 
   create_table "users", :force => true do |t|
