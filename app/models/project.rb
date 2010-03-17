@@ -1,8 +1,8 @@
 class Project < ActiveRecord::Base
 
     SECTIONS = [
+        'curatorial',
         'artist',
-        'curatorial'
     ].freeze
     
     
