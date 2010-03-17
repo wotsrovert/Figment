@@ -63,24 +63,24 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "projects", :force => true do |t|
-    t.text     "description",         :limit => 255
-    t.string   "dimensions"
-    t.string   "duration"
-    t.boolean  "press"
-    t.string   "stipend"
+    t.text     "description"
     t.text     "notes"
+    t.string   "duration"
+    t.string   "title"
+    t.string   "dimensions"
+    t.boolean  "press"
     t.string   "placement_code"
     t.integer  "artist_id"
-    t.string   "title"
-    t.string   "status"
-    t.datetime "created_at"
+    t.string   "stipend"
     t.datetime "setup_at"
+    t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "break_down_at"
+    t.string   "status"
     t.integer  "curator_id"
     t.integer  "placed_location_id"
-    t.string   "str_curator"
     t.string   "str_artist"
+    t.string   "str_curator"
     t.string   "str_placed_location"
   end
 

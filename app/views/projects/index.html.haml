@@ -15,6 +15,7 @@
         %th= sort_link( "Setup Time", :setup_at )
         %th= sort_link( "Breakdown Time", :break_down_at )
         %th Programs
+
     %tbody
       - for p in @projects
         %tr
@@ -39,11 +40,9 @@
           %td= link_to h( p.placement_code ), p
           %td
             - if p.setup_at
-              = link_to h( p.setup_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ') ), p
+              -#= link_to h( p.setup_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ') ), p
           %td
             - if p.break_down_at
               = link_to h( p.break_down_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ') ), p
           
-          Saturday, Jan 1 12:00PM
-
   = link_to "Add a Project", new_submission_path
