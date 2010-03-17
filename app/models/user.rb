@@ -25,6 +25,17 @@ class User < ActiveRecord::Base
 
     has_many :projects, :foreign_key => 'curator_id'
     
+    def self.sanitize_sql_for_assignment( *args )
+        super
+    end 
+
+    def before_update 
+        if changed? && changed.include?( 'name' )
+            Project.update_all( Location.sanitize_sql_for_assignment( :str_curator => name ), "curator_id = #{ id }")
+        end
+    end
+    
+    
     def password_required?
         if is_admin || is_root || is_curator
             read_attribute( :crypted_password ).blank?

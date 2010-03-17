@@ -8,8 +8,17 @@ class Artist < ActiveRecord::Base
     
     validates_format_of :contact_email, :with => Authenticated::EMAIL_REXEP, :message => "Doesn't appear to be valid."
 
-
     has_many :projects
+
+    def self.sanitize_sql_for_assignment( *args )
+        super
+    end 
+    
+    def before_update 
+        if changed? && changed.include?( 'public_name' )
+            Project.update_all( Artist.sanitize_sql_for_assignment( :str_artist => public_name ), "artist_id = #{ id }" )
+        end
+    end
 end
 
 
