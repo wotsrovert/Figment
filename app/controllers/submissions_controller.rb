@@ -17,13 +17,20 @@ class SubmissionsController < ApplicationController
     def new
         if RAILS_ENV == 'development'
             @artist ||= Artist.new(
+                :biography       => "Born in London",
+                :names_list      => "Homer, Marge, Bart, Lisa, Maggie",
+                :website         => 'http://www.thesimpsons.com',
+                :group_email     => 'members@simpsons.com',
                 :contact_name    =>"Trevor Stow",
                 :public_name     => "T-Man Collective",
                 :contact_phone   => "917.499.0583",
                 :contact_email   => "trevorstow@gmail.com",
                 :is_organization => "1"
             )
-            @project = Project.new( :title =>"Testing Project" )
+            @project = Project.new( 
+                :title       =>"Testing Project",
+                :description => "Something very awesome"
+            )
         else
             @artist ||= Artist.new
             @project = Project.new
@@ -36,7 +43,7 @@ class SubmissionsController < ApplicationController
     def create
         @artist ||= Artist.new( params[:artist] )
         @project = Project.new( params[:project] )
-        @project.valid?
+
         if @artist.valid? && @project.valid?
             @artist.save
             @project.artist = @artist
@@ -48,6 +55,7 @@ class SubmissionsController < ApplicationController
                 flash[:error] = "Unable to save your project.  See below for details."
             end
         else
+            raise @project.errors.full_messages.inspect
             flash[:error] = "Unable to save your project.  Please see below for details."
         end
         render :action => "new"

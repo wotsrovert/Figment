@@ -47,6 +47,11 @@ ActionController::Routing::Routes.draw do |map|
         project.resources :programs
     end
     
+    # =============
+    # = questions =
+    # =============
+    map.resources :questions
+    
     # ============
     # = curators =
     # ============

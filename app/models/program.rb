@@ -14,14 +14,16 @@ class Program < ActiveRecord::Base
     end
 end
 
+
 # == Schema Information
 #
 # Table name: programs
 #
-#  id          :integer         not null, primary key
-#  project_id  :integer
-#  starts_at   :datetime
-#  ends_at     :datetime
-#  location_id :integer
+#  id           :integer         not null, primary key
+#  project_id   :integer
+#  starts_at    :datetime
+#  ends_at      :datetime
+#  location_id  :integer
+#  str_location :string(255)
 #
 

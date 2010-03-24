@@ -1,10 +1,7 @@
 # (c) Copyright 2010 Trevor Stow. All Rights Reserved.
 
 class Artist < ActiveRecord::Base
-    validates_presence_of :public_name, :message => "Required"
-    validates_presence_of :contact_name, :message => "Required"
-    validates_presence_of :contact_email, :message => "Required"
-    validates_presence_of :contact_phone, :message => "Required"
+    validates_presence_of :public_name, :contact_name, :contact_email, :group_email, :website, :biography, :names_list, :contact_phone, :message => "Required"
     
     validates_format_of :contact_email, :with => Authenticated::EMAIL_REXEP, :message => "Doesn't appear to be valid."
 

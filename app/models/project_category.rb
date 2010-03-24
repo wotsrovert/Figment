@@ -6,10 +6,12 @@ class ProjectCategory < ActiveRecord::Base
     
     validates_uniqueness_of :project_id, :scope => :category_id
 end
+
 # == Schema Information
 #
 # Table name: project_categories
 #
+#  id          :integer         not null, primary key
 #  project_id  :integer
 #  category_id :integer
 #

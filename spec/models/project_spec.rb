@@ -4,7 +4,7 @@ describe Project do
     describe "enforcing validity" do
         describe "when in the submit mode" do
             before(:each) do
-                @artist = Factory.create( :artist, :public_name => "Happy Jack")
+                @artist = Factory.create( :artist, :public_name => "Happy Jack", :group_email => 'abc@asdf.com', :website => "bestaret.com", :names_list => "Jean and Joan and a who know's who?", :biography => "Born to be while'd.")
                 @location = Factory.create( :location, :name => "Superphunded Estates")
                 @curator = Factory.create( :curator, :name => "Humpty Dumpty")
                 @project = @artist.projects.new
@@ -22,6 +22,7 @@ describe Project do
             end
             
             it "" do
+                @project.description = 'something very creative'
                 @project.waiver = '1'
                 @project.title = "Something"
                 @project.save!
@@ -48,6 +49,7 @@ describe Project do
                 before(:each) do
                     @project.curator_id         = @curator.id
                     @project.artist_id          = @artist.id
+                    @project.description        = "Weirdness"
                     @project.placed_location_id = @location.id
                     @project.waiver             = '1'
                     @project.title              = "Something"
@@ -86,26 +88,30 @@ describe Project do
     end
 end
 
+
 # == Schema Information
 #
 # Table name: projects
 #
-#  id                 :integer         not null, primary key
-#  description        :text(255)
-#  dimensions         :string(255)
-#  duration           :string(255)
-#  press              :boolean
-#  stipend            :string(255)
-#  notes              :text
-#  placement_code     :string(255)
-#  artist_id          :integer
-#  title              :string(255)
-#  status             :string(255)
-#  created_at         :datetime
-#  setup_at           :datetime
-#  updated_at         :datetime
-#  break_down_at      :datetime
-#  curator_id         :integer
-#  placed_location_id :integer
+#  id                  :integer         not null, primary key
+#  description         :text
+#  notes               :text
+#  duration            :string(255)
+#  title               :string(255)
+#  dimensions          :string(255)
+#  press               :boolean
+#  placement_code      :string(255)
+#  artist_id           :integer
+#  stipend             :string(255)
+#  setup_at            :datetime
+#  created_at          :datetime
+#  updated_at          :datetime
+#  break_down_at       :datetime
+#  status              :string(255)
+#  curator_id          :integer
+#  placed_location_id  :integer
+#  str_artist          :string(255)
+#  str_curator         :string(255)
+#  str_placed_location :string(255)
 #
 

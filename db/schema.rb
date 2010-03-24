@@ -11,6 +11,14 @@
 
 ActiveRecord::Schema.define(:version => 0) do
 
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id"
+    t.integer  "project_id"
+    t.text     "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "artists", :force => true do |t|
     t.string   "public_name"
     t.datetime "created_at"
@@ -82,6 +90,16 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "str_artist"
     t.string   "str_curator"
     t.string   "str_placed_location"
+  end
+
+  add_index "projects", ["status"], :name => "index_projects_on_status"
+
+  create_table "questions", :force => true do |t|
+    t.text     "category_ids"
+    t.string   "question"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "genre"
   end
 
   create_table "users", :force => true do |t|
