@@ -1,0 +1,26 @@
+#question
+  %h1 New Question
+
+  - form_for @question do |f|
+    - f.p( :category_ids ) do
+      = f.label :category_ids, "Categories"
+      %ul
+        - for c in Category.find(:all)
+          %li
+            = check_box_tag 'question[category_ids][]', c.id, f.object.in_category?( c )
+            = c.name
+      = f.msg_on :category_ids
+
+    - f.p( :genre ) do
+      = f.label :genre
+      = select_tag "question[genre]", options_for_select( Question::TYPES )
+      = f.msg_on :genre
+
+    - f.p( :question ) do
+      = f.label :question
+      = f.text_area :question
+      = f.msg_on :question
+
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", questions_path

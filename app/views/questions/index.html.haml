@@ -1,0 +1,20 @@
+- if @questions.any?
+  %table
+    %thead
+      %th Type
+      %th Categories
+      %th Question
+      
+    %thead
+      - for q in @questions
+        %tr
+          %td= q.genre
+          %td
+            - if q.categories.any?
+              = q.categories.map( &:name ).join(', ')
+                
+          %td= q.question
+      
+%p.new
+  = link_to "Create a new question", new_question_path
+        
