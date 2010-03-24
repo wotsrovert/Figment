@@ -1,7 +1,7 @@
 !!!
 %html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
-    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-type" }
+    %meta{ :content => "text/html;charset=UTF-8", "http-equiv" => "content-genre" }
     %title== Figment 2010
 
     = stylesheet_link_tag [ 'app' ], :cache => false
@@ -14,6 +14,7 @@
         %li= link_to "Projects", projects_path
         %li= link_to "Artists", artists_path
         - if @current_user.is_admin?
+          %li= link_to "Project Questions", questions_path
           %li= link_to "Categories", categories_path
           %li= link_to "Locations", locations_path
           %li= link_to "Curators", curators_path
