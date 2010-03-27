@@ -151,7 +151,8 @@ p.submit
 #project
   form
     div.placement,
-    div.description
+    div.description,
+    div.answers
       :float left
       :margin-right 10px
       :min-width 320px
@@ -171,6 +172,15 @@ p.submit
         :color #11098A
         :font-size 15px
         :font-weight bold
+    div.answers
+      ul
+        :list-style none
+        :padding 0
+        li
+          :margin-bottom 10px
+        .question
+          :font-weight bold
+        
   .programs
     td
       :padding-right 12px

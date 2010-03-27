@@ -88,3 +88,17 @@
     = f.text_area :description
     = f.msg_on :description
 
+.answers
+  %h3 Questions
+  - if f.object.answers.any?
+    %ul
+      - for a in f.object.answers do
+        %li
+          .question
+            = a.question.question
+          .answer
+            = a.answer
+  - else
+    %p No questions for this project
+    
+

@@ -5,14 +5,14 @@
     - f.p( :answer ) do
       = f.label :answer
       - if @answer.question.genre == Question::STRING  
-        = f.text_area :answer
+        = f.text_field :answer
         
       - elsif @answer.question.genre == Question::BOOLEAN  
-        = f.radio_button :answer, true
-        = f.radio_button :answer, false
+        = f.radio_button :answer, 'yes'
+        = f.radio_button :answer, 'no'
         
       - elsif @answer.question.genre == Question::TEXT  
-        = f.text_field :answer
+        = f.text_area :answer
       = f.msg_on :answer
   
   

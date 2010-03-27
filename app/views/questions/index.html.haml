@@ -12,7 +12,7 @@
           %td
             = q.categories.map( &:name ).join(', ')
                 
-          %td= q.question
+          %td= link_to q.question, edit_question_path( q )
       
 %p.new
   = link_to "Create a new question", new_question_path

@@ -154,13 +154,15 @@ p.submit a {
     padding-top: 6px; }
 
 #project form div.placement,
-#project form div.description {
+#project form div.description,
+#project form div.answers {
   float: left;
   margin-right: 10px;
   min-width: 320px;
   width: 50%; }
   #project form div.placement textarea,
-  #project form div.description textarea {
+  #project form div.description textarea,
+  #project form div.answers textarea {
     width: 320px; }
 #project form #project_notes {
   height: 200px; }
@@ -173,6 +175,13 @@ p.submit a {
   #project form p.submit input {
     color: #11098A;
     font-size: 15px;
+    font-weight: bold; }
+#project form div.answers ul {
+  list-style: none;
+  padding: 0; }
+  #project form div.answers ul li {
+    margin-bottom: 10px; }
+  #project form div.answers ul .question {
     font-weight: bold; }
 #project .programs td {
   padding-right: 12px; }
