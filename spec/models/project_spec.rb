@@ -15,6 +15,11 @@ describe Project do
                 @project.should have(1).errors_on(:title)
             end
 
+            it "should have a status of 'new' at start" do
+                @project.save
+                @project.status.should eql(Status::NEW)
+            end
+
             it "should require waiver signing" do
                 @project.waiver = '0'
                 @project.save

@@ -8,10 +8,9 @@
     %thead
       - for q in @questions
         %tr
-          %td= q.genre
+          %td= link_to q.genre, edit_question_path( q )
           %td
-            - if q.categories.any?
-              = q.categories.map( &:name ).join(', ')
+            = q.categories.map( &:name ).join(', ')
                 
           %td= q.question
       

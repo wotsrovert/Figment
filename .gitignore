@@ -9,6 +9,5 @@ mkmf.log
 tmp/*
 .trash
 public/javascripts/all.js
-public/stylesheets/*css
-!public/stylesheets/datepicker.css
+
 

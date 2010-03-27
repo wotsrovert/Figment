@@ -1,0 +1,23 @@
+- form_for @answer, :url => submission_answer_path( @project, @answer ) do |f|
+  %p.question
+    = @answer.question.question
+  
+    - f.p( :answer ) do
+      = f.label :answer
+      - if @answer.question.genre == Question::STRING  
+        = f.text_area :answer
+        
+      - elsif @answer.question.genre == Question::BOOLEAN  
+        = f.radio_button :answer, true
+        = f.radio_button :answer, false
+        
+      - elsif @answer.question.genre == Question::TEXT  
+        = f.text_field :answer
+      = f.msg_on :answer
+  
+  
+  %p.submit
+    = submit_tag "Submit"
+    - if @project.answer_before( @answer )
+      = link_to "<< Back", submission_answer_path( @project, @project.answer_before( @answer ) )
+      

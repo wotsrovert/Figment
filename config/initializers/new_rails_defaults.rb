@@ -7,7 +7,7 @@ if defined?(ActiveRecord)
   # Include Active Record class name as root for JSON serialized output.
   ActiveRecord::Base.include_root_in_json = true
 
-  # Store the full class name (including module namespace) in STI type column.
+  # Store the full class name (including module namespace) in STI genre column.
   ActiveRecord::Base.store_full_sti_class = true
 end
 

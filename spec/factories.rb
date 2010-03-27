@@ -3,6 +3,23 @@ Factory.define :location do |f|
 end
 
 Factory.define :artist do |a|
+    a.biography        'Born in London'
+    a.names_list       'Homer, Marge, Bart, Lisa, Maggie'
+    a.website          'http://www.thesimpsons.com'
+    a.group_email      'members@simpsons.com'
+    a.contact_name     'Trevor Stow'
+    a.public_name      'T-Man Collective'
+    a.contact_phone    '917.499.0583'
+    a.contact_email    'trevorstow@gmail.com'
+    a.is_organization  '1'
+end
+
+Factory.define :project do |p|
+    p.title       "Factory Project"
+    p.description "Something standard from the factory"
+end
+
+Factory.define :artist do |a|
     a.contact_email                 { Factory.next(:email) }
     a.public_name   "AwesomeSausome"
     a.contact_name  "Mr. Fantasticulous"

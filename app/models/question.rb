@@ -18,6 +18,17 @@ class Question < ActiveRecord::Base
         end
     end
     
+    def applies_to?( _project )
+        return nil if ! _project.category_ids.any?
+        
+        _project.category_ids.each do |c|
+            if self.category_ids.include?( c )
+                return true 
+            end
+        end
+        return false
+    end
+    
     def in_category?( _c )
         return nil if ! category_ids
         category_ids.include?( _c.id.to_s )    

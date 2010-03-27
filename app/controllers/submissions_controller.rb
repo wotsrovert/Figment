@@ -49,13 +49,18 @@ class SubmissionsController < ApplicationController
             @project.artist = @artist
             if @project.save!
                 flash[:notice] = 'Project was successfully created.'
-                redirect_to new_submission_program_path( @project.to_param )
+                redirect_to(
+                    if @project.answers.any?
+                        submission_answer_path( @project, @project.answers.first )
+                    else
+                        new_submission_program_path( @project.to_param )
+                    end
+                )
                 return
             else
                 flash[:error] = "Unable to save your project.  See below for details."
             end
         else
-            raise @project.errors.full_messages.inspect
             flash[:error] = "Unable to save your project.  Please see below for details."
         end
         render :action => "new"

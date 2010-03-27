@@ -1,7 +1,10 @@
 #submission
 
   %h1 Project Submission
-
+  - if flash[:error]
+    #flash.error
+      = flash[:error]
+      
   - if ! @artist.new_record?
     = @artist.public_name
 

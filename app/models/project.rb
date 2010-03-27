@@ -11,7 +11,8 @@ class Project < ActiveRecord::Base
     has_many :project_categories
     has_many :categories, :through => :project_categories
     has_many :project_requested_locations
-    has_many :answers
+        
+    has_many :answers, :order => 'position ASC'
 
     belongs_to :placed_location, :class_name => "Location"
 
@@ -32,7 +33,7 @@ class Project < ActiveRecord::Base
             write_attribute( :status, Status::NEW )
         end
     end
-
+    
     after_create do |p|
         if p.category_ids.try(:any?)
             p.category_ids.each do |x|
@@ -66,6 +67,26 @@ class Project < ActiveRecord::Base
         end
     end
 
+    def answer_after( _answer )
+        @answer_after = if answers.any? 
+            answers.find_by_position( _answer.position + 1 )
+        else
+            nil
+        end
+    end
+    
+    def answer_before( _answer )
+        @answer_before = if answers.any? 
+            answers.find_by_position( _answer.position - 1 )
+        else
+            nil
+        end
+    end
+    
+    def questions
+        Categorie.find( )
+    end
+        
     def artist_id=( _v )
         write_attribute( :artist_id, _v )
         write_attribute( :str_artist, Artist.find( _v ).public_name )
@@ -77,8 +98,10 @@ class Project < ActiveRecord::Base
     end
 
     def placed_location_id=( _v )
-        write_attribute( :placed_location_id, _v )
-        write_attribute( :str_placed_location, Location.find( _v ).name )
+        if _v.to_i > 0
+            write_attribute( :placed_location_id, _v )
+            write_attribute( :str_placed_location, Location.find( _v ).name )
+        end
     end
 
     def category_ids

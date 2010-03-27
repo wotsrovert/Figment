@@ -1,0 +1,189 @@
+body {
+  font-family: helvetica, arial, sans-serif;
+  background-color: #CFFFFA; }
+
+body.error #page {
+  margin-top: 140px; }
+
+#logo {
+  position: absolute;
+  right: 50px;
+  top: 0; }
+
+a {
+  color: #131584;
+  text-decoration: none; }
+  a:hover {
+    text-decoration: underline; }
+  a:visited {
+    color: #131584; }
+
+ul#sections li {
+  color: #999;
+  font-size: 15px;
+  font-weight: bold;
+  padding-right: 10px;
+  display: inline-block; }
+
+img {
+  border: none; }
+
+#page {
+  margin: 20px 12px; }
+  #page form span.msg {
+    font-size: 11px; }
+  #page form .error {
+    color: #800000;
+    font-weight: bold; }
+  #page form .fieldWithErrors input {
+    background-color: #FFE0D1; }
+  #page form .fieldWithErrors label {
+    color: #800000; }
+  #page .member {
+    padding-left: 30px;
+    padding-top: 30px; }
+  #page .index {
+    padding-left: 0px;
+    padding-top: 110px; }
+
+ul.subnav {
+  left: 60px;
+  list-style: none;
+  position: absolute;
+  top: 60px; }
+
+#submission {
+  padding-left: 30px;
+  padding-top: 80px; }
+  #submission h3 {
+    margin-top: 0; }
+  #submission #artist {
+    float: left;
+    width: 400px; }
+  #submission #project {
+    float: left; }
+  #submission p.submit {
+    clear: both; }
+  #submission p.isOrganization {
+    position: relative; }
+    #submission p.isOrganization input {
+      position: absolute;
+      top: 0px; }
+    #submission p.isOrganization label {
+      margin-left: 30px; }
+
+ul.choices {
+  list-style: none;
+  margin: 0;
+  margin-top: 5px;
+  padding: 0; }
+  ul.choices li {
+    position: relative; }
+    ul.choices li input {
+      position: absolute; }
+    ul.choices li label {
+      margin-left: 30px; }
+
+#home {
+  padding-left: 30px;
+  padding-top: 80px; }
+
+#artists,
+#projects {
+  padding-top: 60px; }
+
+dt,
+label {
+  color: #999999;
+  display: block;
+  font-weight: bold; }
+
+dl dt {
+  margin-top: 10px; }
+dl dd {
+  margin-left: 0; }
+  dl dd span.none {
+    color: #999; }
+
+#flash {
+  font-weight: bold; }
+  #flash.error {
+    color: #800000; }
+  #flash.notice {
+    color: #005F00; }
+
+p.back {
+  font-size: 12px; }
+
+ul.options {
+  font-size: 12px;
+  list-style: none;
+  margin-top: 30px;
+  padding: 0; }
+  ul.options li {
+    margin-bottom: 6px; }
+
+p.submit a {
+  font-size: 11px;
+  padding-left: 5px; }
+
+#artists table,
+#curators table,
+#projects table,
+#users table {
+  width: 100%; }
+  #artists table thead th,
+  #curators table thead th,
+  #projects table thead th,
+  #users table thead th {
+    background-color: #CCCCCC;
+    color: #000;
+    font-size: 12px;
+    padding: 3px 4px;
+    text-align: left; }
+  #artists table tbody td,
+  #curators table tbody td,
+  #projects table tbody td,
+  #users table tbody td {
+    font-size: 13px;
+    padding: 0 10px 6px 2px; }
+  #artists table tbody tr.first td,
+  #curators table tbody tr.first td,
+  #projects table tbody tr.first td,
+  #users table tbody tr.first td {
+    padding-top: 6px; }
+
+#project form div.placement,
+#project form div.description {
+  float: left;
+  margin-right: 10px;
+  min-width: 320px;
+  width: 50%; }
+  #project form div.placement textarea,
+  #project form div.description textarea {
+    width: 320px; }
+#project form #project_notes {
+  height: 200px; }
+#project form div.curatorial div.general,
+#project form div.curatorial div.placement {
+  margin-bottom: 20px; }
+#project form p.submit {
+  float: left;
+  width: 100%; }
+  #project form p.submit input {
+    color: #11098A;
+    font-size: 15px;
+    font-weight: bold; }
+#project .programs td {
+  padding-right: 12px; }
+#project ul.tabs {
+  font-size: 14px; }
+  #project ul.tabs li {
+    color: #999;
+    font-weight: bold;
+    padding: 0;
+    padding-right: 10px;
+    display: inline-block; }
+
+*.xhr {
+  border: 1px dashed red; }
