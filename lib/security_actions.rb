@@ -26,7 +26,7 @@ module SecurityActions
     end
 
     def try_login_as( _user )
-        if current_user.is_root?
+        if current_user.is_admin?
             cookies[:liaid]                   = current_user.id
             current_user.anonymous_login_code = Digest::SHA1.hexdigest( "-- #{Time.now}" )
             current_user.save!

@@ -8,7 +8,7 @@ describe User do
     
     describe "aware of whether its logged in" do
         before(:each) do
-            @user = Factory.build( :user )
+            @user = Factory.build( :user, :is_curator => true )
         end
         
         it "should not be logged in" do
@@ -33,7 +33,7 @@ describe User do
 
     describe "enforcing unique email" do
         before(:each) do
-            @user = Factory.create(:user)
+            @user = Factory.create(:user, :is_director => true )
         end
         
         it do
@@ -58,7 +58,7 @@ describe User do
 
     describe "enforcing password" do
         it "for a user with no privileges, should not require a password" do
-            Factory.build(:user, :password => nil, :password_confirmation => nil ).should be_valid
+            Factory.build(:user, :password => nil, :password_confirmation => nil, :is_artist => true ).should be_valid
         end
 
         describe "should require a password for ..." do

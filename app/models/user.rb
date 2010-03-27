@@ -13,14 +13,15 @@ class User < ActiveRecord::Base
     attr_protected :crypted_password,
                     :salt,
                     :anonymous_login_code,
-                    :is_root,
-                    :is_artist,
-                    :is_curator,
-                    :is_director,
                     :is_admin
 
     validates_presence_of :name, :message => "Please provide a name"
-
+    def validate
+        if !is_artist && !is_curator && !is_director && !is_placement && !is_admin
+            errors.add_to_base("User must have a roll assigned")
+        end
+    end
+    
     named_scope :curators, :conditions => { :is_curator => true }
 
     has_many :projects, :foreign_key => 'curator_id'
@@ -37,7 +38,7 @@ class User < ActiveRecord::Base
     
     
     def password_required?
-        if is_admin || is_root || is_curator
+        if is_admin || is_placement || is_curator
             read_attribute( :crypted_password ).blank?
         else
             false
@@ -69,7 +70,7 @@ class User < ActiveRecord::Base
     end
 
     def is_admin?
-        read_attribute(:is_root) || read_attribute(:is_admin)
+        read_attribute(:is_admin)
     end
 
     def self.trevor

@@ -13,8 +13,8 @@
     %dt Email
     %dd= @current_user.email
    
-    - if @current_user.is_root?
-      %dt Root?
+    - if @current_user.is_placement?
+      %dt Placement?
       %dd Yes
 
     - if @current_user.is_admin?

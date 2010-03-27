@@ -24,7 +24,7 @@ describe "" do
 
     describe "logging in" do
         before(:each) do
-            @user = Factory.create( :user )
+            @user = Factory.create( :user, :is_placement => true )
         end
 
         describe "SUCCESSFULLY" do
@@ -158,10 +158,10 @@ describe "" do
             @some_user = Factory.create( :user )            
         end
         
-        describe "as root" do
+        describe "as admin" do
             before(:each) do
                 @root = Factory.create( :user, :email => 'root@figmentproject.org' )
-                @root.is_root = true
+                @root.is_admin = true
                 @root.save!
                 try_login( @root )
             end
@@ -177,7 +177,7 @@ describe "" do
             end
 
             it "should be root" do
-                @root.is_root?.should be_true
+                @root.is_admin?.should be_true
             end
 
             it "should be the current user" do
@@ -185,7 +185,7 @@ describe "" do
             end
 
             it "current user should be root" do
-                current_user.is_root?.should be_true
+                current_user.is_admin?.should be_true
             end
 
             it "return true" do
@@ -218,7 +218,7 @@ describe "" do
             end
 
             it "should NOT be root" do
-                @some_user.is_root?.should be_false
+                @some_user.is_admin?.should be_false
             end
 
             it "should be valid" do
@@ -232,12 +232,12 @@ describe "" do
                 end
 
                 it "should NOT be root" do
-                    @not_root.is_root?.should be_false
+                    @not_root.is_admin?.should be_false
                 end
 
                 it "should have root as the current user" do
                     logout_as
-                    current_user.is_root?.should be_false
+                    current_user.is_admin?.should be_false
                 end
 
                 it "set retain the session id" do

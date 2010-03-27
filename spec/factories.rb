@@ -41,6 +41,7 @@ Factory.define :user do |u|
     u.password              '123123'
     u.password_confirmation '123123'
     u.terms                 '1'
+    u.is_artist             true
 end
 
 Factory.sequence :email do |n|

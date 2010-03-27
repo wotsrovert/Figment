@@ -111,10 +111,6 @@ module Authenticated
         read_attribute( :is_admin )
     end
 
-    def is_root?
-        read_attribute( :is_root )
-    end
-
     # Encrypts the password with the user salt
     def encrypt(password)
         self.class.encrypt(password, salt)
