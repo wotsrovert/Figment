@@ -78,6 +78,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -91,14 +92,13 @@ end
 #  updated_at                      :datetime
 #  last_logged_in_at               :datetime
 #  anonymous_login_code            :string(255)
-#  is_root                         :boolean         default(FALSE)
 #  is_artist                       :boolean         default(FALSE)
 #  is_curator                      :boolean         default(FALSE)
 #  is_director                     :boolean         default(FALSE)
 #  is_admin                        :boolean         default(FALSE)
-#  is_spectator                    :boolean         default(TRUE)
 #  phone                           :string(255)
 #  remember_me_code                :string(255)
 #  anonymous_login_code_created_at :datetime
+#  is_placement                    :boolean         default(FALSE)
 #
 

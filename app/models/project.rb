@@ -24,7 +24,6 @@ class Project < ActiveRecord::Base
     belongs_to :curator, :class_name => 'User'
     has_many :programs
 
-    attr_writer :category_ids
     attr_writer :requested_location_ids
     attr_accessor :waiver
 
@@ -100,6 +99,10 @@ class Project < ActiveRecord::Base
         end
     end
 
+    def category_ids=( _v )
+        @category_ids = _v
+    end
+        
     def category_ids
         @category_ids ||= project_categories.map(&:category_id)
     end

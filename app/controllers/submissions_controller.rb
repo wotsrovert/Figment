@@ -46,8 +46,7 @@ class SubmissionsController < ApplicationController
         @project.answers.each do |a|
             a.find_in( params[:questions] )
         end
-
-
+        
         if @artist.valid? && @project.valid? && @project.all_questions_answered?
             @artist.save!
             @project.artist = @artist

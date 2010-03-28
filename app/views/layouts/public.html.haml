@@ -37,7 +37,10 @@
       = yield
       
 
-    = javascript_include_tag [ 'jquery-1.3.2.min', 'app' ]
+    = javascript_include_tag [ 'jquery-1.4.2.min', 'app' ]
+    
+    - javascript_tag do
+      = yield :javascript
     
     #footnotes_holder
     

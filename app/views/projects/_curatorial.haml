@@ -88,10 +88,10 @@
     = f.text_area :description
     = f.msg_on :description
 
-.questions
-  %h3 Questions
+.answers
+  %h3 Answers
   %ul
-    - for q in f.object.questions do
+    - for a in f.object.answers
       %li
         .question
           = a.wording

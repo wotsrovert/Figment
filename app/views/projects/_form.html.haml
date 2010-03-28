@@ -13,7 +13,7 @@
   %ul.choices
     - for c in Category.find(:all)
       %li
-        = check_box_tag 'project[category_ids][]', c.id, ( f.object.category_ids.try(:any?) && f.object.category_ids.include?( c.id.to_s ) )
+        = check_box_tag 'project[category_ids][]', c.id, ( f.object.category_ids.try(:any?) && f.object.category_ids.include?( c.id.to_s ) ), :id => "project_category_id_#{ c.id }", :class => 'category'
         %label= c.name
   = f.msg_on :categories
 
@@ -27,14 +27,16 @@
         .answer
           - case q.genre
             - when Question::STRING  
-              = text_field_tag name, "Howdy!"
+              = text_field_tag name, q.answer
       
-            - when Question::BOOLEAN  
-              = radio_button_tag name, 'yes', :checked => true
-              = radio_button_tag name, 'no'
+            - when Question::BOOLEAN 
+              %label Yes
+              = radio_button_tag name, 'yes', :checked => q.answer == 'yes'
+              %label No
+              = radio_button_tag name, 'no', :checked => q.answer == 'no'
       
             - when Question::TEXT  
-              = text_area_tag name, "Why is this so great?"
+              = text_area_tag name, q.answer
               
           - if q.errors.on(:answer)
             %span.msg.error
@@ -67,3 +69,4 @@
   = f.msg_on :waiver
 
 
+  
