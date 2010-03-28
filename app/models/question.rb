@@ -5,10 +5,12 @@ class Question < ActiveRecord::Base
     TEXT    = 'paragraph'
     TYPES   = [ BOOLEAN, STRING, TEXT ]
     
-    validates_presence_of :question, :genre, :category_ids
+    validates_presence_of :wording, :genre, :category_ids
     validates_inclusion_of :genre, :in => TYPES
 
     serialize :category_ids
+    
+    belongs_to :project
 
     def categories
         if category_ids
@@ -19,7 +21,7 @@ class Question < ActiveRecord::Base
     end
     
     def applies_to?( _project )
-        return nil if ! _project.category_ids.any?
+        return true if ! _project.category_ids.any?
         
         _project.category_ids.each do |c|
             if self.category_ids.include?( c )

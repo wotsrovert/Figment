@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
     has_many :categories, :through => :project_categories
     has_many :project_requested_locations
         
-    has_many :answers, :order => 'position ASC'
+    has_many :answers
 
     belongs_to :placed_location, :class_name => "Location"
 
@@ -67,24 +67,20 @@ class Project < ActiveRecord::Base
         end
     end
 
-    def answer_after( _answer )
-        @answer_after = if answers.any? 
-            answers.find_by_position( _answer.position + 1 )
-        else
-            nil
-        end
-    end
-    
-    def answer_before( _answer )
-        @answer_before = if answers.any? 
-            answers.find_by_position( _answer.position - 1 )
-        else
-            nil
-        end
-    end
-    
     def questions
-        Categorie.find( )
+        Question.find( :all ).select{ |q| q.applies_to?( self )}
+    end
+      
+    def answers
+        @answers ||= if new_record?
+            Question.find( :all ).select{ |q| q.applies_to?( self )}.map{ |q| Answer.new( :project => self, :question => q )}
+        else
+            Answer.find_all_by_project_id( self.id )
+        end
+    end
+    
+    def all_questions_answered?
+        answers.all? { |a| a.valid? }
     end
         
     def artist_id=( _v )

@@ -17,6 +17,30 @@
         %label= c.name
   = f.msg_on :categories
 
+.questions
+  %ul
+    - for q in @project.answers
+      - name = "questions[#{ q.question_id }]"
+      
+      %li{ :class => q.category_ids.join( " ") }
+        %label= q.wording
+        .answer
+          - case q.genre
+            - when Question::STRING  
+              = text_field_tag name, "Howdy!"
+      
+            - when Question::BOOLEAN  
+              = radio_button_tag name, 'yes', :checked => true
+              = radio_button_tag name, 'no'
+      
+            - when Question::TEXT  
+              = text_area_tag name, "Why is this so great?"
+              
+          - if q.errors.on(:answer)
+            %span.msg.error
+              = q.errors.on(:answer)
+  
+  
 - f.p( :dimensions ) do
   = f.label :dimensions
   = f.text_field :dimensions

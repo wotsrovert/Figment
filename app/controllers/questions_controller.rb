@@ -6,9 +6,6 @@ class QuestionsController < ApplicationController
         @questions = Question.find(:all)
     end
 
-    def show
-    end
-
     def new
         @question = Question.new
     end
@@ -18,9 +15,7 @@ class QuestionsController < ApplicationController
 
     def create
         @question = Question.new(params[:question])
-        # raise params[:question].inspect
-        
-        if @question.save
+        if @question.save!
             flash[:notice] = 'Question was successfully created.'
             redirect_to(questions_path)
         else

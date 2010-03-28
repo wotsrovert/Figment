@@ -10,13 +10,12 @@
 
   - form_for @project, :url => submissions_path do |f|
 
-    - if @artist.new_record?
-      #artist
-        
-        %h3 Artist      
-        - fields_for :artist, @artist do |a|
-          = render :partial => 'artists/form', :locals => { :f => a }
-        
+    #artist
+      
+      %h3 Artist      
+      - fields_for :artist, @artist do |a|
+        = render :partial => 'artists/form', :locals => { :f => a }
+      
     #project
       %h3 Project
     

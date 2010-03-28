@@ -12,8 +12,7 @@ class User < ActiveRecord::Base
 
     attr_protected :crypted_password,
                     :salt,
-                    :anonymous_login_code,
-                    :is_admin
+                    :anonymous_login_code
 
     validates_presence_of :name, :message => "Please provide a name"
     def validate
@@ -41,12 +40,11 @@ class User < ActiveRecord::Base
         if is_admin || is_placement || is_curator
             read_attribute( :crypted_password ).blank?
         else
+            #  Not required for...
+            #  is_director
+            #  is_artist
             false
         end
-        #  Not required for...
-        #  is_director
-        #  is_artist
-        #  is_spectator
     end
 
     def terms_required?
@@ -77,22 +75,6 @@ class User < ActiveRecord::Base
         find_by_email('trevorstow@gmail.com')
     end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

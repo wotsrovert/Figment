@@ -43,23 +43,24 @@ class SubmissionsController < ApplicationController
     def create
         @artist ||= Artist.new( params[:artist] )
         @project = Project.new( params[:project] )
+        @project.answers.each do |a|
+            a.find_in( params[:questions] )
+        end
 
-        if @artist.valid? && @project.valid?
-            @artist.save
+
+        if @artist.valid? && @project.valid? && @project.all_questions_answered?
+            @artist.save!
             @project.artist = @artist
-            if @project.save!
-                flash[:notice] = 'Project was successfully created.'
-                redirect_to(
-                    if @project.answers.any?
-                        submission_answer_path( @project, @project.answers.first )
-                    else
-                        new_submission_program_path( @project.to_param )
-                    end
-                )
-                return
-            else
-                flash[:error] = "Unable to save your project.  See below for details."
-            end
+            @project.save!
+            @project.answers.each { |q| q.save! }
+            flash[:notice] = 'Project was successfully created.'
+            redirect_to new_submission_program_path( @project.to_param )
+            return
+        end
+        
+        
+        if ! @project.all_questions_answered?
+            flash[:error] = "Please answer all questions below."
         else
             flash[:error] = "Unable to save your project.  Please see below for details."
         end

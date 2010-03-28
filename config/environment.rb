@@ -9,9 +9,6 @@ Rails::Initializer.run do |config|
     config.gem 'paperclip', :source => 'http://gemcutter.org'
     config.gem 'hoptoad_notifier'
 
-    # Activate observers that should always be running
-    config.active_record.observers = :project_observer
-
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names.
     config.time_zone = 'Eastern Time (US & Canada)'

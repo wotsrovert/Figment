@@ -1,5 +1,5 @@
 #question
-  %h1= @question.question
+  %h1= @question.wording
 
   - form_for @question do |f|
     = render :partial => 'questions/form', :locals => { :f => f }

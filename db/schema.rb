@@ -17,10 +17,8 @@ ActiveRecord::Schema.define(:version => 0) do
     t.text     "answer"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position"
   end
 
-  add_index "answers", ["position"], :name => "index_answers_on_position"
   add_index "answers", ["project_id"], :name => "index_answers_on_project_id"
 
   create_table "artists", :force => true do |t|
@@ -100,10 +98,10 @@ ActiveRecord::Schema.define(:version => 0) do
 
   create_table "questions", :force => true do |t|
     t.text     "category_ids"
-    t.string   "question"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "genre"
+    t.string   "wording"
   end
 
   create_table "users", :force => true do |t|
