@@ -1,13 +1,10 @@
-# (c) Copyright 2010 Trevor Stow. All Rights Reserved.
+class UsersController < ApplicationController
 
-class CuratorsController < ApplicationController
-
-    before_filter :require_login
-    before_filter :require_admin, :except => [:show, :index]
     before_filter :find_user, :except => [:index, :new, :create]
-
+    before_filter :require_admin
+    
     def index
-        @users = User.curators
+        @users = User.find(:all)
     end
 
     def show
@@ -15,7 +12,6 @@ class CuratorsController < ApplicationController
 
     def new
         @user = User.new
-        @user.make_curator
     end
 
     def edit
@@ -23,11 +19,10 @@ class CuratorsController < ApplicationController
 
     def create
         @user = User.new(params[:user])
-        @user.make_curator
-        
+
         if @user.save
-            flash[:notice] = 'SUCCESS: Curator account created.'
-            redirect_to curator_path( @user )
+            flash[:notice] = 'User was successfully created.'
+            redirect_to(users_path)
         else
             render :action => "new"
         end
@@ -35,8 +30,8 @@ class CuratorsController < ApplicationController
 
     def update
         if @user.update_attributes(params[:user])
-            flash[:notice] = 'SUCCESS: Curator account updated.'
-            render :template => 'curators/show'
+            flash[:notice] = 'User was successfully updated.'
+            redirect_to(users_path)
         else
             render :action => "edit"
         end
@@ -45,7 +40,7 @@ class CuratorsController < ApplicationController
     def destroy
         @user.destroy
 
-        redirect_to curators_path
+        redirect_to(users_url)
     end
 
     protected

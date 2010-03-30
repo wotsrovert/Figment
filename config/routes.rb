@@ -14,7 +14,8 @@ ActionController::Routing::Routes.draw do |map|
         acc.signup '/account/new', :action => 'new'
     end
     map.resource :account, :controller => 'account'
-
+    map.resources :users
+    
     # =============
     # = passwords =
     # =============

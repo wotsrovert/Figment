@@ -113,14 +113,11 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "updated_at"
     t.datetime "last_logged_in_at"
     t.string   "anonymous_login_code"
-    t.boolean  "is_artist",                                     :default => false
-    t.boolean  "is_curator",                                    :default => false
-    t.boolean  "is_director",                                   :default => false
-    t.boolean  "is_admin",                                      :default => false
     t.string   "phone"
     t.string   "remember_me_code"
     t.datetime "anonymous_login_code_created_at"
     t.boolean  "is_placement",                                  :default => false
+    t.string   "role"
   end
 
 end

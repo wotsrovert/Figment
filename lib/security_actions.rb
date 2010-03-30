@@ -45,7 +45,7 @@ module SecurityActions
         
         if past_user_id && User.exists?( past_user_id )
             u = User.find( past_user_id )
-            if u.is_root?
+            if u.is_admin?
                 if cookies[:lia] == u.anonymous_login_code
                     u.anonymous_login_code = nil
                     u.save!
@@ -97,7 +97,6 @@ module SecurityActions
         else
             User.new
         end
-        @current_user.cookies = cookies
         return @current_user
     end
 
@@ -131,23 +130,15 @@ module SecurityActions
         )
     end
 
-    def require_root
-        return true if current_user.is_root?
-
-        flash[:error] = "You must be root to do that."
-        store_location
-        redirect_to root_url
-    end
-
     def require_admin
-        return true if current_user.is_root? || current_user.is_admin?
+        return true if current_user.is_admin?
 
         if current_user.logged_in?
-            redirect_to root_url
+            raise "That operation is only permitted by admins"
         else
-            store_location
             flash[:login_error] = "You must be admin to do that."
-            redirect_to_login
+            render :template => 'session/login'
+            return false
         end
     end
 

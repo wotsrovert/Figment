@@ -161,7 +161,7 @@ describe "" do
         describe "as admin" do
             before(:each) do
                 @root = Factory.create( :user, :email => 'root@figmentproject.org' )
-                @root.is_admin = true
+                @root.role = User::ADMIN
                 @root.save!
                 try_login( @root )
             end

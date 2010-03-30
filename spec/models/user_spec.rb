@@ -8,7 +8,7 @@ describe User do
     
     describe "aware of whether its logged in" do
         before(:each) do
-            @user = Factory.build( :user, :is_curator => true )
+            @user = Factory.build( :user, :role => User::CURATOR )
         end
         
         it "should not be logged in" do
@@ -33,7 +33,7 @@ describe User do
 
     describe "enforcing unique email" do
         before(:each) do
-            @user = Factory.create(:user, :is_director => true )
+            @user = Factory.create(:user, :role => User::DIRECTOR )
         end
         
         it do
@@ -57,60 +57,42 @@ describe User do
     end
 
     describe "enforcing password" do
-        it "for a user with no privileges, should not require a password" do
-            Factory.build(:user, :password => nil, :password_confirmation => nil, :is_artist => true ).should be_valid
+        it "should not be valid without a passowrd" do
+            returning Factory.build(:user, :password => nil, :password_confirmation => nil ) do |user|
+                user.make_curator
+            end.should_not be_valid
         end
 
-        describe "should require a password for ..." do
-          
-            it "should not be valid without a passowrd" do
-                returning Factory.build(:user, :password => nil, :password_confirmation => nil ) do |user|
-                    user.is_curator = true
-                end.should_not be_valid
+        it "admins" do
+            returning Factory.build( :user, :password => nil, :password_confirmation => nil ) do |user|
+                user.role = User::ADMIN
+            end.should_not be_valid
+        end
+
+        describe "but then once saved ..." do
+            before(:each) do
+                @admin = Factory.build( :user, :password => '987654', :password_confirmation => '987654' )
+                @admin.role = User::ADMIN
             end
 
-            it "admins" do
-                returning Factory.build( :user, :password => nil, :password_confirmation => nil ) do |user|
-                    user.is_admin = true
-                end.should_not be_valid
+            it "should be valid" do
+                @admin.save!
             end
 
-            describe "but then once saved ..." do
+            describe "then reloaded" do
                 before(:each) do
-                    @admin = Factory.build( :user, :password => '987654', :password_confirmation => '987654' )
-                    @admin.is_admin = true
-                end
-
-                it "should be valid" do
                     @admin.save!
+                    @reloaded = User.find( @admin.id )
                 end
 
-                describe "then reloaded" do
-                    before(:each) do
-                        @admin.save!
-                        @reloaded = User.find( @admin.id )
-                    end
-                    
-                    it "should be able to save again without needing password" do
-                        @reloaded.save!
-                    end
+                it "should be able to save again without needing password" do
+                    @reloaded.save!
                 end
             end
         end
-
     end
+
 end
-
-
-
-
-
-
-
-
-
-
-
 
 
 # == Schema Information
@@ -126,13 +108,10 @@ end
 #  updated_at                      :datetime
 #  last_logged_in_at               :datetime
 #  anonymous_login_code            :string(255)
-#  is_artist                       :boolean         default(FALSE)
-#  is_curator                      :boolean         default(FALSE)
-#  is_director                     :boolean         default(FALSE)
-#  is_admin                        :boolean         default(FALSE)
 #  phone                           :string(255)
 #  remember_me_code                :string(255)
 #  anonymous_login_code_created_at :datetime
 #  is_placement                    :boolean         default(FALSE)
+#  role                            :string(255)
 #
 

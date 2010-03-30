@@ -31,8 +31,7 @@ Factory.define :curator, :class => 'user' do |u|
     u.name                  "Some Curator"
     u.password              '123123'
     u.password_confirmation '123123'
-    u.terms                 '1'
-    u.is_curator true
+    u.role User::CURATOR
 end
 
 Factory.define :user do |u|
@@ -40,8 +39,7 @@ Factory.define :user do |u|
     u.name            "My Self"
     u.password              '123123'
     u.password_confirmation '123123'
-    u.terms                 '1'
-    u.is_artist             true
+    u.role             User::PLACEMENT
 end
 
 Factory.sequence :email do |n|
