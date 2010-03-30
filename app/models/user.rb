@@ -45,8 +45,9 @@ class User < ActiveRecord::Base
 
     before_save :encrypt_password
 
-
-    
+    named_scope :ordered_by, lambda { |params|
+        { :order => params[:sort] ? "#{params[:sort]} #{ params[:dir] }" : nil }
+    }
     named_scope :curators, :conditions => { :role => CURATOR }
 
     has_many :projects, :foreign_key => 'curator_id'

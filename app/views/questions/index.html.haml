@@ -1,19 +1,22 @@
-- if @questions.any?
-  %table
-    %thead
-      %th Type
-      %th Categories
-      %th Question
+#questions.index
+  %h1 Questions
+
+  - if @questions.any?
+    %table
+      %thead
+        %th Type
+        %th Categories
+        %th Question
       
-    %thead
-      - for q in @questions
-        %tr
-          %td= link_to q.genre, edit_question_path( q )
-          %td
-            = q.categories.map( &:name ).join(', ')
+      %thead
+        - for q in @questions
+          %tr
+            %td= link_to q.genre, edit_question_path( q )
+            %td
+              = q.categories.map( &:name ).join(', ')
                 
-          %td= link_to q.wording, edit_question_path( q )
+            %td= link_to q.wording, edit_question_path( q )
       
-%p.new
-  = link_to "Create a new question", new_question_path
+  %p.new
+    = link_to "Create a new question", new_question_path
         

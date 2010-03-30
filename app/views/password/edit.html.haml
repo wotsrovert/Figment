@@ -6,15 +6,7 @@
   - form_for @user, :url => url_for( :action => 'update' ), :method => :put do |f|
     = hidden_field_tag :anonymous_login_code, params[:anonymous_login_code]
     
-    - f.p( :password ) do
-      = f.label :password
-      = f.password_field :password
-      = f.msg_on :password
-      
-    - f.p( :password_confirmation ) do
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation
-      = f.msg_on :password_confirmation
+    = render :partial => 'password/fields', :locals => { :f => f }
     
     %p.submit
       = submit_tag "Submit"

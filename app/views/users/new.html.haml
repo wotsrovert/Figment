@@ -1,0 +1,25 @@
+#users.member
+  %h1 Add a User
+
+  - form_for @user do |f|
+    - f.p( :name ) do
+      = f.label :name
+      = f.text_field :name
+      = f.msg_on :name
+    
+    - f.p( :email ) do
+      = f.label :email
+      = f.text_field :email
+      = f.msg_on :email
+    
+    = render :partial => 'password/fields', :locals => { :f => f }
+    
+    - f.p( :role ) do
+      = f.label :role
+      = f.select :role, User::ROLES
+      = f.msg_on :role
+    
+
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", categories_path

@@ -1,8 +1,23 @@
-%table
-  %thead
-    %th= sort_link "ID", :id
-    %th= sort_link "Name", :name
-    %th= sort_link "Email", :email
-    %th= sort_link "Role", :role
+#users.index
+  %h1
+    Users
+  
+  %table{ :cellspacing => 0 }
+    %thead
+      %th= sort_link "ID", :id
+      %th= sort_link "Name", :name
+      %th= sort_link "Email", :email
+      %th= sort_link "Role", :role
+      %th
 
-  %tbody
+    %tbody
+      - for u in @users
+        %tr
+          %td= u.id
+          %td= u.name
+          %td= u.email
+          %td= u.role
+          %td= link_to "edit", edit_user_path( u )
+        
+  %p.new
+    = link_to "Add User", new_user_path

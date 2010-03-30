@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     before_filter :require_admin
     
     def index
-        @users = User.find(:all)
+        @users = User.ordered_by( params ).find(:all)
     end
 
     def show

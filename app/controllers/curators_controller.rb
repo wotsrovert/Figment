@@ -7,7 +7,7 @@ class CuratorsController < ApplicationController
     before_filter :find_user, :except => [:index, :new, :create]
 
     def index
-        @users = User.curators
+        @users = User.curators.ordered_by( params ).find( :all )
     end
 
     def show

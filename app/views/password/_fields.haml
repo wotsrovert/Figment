@@ -1,0 +1,10 @@
+- f.p( :password ) do
+  = f.label :password
+  = f.password_field :password, :size => User::PASSWORD_MAX_LENGTH + 4, :maxlength => User::PASSWORD_MAX_LENGTH
+  = f.msg_on :password
+  
+- f.p( :password_confirmation ) do
+  = f.label :password_confirmation, "Re-type Password"
+  = f.password_field :password_confirmation, :size => User::PASSWORD_MAX_LENGTH + 4, :maxlength => User::PASSWORD_MAX_LENGTH
+  = f.msg_on :password_confirmation
+
