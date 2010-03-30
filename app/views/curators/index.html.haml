@@ -5,16 +5,20 @@
     %table
       %thead
         %tr
-          %th Name
-          %th Email
+          %th= sort_link "ID", :id
+          %th= sort_link "Name", :name
+          %th= sort_link "Email", :email
           %th Last Logged In
+          %th
     
       %tbody
         - for u in @users
           %tr
+            %td= link_to u.id, curator_path( u )
             %td= link_to u.name, curator_path( u )
             %td= u.email
             %td= u.last_logged_in_at
+            %td= link_to "edit", edit_user_path( u )
 
   - else
     %p
