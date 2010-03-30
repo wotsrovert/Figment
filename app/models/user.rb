@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     validates_inclusion_of      :role, :in => ROLES, :message => "Invalid user role"
     
     validates_presence_of       :email, :message => "Required"
-    validates_format_of         :email, :with => Authenticated::EMAIL_REXEP, :message => "Doesn't appear to be valid."
+    validates_format_of         :email, :with => EMAIL_REXEP, :message => "Doesn't appear to be valid."
     validates_uniqueness_of     :email, :case_sensitive => false, :message => "Is already being used."
     validates_presence_of       :crypted_password, :message => "Required", :if => Proc.new{ |u| ! u.new_record? }
     validates_presence_of       :salt, :message => "Required", :if => Proc.new{ |u| ! u.new_record? }
