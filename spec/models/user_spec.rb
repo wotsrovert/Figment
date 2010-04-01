@@ -8,7 +8,7 @@ describe User do
     
     describe "aware of whether its logged in" do
         before(:each) do
-            @user = Factory.build( :user, :role => User::CURATOR )
+            @user = Factory.build( :curator )
         end
         
         it "should not be logged in" do
@@ -33,7 +33,7 @@ describe User do
 
     describe "enforcing unique email" do
         before(:each) do
-            @user = Factory.create(:user, :role => User::DIRECTOR )
+            @user = Factory.create( :director )
         end
         
         it do
@@ -58,21 +58,17 @@ describe User do
 
     describe "enforcing password" do
         it "should not be valid without a passowrd" do
-            returning Factory.build(:user, :password => nil, :password_confirmation => nil ) do |user|
-                user.make_curator
-            end.should_not be_valid
+            Factory.build( :curator, :password => nil, :password_confirmation => nil ).should_not be_valid
         end
 
         it "admins" do
-            returning Factory.build( :user, :password => nil, :password_confirmation => nil ) do |user|
-                user.role = User::ADMIN
-            end.should_not be_valid
+            Factory.build( :director, :password => nil, :password_confirmation => nil ).should_not be_valid
         end
 
         describe "but then once saved ..." do
             before(:each) do
-                @admin = Factory.build( :user, :password => '987654', :password_confirmation => '987654' )
-                @admin.role = User::ADMIN
+                @admin = Factory.build( :admin, :password => '987654', :password_confirmation => '987654' )
+                # @admin.role = User::ADMIN
             end
 
             it "should be valid" do

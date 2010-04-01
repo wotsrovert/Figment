@@ -19,11 +19,12 @@ Factory.define :project do |p|
     p.description "Something standard from the factory"
 end
 
-Factory.define :artist do |a|
-    a.contact_email                 { Factory.next(:email) }
-    a.public_name   "AwesomeSausome"
-    a.contact_name  "Mr. Fantasticulous"
-    a.contact_phone "917-555-4325"
+Factory.define :admin, :class => 'user' do |u|
+    u.email                 { Factory.next(:email) }
+    u.name                  "Some Admin"
+    u.password              '123123'
+    u.password_confirmation '123123'
+    u.role                  User::ADMIN
 end
 
 Factory.define :curator, :class => 'user' do |u|
@@ -31,15 +32,23 @@ Factory.define :curator, :class => 'user' do |u|
     u.name                  "Some Curator"
     u.password              '123123'
     u.password_confirmation '123123'
-    u.role User::CURATOR
+    u.role                  User::CURATOR
 end
 
-Factory.define :user do |u|
+Factory.define :director, :class => 'user' do |u|
     u.email                 { Factory.next(:email) }
-    u.name            "My Self"
+    u.name                  "Some Director"
     u.password              '123123'
     u.password_confirmation '123123'
-    u.role             User::PLACEMENT
+    u.role                  User::DIRECTOR
+end
+
+Factory.define :placement, :class => 'user' do |u|
+    u.email                 { Factory.next(:email) }
+    u.name                  "My Self"
+    u.password              '123123'
+    u.password_confirmation '123123'
+    u.role                  User::PLACEMENT
 end
 
 Factory.sequence :email do |n|

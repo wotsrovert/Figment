@@ -24,7 +24,7 @@ describe "" do
 
     describe "logging in" do
         before(:each) do
-            @user = Factory.create( :user, :is_placement => true )
+            @user = Factory.create( :placement )
         end
 
         describe "SUCCESSFULLY" do
@@ -80,7 +80,7 @@ describe "" do
 
         describe "when cookie data is messed up" do
             before(:each) do
-                @user = Factory.create(:user, :email => 'myself@figmentproject.org' )
+                @user = Factory.create( :placement, :email => 'myself@figmentproject.org' )
                 cookies[:rmi] = @user.id
                 cookies[:rmc] = Digest::SHA1.hexdigest( 'myself@figmentproject.org' )
             end
@@ -129,7 +129,7 @@ describe "" do
 
     describe "logging out" do
         before(:each) do
-            @user = Factory.create( :user )
+            @user = Factory.create( :placement )
             try_login(@user, "1")            
         end
 
@@ -155,12 +155,12 @@ describe "" do
 
     describe "logging in as (root only)" do
         before(:each) do
-            @some_user = Factory.create( :user )            
+            @some_user = Factory.create( :placement )            
         end
         
         describe "as admin" do
             before(:each) do
-                @root = Factory.create( :user, :email => 'root@figmentproject.org' )
+                @root = Factory.create( :placement, :email => 'root@figmentproject.org' )
                 @root.role = User::ADMIN
                 @root.save!
                 try_login( @root )
@@ -227,7 +227,7 @@ describe "" do
 
             describe "when the user is not, in fact root" do
                 before(:each) do
-                    @not_root = Factory.create(:user)
+                    @not_root = Factory.create( :placement )
                     try_login( @not_root )
                 end
 
@@ -250,7 +250,7 @@ describe "" do
 
     describe "signing up" do
         before(:each) do
-            @user = Factory.build( :user )
+            @user = Factory.build( :placement )
         end
 
         def do_it
@@ -317,7 +317,7 @@ describe "" do
     describe "getting the current user" do
 
         before(:each) do
-            @user = Factory.create(:user)
+            @user = Factory.create( :placement )
             User.stub!(:new).and_return(@user)
         end
 

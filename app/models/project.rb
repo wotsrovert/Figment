@@ -114,6 +114,10 @@ class Project < ActiveRecord::Base
     def requested_locations
         Location.find(:all, :conditions => ['id IN (?)', connection.select_values( "SELECT location_id FROM project_requested_locations WHERE project_id = #{ self.id }" )] )
     end
+    
+    def edited_by( _u )
+        @being_edited_by = _u
+    end
 end
 
 
