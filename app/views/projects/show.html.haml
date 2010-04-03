@@ -2,8 +2,9 @@
 
   %h1= @project.title
 
-  %p.edit
-    = link_to "Edit this project", edit_project_path( @project )
+  - if @project.allow_edits_by?( @current_user )
+    %p.edit
+      = link_to "Edit this project", edit_project_path( @project )
     
   %p.back
     = link_to "<< back to projects", projects_path
@@ -63,6 +64,7 @@
 
     %dt Break Down
     %dd= @project.break_down_at ? h( @project.break_down_at ) : "--"
-    
-  %p.edit
-    = link_to "Edit this project", edit_project_path( @project )
+  
+  - if @project.allow_edits_by?( @current_user )
+    %p.edit
+      = link_to "Edit this project", edit_project_path( @project )

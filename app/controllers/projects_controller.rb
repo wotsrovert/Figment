@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
     layout 'public'
 
     before_filter :require_login
+    before_filter :require_director_admin_or_curator, :only => [:edit, :update,:destroy]
     before_filter :find_project, :except => [:index]
 
     def index
@@ -17,15 +18,16 @@ class ProjectsController < ApplicationController
     end
 
     def edit
+        @project.edited_by( current_user )
     end
 
     def update
-        if @project.update_attributes( params[:project] ) && @project.artist.update_attributes( params[:artist] )
+        if @project.edited_by( current_user ).update_attributes( params[:project] ) && @project.artist.update_attributes( params[:artist] )
             flash[:notice] = 'Project was successfully updated.'
             redirect_to(projects_path)
         else
             render :action => "edit"
-        end
+        end        
     end
 
     def destroy
@@ -36,5 +38,12 @@ class ProjectsController < ApplicationController
     protected
     def find_project
         @project = Project.find(params[:id])
+    end
+    
+    def require_director_admin_or_curator
+        if current_user.is_admin? || current_user.is_director? || current_user.is_curator?
+            return true
+        end
+        render :text => "You do not have permission to access that view"
     end
 end

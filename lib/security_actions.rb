@@ -132,13 +132,12 @@ module SecurityActions
 
     def require_admin
         return true if current_user.is_admin?
-
+        
+        flash[:error] = "You must be an admin user to do that."
         if current_user.logged_in?
-            raise "That operation is only permitted by admins"
+            render :text => flash[:error]
         else
-            flash[:login_error] = "You must be admin to do that."
             render :template => 'session/login'
-            return false
         end
     end
 

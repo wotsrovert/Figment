@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
     include SecurityActions
-
+    
     helper :all
     # protect_from_forgery # :secret => '2a090af85266822601d58b602bc63763'
 
@@ -11,5 +11,5 @@ class ApplicationController < ActionController::Base
     before_filter :current_user
 
     layout 'public'
-
+    
 end

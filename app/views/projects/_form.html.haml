@@ -19,8 +19,8 @@
 
 .questions
   %ul
-    - for q in @project.answers
-      - name = "questions[#{ q.question_id }]"
+    - for q in Question.find(:all) 
+      - name = "questions[#{ q.id }]"
       
       %li{ :class => q.category_ids.join( " ") }
         %label= q.wording

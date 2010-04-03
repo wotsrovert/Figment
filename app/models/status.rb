@@ -1,6 +1,9 @@
 class Status
 
-    NEW = 'New'
+    NEW                   = 'New'
+    PRELIMINARY_PLACEMENT = 'Preliminary placement'
+    FINAL_PLACEMENT       = 'Final placement'
+
     VALUES = [
         'Declined',
         NEW,
@@ -9,9 +12,11 @@ class Status
         'Director approved',
         'Published',
         'Logistics confirmed',
-        'Preliminary placement',
-        'Final placement',    
+        PRELIMINARY_PLACEMENT,
+        FINAL_PLACEMENT,
     ]
+    NON_FINAL_VALUES = VALUES - [ PRELIMINARY_PLACEMENT, FINAL_PLACEMENT ]
+
     #     '-1' => 'Declined',
     #     '0'  => 'New',
     #     '1'  => 'Under review',

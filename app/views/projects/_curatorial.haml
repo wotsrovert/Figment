@@ -8,7 +8,10 @@
     
   - f.p( :status ) do
     = f.label :status
-    = select_tag 'project[status]', options_for_select( Status::VALUES, f.object.status )
+    - if f.object.allow_final_placement_by?( @current_user )
+      = select_tag 'project[status]', options_for_select( Status::VALUES, f.object.status )
+    - else
+      = select_tag 'project[status]', options_for_select( Status::NON_FINAL_VALUES, f.object.status )
     = f.msg_on :status
   
 
