@@ -6,7 +6,7 @@ class Notifier < ActionMailer::Base
     def forgot_password( _user )
         recipients  "#{_user.email}"
         from        "no-reply@figmentproject.org"
-        subject     "BoastDrive.com: Password Reset "
+        subject     "Figment Password Reset "
         sent_on     Time.now
 
         body(
@@ -15,18 +15,17 @@ class Notifier < ActionMailer::Base
         )
     end
 
-    def request_to_play( _recipients, _sender, _subject, _message, _sent_at = Time.now )
+    def welcome_message_to( _recipients )
         recipients      _recipients
-        from            'no-reply@figmentproject.org'
-        subject         _subject
-        sent_on         _sent_at
+        from            'kevin@figmentproject.org'
+        subject         "Welcome to the Figment Project!"
+        sent_on         Time.now
 
-        body(
-            :sender  => _sender,
-            :message => _message
-        )
         headers(
-            'reply_to' => _sender.email
+            'reply_to' => 'kevin@figmentproject.org'
         ) 
     end
+    
+    'no-reply@figmentproject.org'
+
 end

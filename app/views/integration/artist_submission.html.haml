@@ -1,0 +1,36 @@
+!!! XML
+!!! Strict
+%html{:lang => "en", "xml:lang" => "en", :xmlns => "http://www.w3.org/1999/xhtml"}
+  %head{:profile => "http://selenium-ide.openqa.org/profiles/test-case"}
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %link{:href => "http://localhost:3000/", :rel => "selenium.base"}/
+    %title ArtistSubmission
+  %body
+    %table{:border => "1", :cellpadding => "1", :cellspacing => "1"}
+      %thead
+        %tr
+          %td{:colspan => "3", :rowspan => "1"} ArtistSubmission
+      %tbody
+        %tr
+          %td open
+          %td /
+          %td
+        %tr
+          %td clickAndWait
+          %td link=click here.
+          %td
+        %tr
+          %td waitForTextPresent
+          %td Submission
+          %td
+        %tr
+          %td clickAndWait
+          %td commit
+          %td
+        = assert_field_with_error_for( :id => 'artist_public_name' )
+        = assert_field_with_error_for( :id => 'artist_contact_name' )
+        = assert_field_with_error_for( :id => 'artist_contact_email' )
+        = assert_field_with_error_for( :id => 'artist_website' )
+        = assert_field_with_error_for( :id => 'artist_group_email' )
+        = assert_field_with_error_for( :id => 'artist_biography' )
+        = assert_field_with_error_for( :id => 'artist_names' )

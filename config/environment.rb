@@ -13,3 +13,5 @@ Rails::Initializer.run do |config|
     # Run "rake -D time" for a list of tasks for finding time zone names.
     config.time_zone = 'Eastern Time (US & Canada)'
 end
+
+ActionView::Base.field_error_proc = Proc.new { |html_tag, instance| html_tag }

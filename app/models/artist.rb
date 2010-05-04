@@ -2,7 +2,6 @@
 
 class Artist < ActiveRecord::Base
     validates_presence_of :public_name, :contact_name, :contact_email, :group_email, :website, :biography, :names_list, :contact_phone, :message => "Required"
-    
     validates_format_of :contact_email, :with => User::EMAIL_REXEP, :message => "Doesn't appear to be valid."
 
     has_many :projects

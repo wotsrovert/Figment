@@ -61,6 +61,8 @@ ActionController::Routing::Routes.draw do |map|
     # ========
     # = misc =
     # ========
+    map.connect "/integration/:action", :controller => "integration"
+    
     map.with_options( :controller => 'errors', :path_prefix => '/errors' ) do |errs|
         errs.connect '/500',            :action => 'internal_error'
         errs.connect '/404',            :action => 'not_found'

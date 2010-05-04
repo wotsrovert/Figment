@@ -21,14 +21,14 @@ class SubmissionsController < ApplicationController
                 :names_list      => "Homer, Marge, Bart, Lisa, Maggie",
                 :website         => 'http://www.thesimpsons.com',
                 :group_email     => 'members@simpsons.com',
-                :contact_name    =>"Trevor Stow",
+                :contact_name    => "Trevor Stow",
                 :public_name     => "T-Man Collective",
                 :contact_phone   => "917.499.0583",
                 :contact_email   => "trevorstow@gmail.com",
                 :is_organization => "1"
             )
             @project = Project.new( 
-                :title       =>"Testing Project",
+                :title       => "Testing Project",
                 :description => "Something very awesome"
             )
         else
@@ -54,6 +54,8 @@ class SubmissionsController < ApplicationController
             @project.answers.each { |q| q.save! }
             flash[:notice] = 'Project was successfully created.'
             redirect_to new_submission_program_path( @project.to_param )
+            
+            Notifier.deliver_welcome_message_to( [ @artist.group_email, @artist.contact_email ] )
             return
         end
         
