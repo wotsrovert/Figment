@@ -6,22 +6,22 @@ describe IntegrationHelper do
         expected = <<EOS
 <tr>
   <td>assertElementPresent</td>
-  <td>//div[@class=&quot;fieldWithErrors&quot;]/input[@id=&quot;artist_public_name&quot;]</td>
+  <td>//p[@class=&quot;publicName error&quot;]/input[@id=&quot;artist_public_name&quot;]</td>
   <td></td>
 </tr>
 EOS
-        helper.assert_input_with_error_for( :id => 'artist_public_name' ).should eql( expected )
+        helper.assert_input_with_error_for( 'artist', 'public_name' ).should eql( expected )
     end
   
     it "assert textarea with error for (field name)" do
         expected = <<EOS
 <tr>
   <td>assertElementPresent</td>
-  <td>//div[@class=&quot;fieldWithErrors&quot;]/textarea[@id=&quot;artist_public_name&quot;]</td>
+  <td>//p[@class=&quot;publicName error&quot;]/textarea[@id=&quot;artist_public_name&quot;]</td>
   <td></td>
 </tr>
 EOS
-        helper.assert_textarea_with_error_for( :id => 'artist_public_name' ).should eql( expected )
+        helper.assert_textarea_with_error_for( 'artist', 'public_name' ).should eql( expected )
     end
   
     it "assert field with error for (field name)" do

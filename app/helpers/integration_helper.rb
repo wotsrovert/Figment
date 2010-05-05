@@ -1,22 +1,20 @@
 module IntegrationHelper
     
-    def assert_input_with_error_for( _hash )
-        px = _hash.map{ |k,v| "[@#{k}=&quot;#{ v }&quot;]"}.join( ' and' )
+    def assert_input_with_error_for( _object, _field )
 return <<EOS
 <tr>
   <td>assertElementPresent</td>
-  <td>//div[@class=&quot;fieldWithErrors&quot;]/input#{ px }</td>
+  <td>//p[@class=&quot;#{ _field.camelize(:lower) } error&quot;]/input[@id=&quot;#{ _object }_#{ _field }&quot;]</td>
   <td></td>
 </tr>
 EOS
     end
     
-    def assert_textarea_with_error_for( _hash )
-        px = _hash.map{ |k,v| "[@#{k}=&quot;#{ v }&quot;]"}.join( ' and' )
+    def assert_textarea_with_error_for( _object, _field )
 return <<EOS
 <tr>
   <td>assertElementPresent</td>
-  <td>//div[@class=&quot;fieldWithErrors&quot;]/textarea#{ px }</td>
+  <td>//p[@class=&quot;#{ _field.camelize(:lower) } error&quot;]/textarea[@id=&quot;#{ _object }_#{ _field }&quot;]</td>
   <td></td>
 </tr>
 EOS
