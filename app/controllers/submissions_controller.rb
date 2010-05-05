@@ -54,9 +54,10 @@ class SubmissionsController < ApplicationController
             @project.save!
             @project.answers.each { |q| q.save! }
             flash[:notice] = 'Project was successfully created.'
-            redirect_to new_submission_program_path( @project.to_param )
-            
+
             Notifier.deliver_welcome_message_to( [ @artist.group_email, @artist.contact_email ] )
+
+            redirect_to new_submission_program_path( @project.to_param )
             return
         end
         
