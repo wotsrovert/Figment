@@ -1,6 +1,6 @@
 body {
   font-family: helvetica, arial, sans-serif;
-  background-color: #CFFFFA; }
+  background-color: #cffffa; }
 
 body.error #page {
   margin-top: 140px; }
@@ -19,7 +19,7 @@ a {
     color: #131584; }
 
 ul#sections li {
-  color: #999;
+  color: #999999;
   font-size: 15px;
   font-weight: bold;
   padding-right: 10px;
@@ -33,12 +33,12 @@ img {
   #page form span.msg {
     font-size: 11px; }
   #page form .error {
-    color: #800000;
+    color: maroon;
     font-weight: bold; }
   #page form .fieldWithErrors input {
-    background-color: #FFE0D1; }
+    background-color: #ffe0d1; }
   #page form .fieldWithErrors label {
-    color: #800000; }
+    color: maroon; }
   #page .member {
     padding-left: 30px;
     padding-top: 30px; }
@@ -103,14 +103,14 @@ dl dt {
 dl dd {
   margin-left: 0; }
   dl dd span.none {
-    color: #999; }
+    color: #999999; }
 
 #flash {
   font-weight: bold; }
   #flash.error {
-    color: #800000; }
+    color: maroon; }
   #flash.notice {
-    color: #005F00; }
+    color: #005f00; }
 
 p.back {
   font-size: 12px; }
@@ -136,8 +136,8 @@ p.submit a {
   #curators table thead th,
   #projects table thead th,
   #users table thead th {
-    background-color: #CCCCCC;
-    color: #000;
+    background-color: #cccccc;
+    color: black;
     font-size: 12px;
     padding: 3px 4px;
     text-align: left; }
@@ -173,7 +173,7 @@ p.submit a {
   float: left;
   width: 100%; }
   #project form p.submit input {
-    color: #11098A;
+    color: #11098a;
     font-size: 15px;
     font-weight: bold; }
 #project form div.answers ul {
@@ -188,11 +188,22 @@ p.submit a {
 #project ul.tabs {
   font-size: 14px; }
   #project ul.tabs li {
-    color: #999;
+    color: #999999;
     font-weight: bold;
-    padding: 0;
-    padding-right: 10px;
+    font-size: 14px;
+    margin-right: 10px;
+    padding: 0 5px;
     display: inline-block; }
+  #project ul.tabs li.current {
+    background-color: #ffff66; }
+#project dl dd span.waiver {
+  display: inline-block;
+  padding-left: 60px; }
+  #project dl dd span.waiver span.label {
+    color: #999999;
+    display: inline-block;
+    font-weight: bold;
+    padding-left: 8px; }
 
 *.xhr {
   border: 1px dashed red; }

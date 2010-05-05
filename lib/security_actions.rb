@@ -79,25 +79,23 @@ module SecurityActions
     end
 
     def current_user
-        if ( cookies[:rmi] ) 
-            rmi = cookies[:rmi][:value].to_i
-            
-            if rmi > 0 && User.exists?( rmi )
-                u = User.find( rmi )
-                if u.remember_me_code == cookies[:rmc]
-                    @current_user = u
-                end
-            end
-        elsif ( session[:pending_user_id].to_i > 0 && Snapshot.exists?( session[:pending_user_id] ))
-            @current_user = Snapshot.find( session[:pending_user_id] ).data
-        end
-        
         @current_user ||= if ( session[:user_id].to_i > 0 && User.exists?(session[:user_id]) )
             User.find(session[:user_id])
         else
-            User.new
+            login_from_cookies( cookies[:rmi], cookies[:rmc] )
         end
-        return @current_user
+        @current_user ||= User.new
+    end
+    
+    def login_from_cookies( _id = nil, _code = nil )
+        return if _id.blank? || _code.blank?
+        
+        if _id.to_i > 0 && User.exists?( _id )
+            u = User.find( _id )
+            if u.remember_me_code == _code
+                return u
+            end
+        end
     end
 
     def store_location

@@ -2,27 +2,19 @@
 
 class Project < ActiveRecord::Base
 
-    SECTIONS = [
-        'curatorial',
-        'artist',
-    ].freeze
-
-
-    has_many :project_categories
+    has_many :answers
     has_many :categories, :through => :project_categories
+    has_many :programs
+    has_many :project_categories
     has_many :project_requested_locations
 
-    has_many :answers
-
     belongs_to :placed_location, :class_name => "Location"
+    belongs_to :artist
+    belongs_to :curator, :class_name => 'User'
 
     validates_presence_of :description, :title, :status, :message => "Required"
     validates_acceptance_of :waiver
     validates_inclusion_of :status, :in => Status::VALUES
-
-    belongs_to :artist
-    belongs_to :curator, :class_name => 'User'
-    has_many :programs
 
     attr_writer :requested_location_ids
     attr_accessor :waiver
@@ -124,7 +116,7 @@ class Project < ActiveRecord::Base
         if self.allow_edits_by?( _u )
             return self
         end
-        raise "Your account doesn't have permission to edit this project"
+        raise Errors::Permission::EditProject
     end
     
     def allow_placement_updates_by?( _u )

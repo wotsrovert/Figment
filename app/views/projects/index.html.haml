@@ -20,24 +20,24 @@
       - for p in @projects
         %tr
           %td= link_to p.id, p
-          %td= link_to h( p.status ), p
+          %td= link_to h( p.status ), project_curatorial_path( p.id )
           
-          %td= link_to h( p.title ), p
+          %td= link_to h( p.title ), project_curatorial_path( p.id )
           %td
             - if p.artist
               =link_to h( p.artist.public_name ), p.artist
           %td
             - if p.curator
-              = link_to h( p.curator.name ), p
+              = link_to h( p.curator.name ), project_curatorial_path( p.id )
           %td
             - if p.categories.any?
               = p.categories.map { |c| link_to h( c.name ), p }.join(", ")
 
           %td
             - if p.placed_location
-              = link_to h( p.placed_location.name ), p
+              = link_to h( p.placed_location.name ), project_logistics_path( p.id )
 
-          %td= link_to h( p.placement_code ), p
+          %td= link_to h( p.placement_code ), project_logistics_path( p.id )
           %td
             - if p.setup_at
               -#= link_to h( p.setup_at.strftime("%A, %b %e %I:%M:%p").gsub(' 0', ' ') ), p

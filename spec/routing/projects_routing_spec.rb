@@ -7,33 +7,41 @@ describe ProjectsController do
         end
 
         it "#edit" do
-            { :get => "/projects/1/edit" }.should route_to( :controller => "projects", :action => "edit", :id => "1" )
+            { :get => "/projects/1/edit" }.should_not be_routable
         end
 
         it "CREATE #create" do
-            { :post => "/projects" }.should_not be_routable 
+            { :post => "/projects" }.should_not be_routable
         end
 
         it "READ #show" do
-            { :get => "/projects/1" }.should route_to( :controller => "projects", :action => "show", :id => "1" )
+            { :get => "/projects/1" }.should_not be_routable
         end
 
         it "UPDATE #update" do
-            { :put => "/projects/1" }.should route_to( :controller => "projects", :action => "update", :id => "1" ) 
+            { :put => "/projects/1" }.should_not be_routable
         end
 
         it "DELETE #destroy" do
-            { :delete => "/projects/1" }.should route_to( :controller => "projects", :action => "destroy", :id => "1" ) 
+            { :delete => "/projects/1" }.should route_to( :controller => "projects", :action => "destroy", :id => "1" )
         end
     end
-    
+
     describe "custom routes" do
-        it "READ #edit curatorial" do
-            { :get => "/projects/1/edit/artist" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'artist' )
+        it "EDIT logistics" do
+            { :get => "/projects/1/logistics" }.should route_to( :controller => "projects", :action => "logistics", :id => "1" )
         end
-    
+
+        it "EDIT curatorial" do
+            { :get => "/projects/1/curatorial" }.should route_to( :controller => "projects", :action => "curatorial", :id => "1" )
+        end
+
+        it "UPDATE curatorial" do
+            { :put => "/projects/1/logistics" }.should route_to( :controller => "projects", :action => "logistics", :id => "1" )
+        end
+
         it "READ #edit curatorial" do
-            { :get => "/projects/1/edit/curatorial" }.should route_to( :controller => "projects", :action => "edit", :id => "1", :section => 'curatorial' )
+            { :put => "/projects/1/curatorial" }.should route_to( :controller => "projects", :action => "curatorial", :id => "1" )
         end
     end
 end

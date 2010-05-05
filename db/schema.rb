@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "str_artist"
     t.string   "str_curator"
     t.string   "str_placed_location"
+    t.boolean  "waiver_signed"
   end
 
   add_index "projects", ["status"], :name => "index_projects_on_status"

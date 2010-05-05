@@ -1,0 +1,98 @@
+#project.member
+
+  = render :partial => 'projects/head', :locals => { :project => @project, :artist => @project.artist }    
+
+  - form_for @project, :url => request.path, :method => :put do |f|
+      
+    %div.curatorial
+      %div
+        .categoryIds
+          = f.label :category_ids, "Categories"
+          %ul.choices
+            - for c in Category.find(:all)
+              %li
+                = check_box_tag 'project[category_ids][]', c.id, f.object.category_ids.include?( c.id )
+                %label= c.name
+          = f.msg_on :category_ids
+
+      - f.p( :curator_id ) do
+        = f.label :curator_id
+        = select_tag 'project[curator_id]', options_for_select( User.curators.map{ |u| [ u.name, u.id ] }, f.object.curator_id )
+        = f.msg_on :curator_id
+
+      - f.p( :press ) do
+        = f.label :press
+        = f.check_box :press
+        = f.msg_on :press
+
+      - f.p( :stipend ) do
+        = f.label :stipend
+        = f.text_field :stipend
+        = f.msg_on :stipend
+
+      - f.p( :notes ) do
+        = f.label :notes
+        = f.text_area :notes, :size => '40x3'
+
+    .placement
+      %h3 Placement & Installation:
+      .placedLocationId
+        = f.label :placed_location_id, "Location"
+        = f.select :placed_location_id, ['--', nil] + Location.find(:all).map{ |l| [ l.name, l.id ] }
+        = f.msg_on :placed_location_id
+
+      - f.p( :requested_locations ) do
+        = f.label :requested_locations
+        - if f.object.requested_locations.any?
+          = f.object.requested_locations.map { |l| link_to h(l.name), l }.join(", ")
+        - else
+          (none)
+    
+      - f.p( :placement_code ) do
+        = f.label :placement_code
+        = f.text_field :placement_code
+        = f.msg_on :placement_code
+
+      - f.p( :setup_at ) do
+        = f.label :setup_at
+        = f.datetime_select :setup_at
+        = f.msg_on :setup_at
+
+      - f.p( :break_down_at ) do
+        = f.label :break_down_at
+        = f.datetime_select :break_down_at
+        = f.msg_on :break_down_at
+
+    .description
+      %h3 Description:
+      - f.p( :dimensions ) do
+        = f.label :dimensions
+        = f.text_field :dimensions
+        = f.msg_on :dimensions
+
+      - f.p( :duration ) do
+        = f.label :duration
+        = f.text_field :duration
+        = f.msg_on :duration
+
+      Project Images: (links to uploaded files and an upload button)
+
+      - f.p( :description ) do
+        = f.label :description
+        = f.text_area :description
+        = f.msg_on :description
+
+    .answers
+      %h3 Answers
+      %ul
+        - for a in f.object.answers
+          %li
+            .question
+              = a.wording
+            .answer
+              = a.answer
+
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", :back    
+

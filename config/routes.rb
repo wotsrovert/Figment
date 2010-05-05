@@ -43,8 +43,9 @@ ActionController::Routing::Routes.draw do |map|
     map.resources :submissions, :except => [:destroy], :member => { :thank_you => :get } do |sub|
         sub.resources :programs, :controller => 'submission_programs', :except => [:show]
     end
-    map.connect '/projects/:id/edit/:section', :controller => 'projects', :action => 'edit', :id => /\d+/, :section => Regexp.new( Project::SECTIONS.join('|') )
-    map.resources :projects, :only => [:index, :show, :edit, :update, :destroy], :shallow => true do |project|
+    map.project_curatorial '/projects/:id/curatorial', :controller => 'projects', :action => 'curatorial', :id => /\d+/
+    map.project_logistics '/projects/:id/logistics', :controller => 'projects', :action => 'logistics', :id => /\d+/
+    map.resources :projects, :only => [:index, :destroy], :shallow => true do |project|
         project.resources :programs
     end
     

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     layout 'public'
 
     before_filter :require_login
-    before_filter :require_director_admin_or_curator, :only => [:edit, :update,:destroy]
+    before_filter :require_director_admin_or_curator, :only => [ :curatorial, :logistics ]
     before_filter :find_project, :except => [:index]
 
     def index
@@ -14,20 +14,26 @@ class ProjectsController < ApplicationController
         @projects = Project.find(:all, :include => [:categories], :order => ( params[:sort] ? "#{params[:sort]} #{ params[:dir] }" : nil ))
     end
 
-    def show
-    end
-
-    def edit
+    def curatorial
         @project.edited_by( current_user )
+        if request.put?
+            if @project.edited_by( current_user ).update_attributes( params[:project] ) && @project.artist.update_attributes( params[:artist] )
+                flash[:notice] = 'Project was successfully updated.'
+            else
+                flash[:error] = 'FAILED:  Project was not saved.  See below.'
+            end        
+        end
     end
 
-    def update
-        if @project.edited_by( current_user ).update_attributes( params[:project] ) && @project.artist.update_attributes( params[:artist] )
-            flash[:notice] = 'Project was successfully updated.'
-            redirect_to(projects_path)
-        else
-            render :action => "edit"
-        end        
+    def logistics
+        @project.edited_by( current_user )
+        if request.put?
+            if @project.edited_by( current_user ).update_attributes( params[:project] ) && @project.artist.update_attributes( params[:artist] )
+                flash[:notice] = 'Project was successfully updated.'
+            else
+                flash[:error] = 'FAILED:  Project was not saved.  See below.'
+            end        
+        end
     end
 
     def destroy
@@ -44,6 +50,6 @@ class ProjectsController < ApplicationController
         if current_user.is_admin? || current_user.is_director? || current_user.is_curator?
             return true
         end
-        render :text => "You do not have permission to access that view"
+        raise Errors::Permission::EditProject
     end
 end

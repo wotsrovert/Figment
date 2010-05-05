@@ -1,16 +1,7 @@
 #project.member
 
-  %h1
-    Project:
-    = @program.project.title
+  = render :partial => 'projects/head', :locals => { :project => @program.project, :artist => @program.project.artist }    
 
-  %ul#sections
-    - for s in Project::SECTIONS
-      %li
-      = link_to s.capitalize, url_for( :controller => 'projects', :action => 'edit', :id => @program.project.to_param, :section => s )
-    %li.current
-      = link_to "Programs", project_programs_path( @program.project )
-    
   .programs
     - form_for @program do |f|
       = render :partial => 'programs/form', :locals => { :f => f }

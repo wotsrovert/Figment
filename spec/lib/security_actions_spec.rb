@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "" do
     include SecurityActions
     include ActionController::UrlWriter
+    # include ActionController::Cookies
 
     default_url_options[:host] = 'figmentproject.org'
 
@@ -19,7 +20,8 @@ describe "" do
     end
 
     before( :each ) do
-        cookies = {}
+        cookies.delete :rmi
+        cookies.delete :rmc
     end
 
     describe "logging in" do

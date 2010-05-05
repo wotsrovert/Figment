@@ -1,0 +1,13 @@
+#project.member
+
+  = render :partial => 'projects/head', :locals => { :project => @project, :artist => @project.artist }    
+
+  - form_for @project, :url => request.path, :method => :put do |f|
+      
+    %div.logistics
+      %h3 What goes here?
+      
+    %p.submit
+      = submit_tag "Submit"
+      = link_to "Cancel", :back    
+

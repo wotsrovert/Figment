@@ -1,0 +1,33 @@
+%h1
+  = project.title
+  \- Project Detail
+  
+%dl
+  %dt Contact
+  %dd
+    = artist.contact_name
+    %br/
+    = artist.contact_phone
+    \/
+    = artist.contact_email
+    
+- form_for @project, :url => request.path, :method => :put do |f|
+  - f.p( :status ) do
+    = f.label :status
+    - if f.object.allow_final_placement_by?( @current_user )
+      = select_tag 'project[status]', options_for_select( Status::VALUES, f.object.status )
+    - else
+      = select_tag 'project[status]', options_for_select( Status::NON_FINAL_VALUES, f.object.status )
+    = f.msg_on :status
+  %p.submit
+    = submit_tag "Update"
+
+%span.waiver
+  = project.waiver_signed? ? "YES" : "no"
+  %span.label
+    Waiver Signed?
+
+%ul.tabs
+  %li{ :class => params[:action] == 'curatorial'   ? 'current' : nil }= link_to 'Curatorial', project_curatorial_path( project.id )
+  %li{ :class => params[:action] == 'logistics'    ? 'current' : nil }= link_to 'Logistics',  project_logistics_path(  project.id )
+  %li{ :class => params[:controller] == 'programs' ? 'current' : nil }= link_to "Programs",   project_programs_path( project )
