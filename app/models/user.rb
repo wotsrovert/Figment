@@ -53,7 +53,6 @@ class User < ActiveRecord::Base
     has_many :projects, :foreign_key => 'curator_id'
     
     def validate_password
-        # raise @password.inspect
         self.new_record? || @password
     end
     

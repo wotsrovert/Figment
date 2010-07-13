@@ -21,6 +21,8 @@ class ProgramsController < ApplicationController
     end
 
     def edit
+        @program = Program.find( params[:id] )
+        @project = @program.project
         @programs = @program.project.programs.find(:all)
     end
 

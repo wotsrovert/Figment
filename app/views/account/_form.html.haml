@@ -8,13 +8,12 @@
   = f.text_field :email
   = f.msg_on :email
 
-- if f.object.try( :password_required? )
-  - f.p( :password ) do
-    = f.label :password
-    = f.password_field :password
-    = f.msg_on :password
+- f.p( :password ) do
+  = f.label :password
+  = f.password_field :password
+  = f.msg_on :password
 
-  - f.p( :password_confirmation ) do
-    = f.label :password_confirmation, "Please Re-Type Password"
-    = f.text_field :password_confirmation
-    = f.msg_on :password_confirmation
+- f.p( :password_confirmation ) do
+  = f.label :password_confirmation, "Please Re-Type Password"
+  = f.text_field :password_confirmation
+  = f.msg_on :password_confirmation
