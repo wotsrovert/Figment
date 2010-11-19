@@ -1,0 +1,5 @@
+Get OpenKulture.com up; point DNS
+
+
+Project Plan:
+Talk to Ben Sarsgarrd (PDF) about Sugar CMS
